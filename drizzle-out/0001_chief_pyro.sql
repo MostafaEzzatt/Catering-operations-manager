@@ -1,0 +1,1 @@
+ALTER TABLE "co-mgr-customers" ADD COLUMN "code" varchar(255) NOT NULL;

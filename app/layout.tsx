@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar";
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import type { Metadata } from "next";
 import { Noto_Sans_Arabic } from "next/font/google";
@@ -28,6 +29,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster position="top-right" closeButton />
           <Navbar />
           {children}
         </ThemeProvider>

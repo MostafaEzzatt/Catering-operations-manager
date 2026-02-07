@@ -8,6 +8,13 @@
       "when": 1770465994999,
       "tag": "0000_happy_supernaut",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1770466694044,
+      "tag": "0001_chief_pyro",
+      "breakpoints": true
     }
   ]
 }

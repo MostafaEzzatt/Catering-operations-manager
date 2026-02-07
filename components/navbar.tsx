@@ -8,7 +8,10 @@ import {
 import Link from "next/link";
 import { ModeToggle } from "./ui/theme-toggle";
 
-const navList = [{ href: "/", text: "اعداد الرحلات" }];
+const navList = [
+  { href: "/add-companys", text: "الشركات" },
+  { href: "/", text: "اعداد الرحلات" },
+];
 
 const Navbar = () => {
   return (
