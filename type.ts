@@ -4,4 +4,10 @@ type CompanyFormValues = {
   code: string;
 };
 
+type CustomerFlightCountFormValues = {
+  customerId: number;
+  count: number;
+  date: Date;
+};
+
 type formValueType<T> = Record<keyof T, string>;

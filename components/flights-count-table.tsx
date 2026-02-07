@@ -1,7 +1,7 @@
 "use client";
 
-import { deleteCustomer } from "@/actions/customer";
-import { cutomersTable } from "@/drizzle/db/schema";
+import { deleteCount } from "@/actions/customer-flight-count";
+import { customerFlightCountTable } from "@/drizzle/db/schema";
 import {
   ColumnDef,
   flexRender,
@@ -22,13 +22,13 @@ import {
   TableRow,
 } from "./ui/table";
 
-const CompanyTable = ({
-  customers,
+const FlightsCountDataTable = ({
+  records,
 }: {
-  customers: InferSelectModel<typeof cutomersTable>[];
+  records: InferSelectModel<typeof customerFlightCountTable>[];
 }) => {
   const [deleteState, deleteSubmit, deleteIsPending] = useActionState(
-    deleteCustomer,
+    deleteCount,
     null,
   );
   const [transitionPending, startTransition] = useTransition();
@@ -41,19 +41,25 @@ const CompanyTable = ({
     });
   }
 
-  const columns: ColumnDef<InferSelectModel<typeof cutomersTable>>[] = [
+  const columns: ColumnDef<
+    InferSelectModel<typeof customerFlightCountTable>
+  >[] = [
     {
       id: "index", // Required for display columns
       header: "#",
       cell: (info) => info.row.index + 1, // +1 because indices are 0-based
     },
     {
-      accessorKey: "name",
-      header: "اسم الشركة",
+      accessorKey: "date",
+      header: "التاريخ",
     },
     {
-      accessorKey: "code",
-      header: "كود الشركة",
+      accessorKey: "customerId",
+      header: "الشركة",
+    },
+    {
+      accessorKey: "count",
+      header: "العدد",
     },
     {
       accessorKey: "Delete",
@@ -75,20 +81,19 @@ const CompanyTable = ({
   // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     columns,
-    data: customers,
+    data: records,
     getCoreRowModel: getCoreRowModel(),
   });
 
   useEffect(() => {
     if (isPending) {
-      toast.info("نعمل على مسح الشركة");
+      toast.info("نعمل على مسح البيانات");
     } else if (!isPending && deleteState == true) {
-      toast.success("تم مسح الشركة.");
+      toast.success("تم مسح البيانات.");
     } else if (!isPending && deleteState === false) {
-      toast.error("حدث خطاء ما عند مسح الشركة.");
+      toast.error("حدث خطاء ما عند مسح البيانات.");
     }
   }, [isPending, deleteState]);
-
   return (
     <div className="overflow-hidden rounded-md border">
       <Table>
@@ -127,7 +132,7 @@ const CompanyTable = ({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                لم يتم اضافة شركات.
+                لم يتم اضافة اعداد رحلات للشركات.
               </TableCell>
             </TableRow>
           )}
@@ -137,4 +142,4 @@ const CompanyTable = ({
   );
 };
 
-export default CompanyTable;
+export default FlightsCountDataTable;

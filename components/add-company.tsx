@@ -28,7 +28,6 @@ const AddCompany = () => {
       onSubmit: formSchema,
     },
     onSubmit: ({ value }) => {
-      console.log(value);
       startTransition(() => {
         insertSubmit(value);
       });

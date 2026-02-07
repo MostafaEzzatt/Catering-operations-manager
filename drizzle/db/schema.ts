@@ -1,7 +1,21 @@
-import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
+import { date, integer, pgTable, varchar } from "drizzle-orm/pg-core";
 
 export const cutomersTable = pgTable("co-mgr-customers", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
   code: varchar({ length: 255 }).notNull(),
 });
+
+export const customerFlightCountTable = pgTable(
+  "co-mgr-customer-flight-count",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    customerId: integer("customerId")
+      .references(() => cutomersTable.id, {
+        onDelete: "cascade",
+      })
+      .notNull(),
+    count: integer().notNull(),
+    date: date().notNull(),
+  },
+);
