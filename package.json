@@ -9,6 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tanstack/react-devtools": "^0.9.4",
+    "@tanstack/react-form": "^1.28.0",
+    "@tanstack/react-form-devtools": "^0.2.13",
+    "@tanstack/react-form-nextjs": "^1.28.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.563.0",
