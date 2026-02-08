@@ -24,9 +24,9 @@ export const customerFlightCountTable = pgTable(
       })
       .notNull(),
     flightCount: integer().notNull(),
-    c: integer().notNull().default(0),
-    h: integer().notNull().default(0),
-    y: integer().notNull().default(0),
+    c: integer().default(0).notNull(),
+    h: integer().default(0).notNull(),
+    y: integer().default(0).notNull(),
     date: date().notNull(),
     createdAt: date()
       .notNull()

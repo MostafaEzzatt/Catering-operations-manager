@@ -1,6 +1,3 @@
-import { InferSelectModel } from "drizzle-orm";
-import { customerFlightCountTable, cutomersTable } from "./drizzle/db/schema";
-
 /* eslint-disable @typescript-eslint/no-unused-vars */
 type CompanyFormValues = {
   name: string;
