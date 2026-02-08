@@ -1,6 +1,6 @@
 import { db } from "@/drizzle";
 import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
-import { asc, desc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import FlightsCountDataTable from "./flights-count-table";
 import HeadingTwo from "./typo-h2";
 

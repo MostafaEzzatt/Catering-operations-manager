@@ -29,7 +29,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Toaster position="top-right" closeButton />
+          <Toaster position="bottom-left" closeButton />
           <Navbar />
           {children}
         </ThemeProvider>

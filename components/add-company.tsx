@@ -48,9 +48,11 @@ const AddCompany = () => {
       toast.info("بدء عملية اضافة الشركة");
     } else if (!isPending && insertState) {
       toast.success("تم اضافة الشركة.");
+      form.reset();
     } else if (!isPending && insertState === false) {
       toast.error("حدث خطأ ما عند اضافة الشركة");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPending, insertState]);
 
   return (
