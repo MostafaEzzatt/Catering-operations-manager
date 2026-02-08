@@ -6,8 +6,8 @@ CREATE TABLE "co-mgr-customer-flight-count" (
 	"h" integer DEFAULT 0 NOT NULL,
 	"y" integer DEFAULT 0 NOT NULL,
 	"date" date NOT NULL,
-	"createdAt" date DEFAULT CURRENT_DATE NOT NULL,
-	"updatedAt" date DEFAULT CURRENT_DATE NOT NULL
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "co-mgr-customers" (
@@ -15,8 +15,8 @@ CREATE TABLE "co-mgr-customers" (
 	"name" varchar(255) NOT NULL,
 	"code" varchar(255) NOT NULL,
 	"cNumber" varchar(255) NOT NULL,
-	"createdAt" date DEFAULT CURRENT_DATE NOT NULL,
-	"updatedAt" date DEFAULT CURRENT_DATE NOT NULL
+	"createdAt" timestamp DEFAULT now() NOT NULL,
+	"updatedAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 ALTER TABLE "co-mgr-customer-flight-count" ADD CONSTRAINT "co-mgr-customer-flight-count_customerId_co-mgr-customers_id_fk" FOREIGN KEY ("customerId") REFERENCES "public"."co-mgr-customers"("id") ON DELETE cascade ON UPDATE no action;

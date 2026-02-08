@@ -1,17 +1,19 @@
 import { sql } from "drizzle-orm";
-import { date, integer, pgTable, varchar } from "drizzle-orm/pg-core";
+import {
+  date,
+  integer,
+  pgTable,
+  timestamp,
+  varchar,
+} from "drizzle-orm/pg-core";
 
 export const cutomersTable = pgTable("co-mgr-customers", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
   code: varchar({ length: 255 }).notNull(),
   cNumber: varchar({ length: 255 }).notNull(),
-  createdAt: date()
-    .notNull()
-    .default(sql`CURRENT_DATE`),
-  updatedAt: date()
-    .notNull()
-    .default(sql`CURRENT_DATE`),
+  createdAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow(),
 });
 
 export const customerFlightCountTable = pgTable(
@@ -28,11 +30,7 @@ export const customerFlightCountTable = pgTable(
     h: integer().default(0).notNull(),
     y: integer().default(0).notNull(),
     date: date().notNull(),
-    createdAt: date()
-      .notNull()
-      .default(sql`CURRENT_DATE`),
-    updatedAt: date()
-      .notNull()
-      .default(sql`CURRENT_DATE`),
+    createdAt: timestamp().notNull().defaultNow(),
+    updatedAt: timestamp().notNull().defaultNow(),
   },
 );

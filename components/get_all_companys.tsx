@@ -5,7 +5,6 @@ import HeadingTwo from "./typo-h2";
 
 const GetAllCompanys = async () => {
   const companys = await db.select().from(cutomersTable);
-
   return (
     <>
       <HeadingTwo txt="قائمة الشركات" />
