@@ -1,5 +1,5 @@
 {
-  "id": "1cba073a-587a-4856-b412-96a2a95701c2",
+  "id": "45014ffe-bb32-4078-a783-cda0d21be214",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -95,6 +95,12 @@
         },
         "code": {
           "name": "code",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cNumber": {
+          "name": "cNumber",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true

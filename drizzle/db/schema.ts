@@ -4,6 +4,7 @@ export const cutomersTable = pgTable("co-mgr-customers", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
   code: varchar({ length: 255 }).notNull(),
+  cNumber: varchar({ length: 255 }).notNull(),
 });
 
 export const customerFlightCountTable = pgTable(

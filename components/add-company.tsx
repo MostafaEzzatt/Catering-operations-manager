@@ -20,6 +20,7 @@ const AddCompany = () => {
   const defaultValues: CompanyFormValues = {
     name: "",
     code: "",
+    cNumber: "",
   };
 
   const form = useForm({
@@ -37,6 +38,7 @@ const AddCompany = () => {
   const ar_field_name: formValueType<CompanyFormValues> = {
     name: "اسم الشركة",
     code: "كود الشركة",
+    cNumber: "رقم الشركة",
   };
 
   const isPending = insertIsPending || tansitionIsPending;
@@ -86,8 +88,35 @@ const AddCompany = () => {
               );
             }}
           />
+
           <form.Field
             name="code"
+            children={(field) => {
+              const isInvalid =
+                field.state.meta.isTouched && !field.state.meta.isValid;
+              return (
+                <Field data-invalid={isInvalid}>
+                  <FieldLabel htmlFor={field.name} className="capitalize">
+                    {ar_field_name[field.name]}
+                  </FieldLabel>
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    aria-invalid={isInvalid}
+                    placeholder={ar_field_name[field.name]}
+                    autoComplete="off"
+                  />
+                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                </Field>
+              );
+            }}
+          />
+
+          <form.Field
+            name="cNumber"
             children={(field) => {
               const isInvalid =
                 field.state.meta.isTouched && !field.state.meta.isValid;

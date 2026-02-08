@@ -2,6 +2,7 @@
 type CompanyFormValues = {
   name: string;
   code: string;
+  cNumber: string;
 };
 
 type CustomerFlightCountFormValues = {

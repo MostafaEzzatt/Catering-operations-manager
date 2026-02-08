@@ -4,6 +4,8 @@ import Heading1 from "@/components/typo-h1";
 import { db } from "@/drizzle";
 import { cutomersTable } from "@/drizzle/db/schema";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const customers = await db.select().from(cutomersTable);
   return (
