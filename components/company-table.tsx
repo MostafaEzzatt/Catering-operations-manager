@@ -52,6 +52,10 @@ const CompanyTable = ({
       header: "اسم الشركة",
     },
     {
+      accessorKey: "cNumber",
+      header: "رقم الشركة",
+    },
+    {
       accessorKey: "code",
       header: "كود الشركة",
     },

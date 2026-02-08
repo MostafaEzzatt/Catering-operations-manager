@@ -37,13 +37,19 @@ const AddMSFlightCount = ({
 
   const defaultValues: CustomerFlightCountFormValues = {
     customerId: 0,
-    count: 0,
+    flightCount: 0,
+    c: 0,
+    h: 0,
+    y: 0,
     date: new Date(),
   };
 
   const ar_field_name: formValueType<CustomerFlightCountFormValues> = {
     customerId: "الشركة",
-    count: "العدد",
+    flightCount: "العدد",
+    c: "كرو",
+    h: "بزنس",
+    y: "سياحى",
     date: "بتاريخ",
   };
 
@@ -123,8 +129,9 @@ const AddMSFlightCount = ({
               );
             }}
           />
+
           <form.Field
-            name="count"
+            name="flightCount"
             children={(field) => {
               const isInvalid =
                 field.state.meta.isTouched && !field.state.meta.isValid;
@@ -148,6 +155,85 @@ const AddMSFlightCount = ({
               );
             }}
           />
+
+          <form.Field
+            name="c"
+            children={(field) => {
+              const isInvalid =
+                field.state.meta.isTouched && !field.state.meta.isValid;
+              return (
+                <Field data-invalid={isInvalid}>
+                  <FieldLabel htmlFor={field.name} className="capitalize">
+                    {ar_field_name[field.name]}
+                  </FieldLabel>
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(Number(e.target.value))}
+                    aria-invalid={isInvalid}
+                    placeholder={ar_field_name[field.name]}
+                    autoComplete="off"
+                  />
+                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                </Field>
+              );
+            }}
+          />
+
+          <form.Field
+            name="h"
+            children={(field) => {
+              const isInvalid =
+                field.state.meta.isTouched && !field.state.meta.isValid;
+              return (
+                <Field data-invalid={isInvalid}>
+                  <FieldLabel htmlFor={field.name} className="capitalize">
+                    {ar_field_name[field.name]}
+                  </FieldLabel>
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(Number(e.target.value))}
+                    aria-invalid={isInvalid}
+                    placeholder={ar_field_name[field.name]}
+                    autoComplete="off"
+                  />
+                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                </Field>
+              );
+            }}
+          />
+
+          <form.Field
+            name="y"
+            children={(field) => {
+              const isInvalid =
+                field.state.meta.isTouched && !field.state.meta.isValid;
+              return (
+                <Field data-invalid={isInvalid}>
+                  <FieldLabel htmlFor={field.name} className="capitalize">
+                    {ar_field_name[field.name]}
+                  </FieldLabel>
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(e) => field.handleChange(Number(e.target.value))}
+                    aria-invalid={isInvalid}
+                    placeholder={ar_field_name[field.name]}
+                    autoComplete="off"
+                  />
+                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                </Field>
+              );
+            }}
+          />
+
           <form.Field
             name="date"
             children={(field) => {

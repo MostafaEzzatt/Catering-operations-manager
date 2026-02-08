@@ -1,7 +1,7 @@
 "use client";
 
 import { deleteCount } from "@/actions/customer-flight-count";
-import { customerFlightCountTable } from "@/drizzle/db/schema";
+import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
 import {
   ColumnDef,
   flexRender,
@@ -22,11 +22,14 @@ import {
   TableRow,
 } from "./ui/table";
 
-const FlightsCountDataTable = ({
-  records,
-}: {
-  records: InferSelectModel<typeof customerFlightCountTable>[];
-}) => {
+interface recordsType {
+  "co-mgr-customer-flight-count": InferSelectModel<
+    typeof customerFlightCountTable
+  >;
+  "co-mgr-customers": InferSelectModel<typeof cutomersTable> | null;
+}
+
+const FlightsCountDataTable = ({ records }: { records: recordsType[] }) => {
   const [deleteState, deleteSubmit, deleteIsPending] = useActionState(
     deleteCount,
     null,
@@ -41,25 +44,35 @@ const FlightsCountDataTable = ({
     });
   }
 
-  const columns: ColumnDef<
-    InferSelectModel<typeof customerFlightCountTable>
-  >[] = [
+  const columns: ColumnDef<recordsType>[] = [
     {
       id: "index", // Required for display columns
       header: "#",
       cell: (info) => info.row.index + 1, // +1 because indices are 0-based
     },
     {
-      accessorKey: "date",
+      accessorKey: "co-mgr-customer-flight-count.date",
       header: "التاريخ",
     },
     {
-      accessorKey: "customerId",
+      accessorKey: "co-mgr-customers.name",
       header: "الشركة",
     },
     {
-      accessorKey: "count",
-      header: "العدد",
+      accessorKey: "co-mgr-customer-flight-count.flightCount",
+      header: "عدد الرحلات",
+    },
+    {
+      accessorKey: "co-mgr-customer-flight-count.c",
+      header: "كرو",
+    },
+    {
+      accessorKey: "co-mgr-customer-flight-count.h",
+      header: "بزنس",
+    },
+    {
+      accessorKey: "co-mgr-customer-flight-count.y",
+      header: "سياحى",
     },
     {
       accessorKey: "Delete",
@@ -67,7 +80,9 @@ const FlightsCountDataTable = ({
       cell: (info) => {
         return (
           <Button
-            onClick={() => handleDelete(info.row.original.id)}
+            onClick={() =>
+              handleDelete(info.row.original["co-mgr-customer-flight-count"].id)
+            }
             disabled={isPending}
             variant={"outline"}
           >

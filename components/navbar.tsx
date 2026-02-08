@@ -10,7 +10,7 @@ import { ModeToggle } from "./ui/theme-toggle";
 
 const navList = [
   { href: "/add-companys", text: "الشركات" },
-  { href: "/", text: "اعداد الرحلات" },
+  { href: "/", text: "اعدادالرحلات و الوجبات" },
 ];
 
 const Navbar = () => {

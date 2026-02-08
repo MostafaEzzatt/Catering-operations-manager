@@ -1,15 +1,23 @@
 import { db } from "@/drizzle";
-import { customerFlightCountTable } from "@/drizzle/db/schema";
+import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
+import { eq } from "drizzle-orm";
 import FlightsCountDataTable from "./flights-count-table";
 import HeadingTwo from "./typo-h2";
 
 const GetAllFlightCounts = async () => {
-  const flightsCount = await db.select().from(customerFlightCountTable);
+  const flightsCountData = await db
+    .select()
+    .from(customerFlightCountTable)
+    .leftJoin(
+      cutomersTable,
+      eq(customerFlightCountTable.customerId, cutomersTable.id),
+    );
+
   return (
     <>
       <HeadingTwo txt="قائمة الشركات" />
 
-      <FlightsCountDataTable records={flightsCount} />
+      <FlightsCountDataTable records={flightsCountData} />
     </>
   );
 };
