@@ -9,16 +9,16 @@ import Link from "next/link";
 import { ModeToggle } from "./ui/theme-toggle";
 
 const navList = [
-  { href: "/reports", text: "التقارير" },
-  { href: "/add-companys", text: "الشركات" },
   { href: "/", text: "اعدادالرحلات و الوجبات" },
+  { href: "/add-companys", text: "الشركات" },
+  { href: "/reports", text: "التقارير" },
 ];
 
 const Navbar = () => {
   return (
     <nav className="px-6 py-3 border-b border-dashed mb-8 print:hidden">
       <div className="flex justify-between container mx-auto">
-        <NavigationMenu>
+        <NavigationMenu dir="rtl">
           <NavigationMenuList>
             {navList.map((i) => (
               <NavigationMenuItem key={i.href}>
