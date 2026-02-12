@@ -12,7 +12,6 @@ const navList = [
   { href: "/", text: "اعدادالرحلات و الوجبات" },
   { href: "/add-companys", text: "الشركات" },
   { href: "/reports", text: "التقارير" },
-  { href: "/", text: "" },
 ];
 
 const Navbar = () => {
