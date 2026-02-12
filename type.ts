@@ -15,3 +15,25 @@ type CustomerFlightCountFormValues = {
 };
 
 type formValueType<T> = Record<keyof T, string>;
+
+interface reportForm {
+  from: Date;
+  to: Date;
+  monthFormat: boolean;
+  companyType: string;
+  companyId: number;
+  allComp: Array<CompanyFormValues & { id: number }>;
+}
+
+interface reportResponseType {
+  date: string;
+  customer: string;
+  flightCount: number;
+  c: number;
+  h: number;
+  y: number;
+}
+interface reportType {
+  error: boolean;
+  response: Array<reportResponseType>;
+}

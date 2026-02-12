@@ -9,13 +9,14 @@ import Link from "next/link";
 import { ModeToggle } from "./ui/theme-toggle";
 
 const navList = [
+  { href: "/reports", text: "التقارير" },
   { href: "/add-companys", text: "الشركات" },
   { href: "/", text: "اعدادالرحلات و الوجبات" },
 ];
 
 const Navbar = () => {
   return (
-    <nav className="px-6 py-3 border-b border-dashed mb-8">
+    <nav className="px-6 py-3 border-b border-dashed mb-8 print:hidden">
       <div className="flex justify-between container mx-auto">
         <NavigationMenu>
           <NavigationMenuList>
