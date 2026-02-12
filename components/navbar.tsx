@@ -1,3 +1,5 @@
+"use client";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -5,7 +7,9 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import * as React from "react";
 import { ModeToggle } from "./ui/theme-toggle";
 
 const navList = [
@@ -17,23 +21,31 @@ const navList = [
 const Navbar = () => {
   return (
     <nav className="px-6 py-3 border-b border-dashed mb-8 print:hidden">
-      <div className="flex justify-between container mx-auto">
+      <div className="flex justify-between items-center container mx-auto">
+        {/* Navigation Section */}
         <NavigationMenu dir="rtl">
           <NavigationMenuList>
-            {navList.map((i) => (
-              <NavigationMenuItem key={i.href}>
-                <NavigationMenuLink
-                  asChild
-                  className={navigationMenuTriggerStyle()}
-                >
-                  <Link href={i.href}>{i.text}</Link>
-                </NavigationMenuLink>
+            {navList.map((link) => (
+              <NavigationMenuItem key={link.href}>
+                <Link href={link.href} passHref legacyBehavior>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "text-base font-medium", // Optional: adjusting font for Arabic readability
+                    )}
+                  >
+                    {link.text}
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
         </NavigationMenu>
 
-        <ModeToggle />
+        {/* Action Section */}
+        <div className="flex items-center gap-4">
+          <ModeToggle />
+        </div>
       </div>
     </nav>
   );
