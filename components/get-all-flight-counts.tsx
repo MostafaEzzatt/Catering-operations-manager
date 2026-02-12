@@ -12,7 +12,7 @@ const GetAllFlightCounts = async () => {
       cutomersTable,
       eq(customerFlightCountTable.customerId, cutomersTable.id),
     )
-    .orderBy(desc(customerFlightCountTable.createdAt));
+    .orderBy(desc(customerFlightCountTable.date));
 
   return (
     <>
