@@ -64,7 +64,7 @@ const Reportform = ({
       onSubmit: formSchema,
     },
     onSubmit: ({ value }) => {
-      console.log(value);
+      console.log({ ...value, from: dateFrom, to: dateTo });
       startTransition(() => {
         submit({ ...value, from: dateFrom, to: dateTo });
       });
