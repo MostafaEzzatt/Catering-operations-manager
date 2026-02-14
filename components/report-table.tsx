@@ -6,6 +6,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import Paragraph from "./typo-p";
 import {
   Table,
   TableBody,
@@ -45,6 +46,17 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
     {
       accessorKey: "y",
       header: "سياحى",
+    },
+    {
+      id: "Total Meals",
+      header: "مجموع الوجبات",
+      cell: (info) => {
+        const calc =
+          info.row.original["c"] +
+          info.row.original["h"] +
+          info.row.original["y"];
+        return <Paragraph txt={calc.toString()} className="rtl" />;
+      },
     },
   ];
 

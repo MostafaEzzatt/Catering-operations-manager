@@ -46,7 +46,7 @@ const AddMSFlightCount = ({
 
   const ar_field_name: formValueType<CustomerFlightCountFormValues> = {
     customerId: "الشركة",
-    flightCount: "العدد",
+    flightCount: "عدد الرحلات",
     c: "كرو",
     h: "بزنس",
     y: "سياحى",

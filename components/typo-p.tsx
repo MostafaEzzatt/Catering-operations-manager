@@ -1,5 +1,14 @@
-const Paragraph = ({ txt }: { txt: string }) => {
-  return <p className="leading-7 [&:not(:first-child)]:mt-6">{txt}</p>;
+import { cn } from "@/lib/utils";
+
+const Paragraph = ({
+  txt,
+  className,
+}: React.ComponentProps<"button"> & { txt: string }) => {
+  return (
+    <p className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}>
+      {txt}
+    </p>
+  );
 };
 
 export default Paragraph;
