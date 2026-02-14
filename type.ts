@@ -11,7 +11,7 @@ type CustomerFlightCountFormValues = {
   c: number;
   h: number;
   y: number;
-  date: Date;
+  date: string;
 };
 
 type formValueType<T> = Record<keyof T, string>;

@@ -41,7 +41,7 @@ const AddMSFlightCount = ({
     c: 0,
     h: 0,
     y: 0,
-    date: new Date(),
+    date: new Date().toDateString(),
   };
 
   const ar_field_name: formValueType<CustomerFlightCountFormValues> = {
@@ -60,7 +60,7 @@ const AddMSFlightCount = ({
     },
     onSubmit: ({ value }) => {
       startTransition(() => {
-        insertSubmit({ ...value, date: date });
+        insertSubmit({ ...value, date: date.toDateString() });
       });
     },
   });

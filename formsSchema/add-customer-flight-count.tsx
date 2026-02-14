@@ -6,5 +6,5 @@ export const formSchema = z.object({
   c: z.number().min(0),
   h: z.number().min(0),
   y: z.number().min(0),
-  date: z.date(),
+  date: z.string(),
 });

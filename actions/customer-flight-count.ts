@@ -13,7 +13,7 @@ export async function addCount(
   try {
     const customer: typeof customerFlightCountTable.$inferInsert = {
       ...value,
-      date: value.date.toDateString(),
+      date: value.date,
     };
 
     await db.insert(customerFlightCountTable).values(customer).returning();
