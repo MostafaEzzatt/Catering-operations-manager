@@ -63,33 +63,21 @@ const formatDate = (date: Date) => {
 export async function reportAction(prevState: any, value: reportForm) {
   try {
     console.log({ ...value, allComp: [] });
-    console.log(value.from.toDateString(), value.to.toDateString());
+
     return { error: true, response: [] };
     const MS = value.allComp.find((e) => e.cNumber == "077");
     const customerType =
       value.companyType == "0"
         ? and(
-            between(
-              customerFlightCountTable.date,
-              value.from.toDateString(),
-              value.to.toDateString(),
-            ),
+            between(customerFlightCountTable.date, value.from, value.to),
             eq(customerFlightCountTable.customerId, value.companyId),
           )
         : value.companyType == "1"
           ? and(
-              between(
-                customerFlightCountTable.date,
-                value.from.toDateString(),
-                value.to.toDateString(),
-              ),
+              between(customerFlightCountTable.date, value.from, value.to),
               not(inArray(customerFlightCountTable.customerId, [MS?.id || 1])),
             )
-          : between(
-              customerFlightCountTable.date,
-              value.from.toDateString(),
-              value.to.toDateString(),
-            );
+          : between(customerFlightCountTable.date, value.from, value.to);
 
     const request = await db
       .select()

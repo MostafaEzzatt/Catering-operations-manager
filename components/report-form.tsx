@@ -64,9 +64,17 @@ const Reportform = ({
       onSubmit: formSchema,
     },
     onSubmit: ({ value }) => {
-      console.log({ ...value, from: dateFrom, to: dateTo });
+      console.log({
+        ...value,
+        from: dateFrom.toDateString(),
+        to: dateTo.toDateString(),
+      });
       startTransition(() => {
-        submit({ ...value, from: dateFrom, to: dateTo });
+        submit({
+          ...value,
+          from: dateFrom.toDateString(),
+          to: dateTo.toDateString(),
+        });
       });
     },
   });

@@ -17,8 +17,8 @@ type CustomerFlightCountFormValues = {
 type formValueType<T> = Record<keyof T, string>;
 
 interface reportForm {
-  from: Date;
-  to: Date;
+  from: string;
+  to: string;
   monthFormat: boolean;
   companyType: string;
   companyId: number;
