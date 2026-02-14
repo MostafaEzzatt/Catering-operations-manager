@@ -12,6 +12,7 @@ import { InferSelectModel } from "drizzle-orm";
 import { Trash } from "lucide-react";
 import { useActionState, useEffect, useTransition } from "react";
 import { toast } from "sonner";
+import Paragraph from "./typo-p";
 import { Button } from "./ui/button";
 import {
   Table,
@@ -75,6 +76,19 @@ const FlightsCountDataTable = ({ records }: { records: recordsType[] }) => {
       header: "سياحى",
     },
     {
+      id: "Total Meals",
+      header: "اعداد الوجبات",
+      cell: (info) => {
+        const calc =
+          info.row.original["co-mgr-customer-flight-count"]["c"] +
+          info.row.original["co-mgr-customer-flight-count"]["h"] +
+          info.row.original["co-mgr-customer-flight-count"]["y"];
+        return (
+          <Paragraph txt={calc.toString()} className="text-center w-full" />
+        );
+      },
+    },
+    {
       accessorKey: "Delete",
       header: "Delete",
       cell: (info) => {
@@ -111,13 +125,13 @@ const FlightsCountDataTable = ({ records }: { records: recordsType[] }) => {
   }, [isPending, deleteState]);
   return (
     <div className="overflow-hidden rounded-md border">
-      <Table>
+      <Table className="text-center">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="text-center">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
