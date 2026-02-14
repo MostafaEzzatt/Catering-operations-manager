@@ -62,9 +62,6 @@ const formatDate = (date: Date) => {
 
 export async function reportAction(prevState: any, value: reportForm) {
   try {
-    console.log({ ...value, allComp: [] });
-
-    return { error: true, response: [] };
     const MS = value.allComp.find((e) => e.cNumber == "077");
     const customerType =
       value.companyType == "0"
