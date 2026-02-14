@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-table";
 import { InferSelectModel } from "drizzle-orm";
 import { Trash } from "lucide-react";
-import { useActionState, useEffect, useTransition } from "react";
+import { useActionState, useEffect, useMemo, useTransition } from "react";
 import { toast } from "sonner";
 import Paragraph from "./typo-p";
 import { Button } from "./ui/button";
@@ -18,6 +18,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -38,6 +39,30 @@ const FlightsCountDataTable = ({ records }: { records: recordsType[] }) => {
   const [transitionPending, startTransition] = useTransition();
 
   const isPending = transitionPending || deleteIsPending;
+
+  const Totals = useMemo(() => {
+    if (records.length >= 1) {
+      return records.reduce(
+        (p, c) => {
+          return {
+            flightCount:
+              p.flightCount + c["co-mgr-customer-flight-count"].flightCount,
+            c: p.c + c["co-mgr-customer-flight-count"].c,
+            h: p.h + c["co-mgr-customer-flight-count"].h,
+            y: p.y + c["co-mgr-customer-flight-count"].y,
+            totalMeals:
+              p.totalMeals +
+              c["co-mgr-customer-flight-count"].c +
+              c["co-mgr-customer-flight-count"].h +
+              c["co-mgr-customer-flight-count"].y,
+          };
+        },
+        { flightCount: 0, c: 0, h: 0, y: 0, totalMeals: 0 },
+      );
+    } else {
+      return { flightCount: 0, c: 0, h: 0, y: 0, totalMeals: 0 };
+    }
+  }, [records]);
 
   function handleDelete(id: number) {
     startTransition(() => {
@@ -166,6 +191,17 @@ const FlightsCountDataTable = ({ records }: { records: recordsType[] }) => {
             </TableRow>
           )}
         </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={3}>المجموع</TableCell>
+            <TableCell>{Totals.flightCount}</TableCell>
+            <TableCell>{Totals.c}</TableCell>
+            <TableCell>{Totals.h}</TableCell>
+            <TableCell>{Totals.y}</TableCell>
+            <TableCell>{Totals.totalMeals}</TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+        </TableFooter>
       </Table>
     </div>
   );

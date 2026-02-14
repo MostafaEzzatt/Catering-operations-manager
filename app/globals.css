@@ -124,3 +124,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .thick-border-right::before {
+    content: "";
+    width: 5px;
+    height: 15px;
+    @apply bg-gray-400 absolute;
+    right: -23px;
+  }
+}
