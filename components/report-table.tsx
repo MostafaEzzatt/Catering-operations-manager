@@ -141,11 +141,13 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
           <TableFooter className="print:hidden">
             <TableRow>
               <TableCell colSpan={3}>المجموع</TableCell>
-              <TableCell>{Totals.flightCount}</TableCell>
-              <TableCell>{Totals.c}</TableCell>
-              <TableCell>{Totals.h}</TableCell>
-              <TableCell>{Totals.y}</TableCell>
-              <TableCell>{Totals.totalMeals}</TableCell>
+              <TableCell>
+                {Totals.flightCount.toLocaleString("en-US")}
+              </TableCell>
+              <TableCell>{Totals.c.toLocaleString("en-US")}</TableCell>
+              <TableCell>{Totals.h.toLocaleString("en-US")}</TableCell>
+              <TableCell>{Totals.y.toLocaleString("en-US")}</TableCell>
+              <TableCell>{Totals.totalMeals.toLocaleString("en-US")}</TableCell>
             </TableRow>
           </TableFooter>
         </Table>
@@ -153,10 +155,14 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
 
       <div className="hidden print:block">
         <div className="font-extrabold mt-8">
-          <Paragraph
-            className="text-2xl"
-            txt={`يشمل التقرير الفترة من ${records[0].date} الى ${records[records.length - 1].date}`}
-          />
+          {records.length >= 1 ? (
+            <Paragraph
+              className="text-2xl"
+              txt={`يشمل التقرير الفترة من ${records[0].date} الى ${records[records.length - 1].date}`}
+            />
+          ) : (
+            <Paragraph className="text-2xl" txt={`لا يوجد تقارير للطباعة`} />
+          )}
         </div>
 
         <div className="flex flex-col gap-2.5 mt-4 items-start mr-40 pr-5 border-r py-4">
