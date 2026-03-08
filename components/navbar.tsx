@@ -1,6 +1,8 @@
 "use client";
 
+import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { Button } from "./ui/button";
 import { ModeToggle } from "./ui/theme-toggle";
 
 const navList = [
@@ -32,6 +34,15 @@ const Navbar = () => {
 
         {/* Action Section */}
         <div className="flex items-center gap-4">
+          <Show when="signed-out">
+            <SignInButton>
+              <Button>تسجيل الدخول</Button>
+            </SignInButton>
+          </Show>
+          <Show when="signed-in">
+            <UserButton />
+          </Show>
+
           <ModeToggle />
         </div>
       </div>

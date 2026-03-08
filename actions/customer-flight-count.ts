@@ -5,6 +5,7 @@ import { db } from "@/drizzle";
 import { customerFlightCountTable } from "@/drizzle/db/schema";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { logAction } from "./log";
 
 export async function addCount(
   prevState: any,
@@ -16,9 +17,20 @@ export async function addCount(
       date: value.date,
     };
 
-    await db.insert(customerFlightCountTable).values(customer).returning();
+    const INSERT_DATA = await db
+      .insert(customerFlightCountTable)
+      .values(customer)
+      .returning();
 
     revalidatePath("/");
+
+    logAction({
+      action: "CREATE",
+      entity: "Flight Details",
+      entityId: `${INSERT_DATA[0].id}`,
+      metadata: INSERT_DATA[0],
+    });
+
     return true;
   } catch (error) {
     console.error("Insertion failed:", error);
@@ -28,11 +40,24 @@ export async function addCount(
 
 export async function deleteCount(prevState: any, value: number) {
   try {
+    const SelectData = await db
+      .select()
+      .from(customerFlightCountTable)
+      .where(eq(customerFlightCountTable.id, value));
+
     await db
       .delete(customerFlightCountTable)
       .where(eq(customerFlightCountTable.id, value));
 
     revalidatePath("/");
+
+    logAction({
+      action: "DELETE",
+      entity: "Flight Details",
+      entityId: `${value}`,
+      metadata: SelectData[0],
+    });
+
     return true;
   } catch (error) {
     console.error("Insertion failed:", error);

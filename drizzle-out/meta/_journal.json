@@ -8,6 +8,13 @@
       "when": 1770579580904,
       "tag": "0000_fresh_prodigy",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1772993158734,
+      "tag": "0001_simple_talkback",
+      "breakpoints": true
     }
   ]
 }
