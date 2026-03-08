@@ -18,7 +18,7 @@ export async function addCustomer(prevState: any, value: CompanyFormValues) {
 
     revalidatePath("/add-companys");
 
-    logAction({
+    await logAction({
       action: "CREATE",
       entity: "Company",
       entityId: `${INSERT_DATA[0].id}`,
@@ -43,7 +43,7 @@ export async function deleteCustomer(prevState: any, value: number) {
 
     revalidatePath("/add-companys");
 
-    logAction({
+    await logAction({
       action: "DELETE",
       entity: "Company",
       entityId: `${SelectData[0].id}`,

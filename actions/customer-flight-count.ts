@@ -24,7 +24,7 @@ export async function addCount(
 
     revalidatePath("/");
 
-    logAction({
+    await logAction({
       action: "CREATE",
       entity: "Flight Details",
       entityId: `${INSERT_DATA[0].id}`,
@@ -51,7 +51,7 @@ export async function deleteCount(prevState: any, value: number) {
 
     revalidatePath("/");
 
-    logAction({
+    await logAction({
       action: "DELETE",
       entity: "Flight Details",
       entityId: `${value}`,
