@@ -20,7 +20,7 @@ const Logs = async () => {
   return (
     <main className="container mx-auto">
       {Logs.length > 0 ? (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {Logs.map((i) => {
             const date = new Date(i.createdAt);
             const result =
@@ -38,7 +38,7 @@ const Logs = async () => {
               // < !--Card -- >
               <div
                 key={i.id}
-                className={`${metaData.objType == "Flight" ? "bg-gray-900 hover:bg-gray-800" : "bg-orange-900 hover:bg-orange-800"} rounded-2xl p-5 shadow transition`}
+                className={`${metaData.objType == "Flight" ? "bg-gray-900 hover:bg-gray-800" : "bg-orange-900 hover:bg-orange-800"} col-span-1 rounded-2xl p-5 shadow transition`}
               >
                 {/* <!-- Header --> */}
                 <div className="flex items-start justify-between">
@@ -66,7 +66,7 @@ const Logs = async () => {
                 </div>
 
                 {/* <!-- Meta --> */}
-                <div className="mt-4 grid grid-cols-2 gap-2 text-sm text-gray-400 max-w-[550px]">
+                <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-2 text-sm text-gray-400 max-w-[550px]">
                   {metaData.objType == "Flight" && (
                     <>
                       <div className="col-span-1">مسلسل: {metaData.id}</div>
