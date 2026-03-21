@@ -68,10 +68,12 @@ const AddMSFlightCount = ({
   useEffect(() => {
     if (isPending) {
       toast.info("بدء عملية اضافة الشركة");
-    } else if (!isPending && insertState) {
+    } else if (!isPending && insertState == 1) {
       toast.success("تم اضافة الشركة.");
       form.reset();
-    } else if (!isPending && insertState === false) {
+    } else if (!isPending && insertState == 2) {
+      toast.info("تلك الشركة و التاريخ بالفعل موجود.");
+    } else if (!isPending && insertState === 0) {
       toast.error("حدث خطأ ما عند اضافة الشركة");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

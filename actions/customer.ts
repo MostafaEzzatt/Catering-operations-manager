@@ -3,13 +3,28 @@
 
 import { db } from "@/drizzle";
 import { cutomersTable } from "@/drizzle/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, or } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { logAction } from "./log";
 
 export async function addCustomer(prevState: any, value: CompanyFormValues) {
   try {
     const customer: typeof cutomersTable.$inferInsert = value;
+
+    const CHECK_EXIST = await db
+      .select()
+      .from(cutomersTable)
+      .where(
+        or(
+          eq(cutomersTable.name, customer.name),
+          eq(cutomersTable.cNumber, customer.cNumber),
+          eq(cutomersTable.code, customer.code),
+        ),
+      );
+
+    if (CHECK_EXIST.length >= 1) {
+      return 2;
+    }
 
     const INSERT_DATA = await db
       .insert(cutomersTable)
@@ -25,10 +40,10 @@ export async function addCustomer(prevState: any, value: CompanyFormValues) {
       metadata: INSERT_DATA[0],
     });
 
-    return true;
+    return 1;
   } catch (error) {
     console.error("Insertion failed:", error);
-    return false;
+    return 0;
   }
 }
 

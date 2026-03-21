@@ -3,7 +3,7 @@
 
 import { db } from "@/drizzle";
 import { customerFlightCountTable } from "@/drizzle/db/schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { logAction } from "./log";
 
@@ -16,6 +16,20 @@ export async function addCount(
       ...value,
       date: value.date,
     };
+
+    const CHECK_EXIST = await db
+      .select()
+      .from(customerFlightCountTable)
+      .where(
+        and(
+          eq(customerFlightCountTable.date, customer.date),
+          eq(customerFlightCountTable.customerId, customer.customerId),
+        ),
+      );
+
+    if (CHECK_EXIST.length >= 1) {
+      return 2;
+    }
 
     const INSERT_DATA = await db
       .insert(customerFlightCountTable)
@@ -31,10 +45,10 @@ export async function addCount(
       metadata: INSERT_DATA[0],
     });
 
-    return true;
+    return 1;
   } catch (error) {
     console.error("Insertion failed:", error);
-    return false;
+    return 0;
   }
 }
 
