@@ -33,7 +33,33 @@ interface reportResponseType {
   h: number;
   y: number;
 }
+
 interface reportType {
   error: boolean;
   response: Array<reportResponseType>;
 }
+
+interface logFlightDetails {
+  objType: "Flight";
+  id: number;
+  date: string;
+  customerId: number;
+  flightCount: number;
+  c: string;
+  h: string;
+  y: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface logCompanyDetails {
+  objType: "Company";
+  id: number;
+  code: string;
+  name: string;
+  cNumber: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+type logTableMetaDataType = logFlightDetails | logCompanyDetails;

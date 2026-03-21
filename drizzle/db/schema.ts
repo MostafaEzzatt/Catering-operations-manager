@@ -42,6 +42,6 @@ export const auditLogs = pgTable("audit_logs", {
   action: text().notNull(), // CREATE | UPDATE | DELETE
   entity: text().notNull(), // posts, projects, tasks etc
   entityId: text(),
-  metadata: jsonb(), // optional extra info
+  metadata: jsonb().$type<logTableMetaDataType>(), // optional extra info
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
