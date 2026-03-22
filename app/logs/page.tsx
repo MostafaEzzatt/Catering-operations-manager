@@ -13,15 +13,15 @@ import { desc } from "drizzle-orm";
 import { X } from "lucide-react";
 
 const Logs = async () => {
-  const Logs = await db
+  const LogsRequest = await db
     .select()
     .from(auditLogs)
     .orderBy(desc(auditLogs.createdAt));
   return (
     <main className="container mx-auto">
-      {Logs.length > 0 ? (
+      {LogsRequest.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {Logs.map((i) => {
+          {LogsRequest.map((i) => {
             const date = new Date(i.createdAt);
             const result =
               date.toDateString() + " " + date.toTimeString().split(" ")[0];

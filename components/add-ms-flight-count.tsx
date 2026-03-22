@@ -82,7 +82,7 @@ const AddMSFlightCount = ({
   return (
     <div>
       <form
-        id="add-company"
+        id="add-ms-flights-count"
         onSubmit={(e) => {
           e.preventDefault();
           form.handleSubmit();
