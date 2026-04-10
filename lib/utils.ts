@@ -5,8 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formateARDate(input: string, time: boolean = false) {
-  const date = new Date(input);
+export function formateARDate(input: string | Date, time: boolean = false) {
+  const date = input instanceof Date ? input : new Date(input);
 
   return time
     ? new Intl.DateTimeFormat("ar-EG", {
