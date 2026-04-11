@@ -30,6 +30,7 @@ const LogsFilter = ({
   dateTo,
   onDateFromChange,
   onDateToChange,
+  onResetFilters,
 }: {
   users: string[];
   selectedUsers: string[];
@@ -41,6 +42,7 @@ const LogsFilter = ({
   dateTo: Date | undefined;
   onDateFromChange: (d: Date | undefined) => void;
   onDateToChange: (d: Date | undefined) => void;
+  onResetFilters: () => void;
 }) => {
   const isAllUsers = selectedUsers.length === 0;
 
@@ -62,6 +64,7 @@ const LogsFilter = ({
     onCompanyChange(null);
     onDateFromChange(undefined);
     onDateToChange(undefined);
+    onResetFilters();
   };
 
   return (
@@ -85,9 +88,7 @@ const LogsFilter = ({
               <Checkbox
                 id={`filter-user-${user}`}
                 checked={selectedUsers.includes(user)}
-                onCheckedChange={(checked) =>
-                  handleUserChange(user, !!checked)
-                }
+                onCheckedChange={(checked) => handleUserChange(user, !!checked)}
               />
               <Label htmlFor={`filter-user-${user}`}>{user}</Label>
             </div>
@@ -131,7 +132,10 @@ const LogsFilter = ({
           <div className="flex items-center gap-1">
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" className="w-36 justify-start font-normal">
+                <Button
+                  variant="outline"
+                  className="w-36 justify-start font-normal"
+                >
                   {dateFrom ? format(dateFrom, "dd/MM/yyyy") : "اختر تاريخ"}
                 </Button>
               </PopoverTrigger>
@@ -164,7 +168,10 @@ const LogsFilter = ({
           <div className="flex items-center gap-1">
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" className="w-36 justify-start font-normal">
+                <Button
+                  variant="outline"
+                  className="w-36 justify-start font-normal"
+                >
                   {dateTo ? format(dateTo, "dd/MM/yyyy") : "اختر تاريخ"}
                 </Button>
               </PopoverTrigger>
