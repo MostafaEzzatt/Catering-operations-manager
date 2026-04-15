@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteCustomer } from "@/actions/customer";
+import { deleteCustomer, updateCustomer } from "@/actions/customer";
 import { cutomersTable } from "@/drizzle/db/schema";
 import {
   ColumnDef,
@@ -9,7 +9,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { InferSelectModel } from "drizzle-orm";
-import { Trash } from "lucide-react";
+import { Pen, Trash } from "lucide-react";
+import Link from "next/link";
 import { useActionState, useEffect, useTransition } from "react";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
@@ -31,6 +32,7 @@ const CompanyTable = ({
     deleteCustomer,
     null,
   );
+
   const [transitionPending, startTransition] = useTransition();
 
   const isPending = transitionPending || deleteIsPending;
@@ -61,7 +63,7 @@ const CompanyTable = ({
     },
     {
       accessorKey: "Delete",
-      header: "Delete",
+      header: "مسح",
       cell: (info) => {
         return (
           <Button
@@ -71,6 +73,17 @@ const CompanyTable = ({
           >
             <Trash />
           </Button>
+        );
+      },
+    },
+    {
+      accessorKey: "Update",
+      header: "تعديل",
+      cell: (info) => {
+        return (
+          <Link href={`/add-companys/update/${info.row.original.id}`}>
+            <Pen />
+          </Link>
         );
       },
     },

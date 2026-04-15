@@ -148,9 +148,13 @@ const LogsClient = ({
                     </div>
 
                     <span
-                      className={`${i.action == "CREATE" ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"} text-xs px-3 py-1 rounded-full`}
+                      className={`${i.action == "CREATE" ? "bg-green-500/20 text-green-400" : i.action == "UPDATE" ? "bg-yellow-500/20 text-yellow-400" : "bg-red-500/20 text-red-400"} text-xs px-3 py-1 rounded-full`}
                     >
-                      {i.action == "CREATE" ? "انشاء" : "حذف"}
+                      {i.action == "CREATE"
+                        ? "انشاء"
+                        : i.action == "UPDATE"
+                          ? "تعديل"
+                          : "حذف"}
                     </span>
                   </div>
 

@@ -71,3 +71,42 @@ export async function deleteCustomer(prevState: any, value: number) {
     return false;
   }
 }
+
+interface updateValue {
+  id: number;
+  name: string;
+  cNumber: string;
+  code: string;
+}
+export async function updateCustomer(prevState: any, value: updateValue) {
+  try {
+    const SelectData = await db
+      .select()
+      .from(cutomersTable)
+      .where(eq(cutomersTable.id, value.id))
+      .limit(1);
+
+    if (SelectData.length === 0) {
+      return 2;
+    }
+
+    await db
+      .update(cutomersTable)
+      .set({ name: value.name, cNumber: value.cNumber, code: value.code })
+      .where(eq(cutomersTable.id, value.id));
+
+    revalidatePath("/add-companys");
+
+    await logAction({
+      action: "UPDATE",
+      entity: "Company",
+      entityId: `${SelectData[0].id}`,
+      metadata: SelectData[0],
+    });
+
+    return 1;
+  } catch (error) {
+    console.error("Update failed:", error);
+    return 0;
+  }
+}

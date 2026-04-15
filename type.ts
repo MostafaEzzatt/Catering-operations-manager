@@ -63,3 +63,5 @@ interface logCompanyDetails {
 }
 
 type logTableMetaDataType = logFlightDetails | logCompanyDetails;
+
+type selectCompanyByIdType = CompanyFormValues & { id: number };
