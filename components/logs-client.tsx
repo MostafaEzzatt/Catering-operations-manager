@@ -174,7 +174,7 @@ const LogsClient = ({
                         <div className="col-span-1">
                           عدد الرحلات: {metaData.flightCount}
                         </div>
-                        <div className="col-span-1">
+                        {/* <div className="col-span-1">
                           عدد وجبات الكرو: {metaData.c}
                         </div>
                         <div className="col-span-1">
@@ -182,7 +182,7 @@ const LogsClient = ({
                         </div>
                         <div className="col-span-1">
                           عدد وجبات السياحى: {metaData.y}
-                        </div>
+                        </div> */}
                       </>
                     )}
 

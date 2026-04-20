@@ -14,6 +14,8 @@ const GetAllFlightCounts = async () => {
     )
     .orderBy(desc(customerFlightCountTable.date));
 
+  // console.log(flightsCountData);
+
   return (
     <>
       <HeadingTwo txt="قائمة الشركات" />

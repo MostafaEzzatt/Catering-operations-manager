@@ -1,7 +1,7 @@
 import LogsClient from "@/components/logs-client";
 import { db } from "@/drizzle";
 import { auditLogs, cutomersTable } from "@/drizzle/db/schema";
-import { desc } from "drizzle-orm";
+import { asc, desc } from "drizzle-orm";
 
 const LOGS_PER_PAGE = 10;
 

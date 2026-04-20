@@ -8,6 +8,7 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const customers = await db.select().from(cutomersTable);
+
   return (
     <main className="container mx-auto">
       <Heading1 txt="اضافة اعداد الشركات" />
