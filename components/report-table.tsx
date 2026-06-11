@@ -6,8 +6,11 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { Download } from "lucide-react";
 import { useMemo } from "react";
+import { toast } from "sonner";
 import Paragraph from "./typo-p";
+import { Button } from "./ui/button";
 import {
   Table,
   TableBody,
@@ -81,15 +84,93 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
     },
   ];
 
-  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     columns,
     data: records,
     getCoreRowModel: getCoreRowModel(),
   });
 
+  async function downloadExcel() {
+    try {
+      // Dynamic import keeps exceljs out of the page bundle until needed
+      const ExcelJS = (await import("exceljs")).default;
+
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet("التقرير", {
+        views: [{ rightToLeft: true }],
+      });
+
+      sheet.columns = [
+        { header: "#", key: "index", width: 6 },
+        { header: "التاريخ", key: "date", width: 18 },
+        { header: "الشركة", key: "customer", width: 28 },
+        { header: "عدد الرحلات", key: "flightCount", width: 12 },
+        { header: "كرو", key: "c", width: 10 },
+        { header: "بزنس", key: "h", width: 10 },
+        { header: "سياحى", key: "y", width: 10 },
+        { header: "مجموع الوجبات", key: "totalMeals", width: 14 },
+      ];
+      sheet.getRow(1).font = { bold: true };
+
+      records.forEach((r, i) => {
+        sheet.addRow({
+          index: i + 1,
+          date: r.date,
+          customer: r.customer,
+          flightCount: r.flightCount,
+          c: r.c,
+          h: r.h,
+          y: r.y,
+          totalMeals: r.c + r.h + r.y,
+        });
+      });
+
+      const totalsRow = sheet.addRow({
+        customer: "المجموع",
+        flightCount: Totals.flightCount,
+        c: Totals.c,
+        h: Totals.h,
+        y: Totals.y,
+        totalMeals: Totals.totalMeals,
+      });
+      totalsRow.font = { bold: true };
+
+      const buffer = await workbook.xlsx.writeBuffer();
+      const blob = new Blob([buffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+
+      // Date strings may contain "/" which is not allowed in file names
+      const clean = (s: string) => s.replace(/\s*\/\s*/g, "-");
+      const fileName =
+        records.length >= 1
+          ? `تقرير ${clean(records[0].date)} - ${clean(records[records.length - 1].date)}.xlsx`
+          : "تقرير.xlsx";
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Excel export failed:", error);
+      toast.error("حدث خطأ ما عند تحميل ملف Excel.");
+    }
+  }
+
   return (
     <>
+      <div className="flex justify-end mb-2 print:hidden">
+        <Button
+          variant="outline"
+          onClick={downloadExcel}
+          disabled={records.length === 0}
+        >
+          <Download /> تحميل Excel
+        </Button>
+      </div>
+
       <div className="overflow-hidden rounded-md border">
         <Table className="text-center">
           <TableHeader>
