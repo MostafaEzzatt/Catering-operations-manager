@@ -13,7 +13,18 @@ import { Trash } from "lucide-react";
 import { useActionState, useEffect, useMemo, useTransition } from "react";
 import { toast } from "sonner";
 import Paragraph from "./typo-p";
-import { Button } from "./ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./ui/alert-dialog";
+import { Button, buttonVariants } from "./ui/button";
 import {
   Table,
   TableBody,
@@ -117,16 +128,34 @@ const FlightsCountDataTable = ({ records }: { records: recordsType[] }) => {
       accessorKey: "Delete",
       header: "Delete",
       cell: (info) => {
+        const record = info.row.original["co-mgr-customer-flight-count"];
+        const companyName = info.row.original["co-mgr-customers"]?.name ?? "";
         return (
-          <Button
-            onClick={() =>
-              handleDelete(info.row.original["co-mgr-customer-flight-count"].id)
-            }
-            disabled={isPending}
-            variant={"outline"}
-          >
-            <Trash />
-          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button disabled={isPending} variant={"outline"}>
+                <Trash />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>حذف سجل الرحلات؟</AlertDialogTitle>
+                <AlertDialogDescription>
+                  سيتم حذف سجل رحلات شركة {companyName} بتاريخ {record.date}{" "}
+                  نهائياً. لا يمكن التراجع عن هذا الإجراء.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>إلغاء</AlertDialogCancel>
+                <AlertDialogAction
+                  className={buttonVariants({ variant: "destructive" })}
+                  onClick={() => handleDelete(record.id)}
+                >
+                  حذف
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         );
       },
     },

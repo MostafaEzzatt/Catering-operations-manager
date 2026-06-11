@@ -13,7 +13,18 @@ import { Pen, Trash } from "lucide-react";
 import Link from "next/link";
 import { useActionState, useEffect, useTransition } from "react";
 import { toast } from "sonner";
-import { Button } from "./ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./ui/alert-dialog";
+import { Button, buttonVariants } from "./ui/button";
 import {
   Table,
   TableBody,
@@ -66,13 +77,33 @@ const CompanyTable = ({
       header: "مسح",
       cell: (info) => {
         return (
-          <Button
-            onClick={() => handleDelete(info.row.original.id)}
-            disabled={isPending}
-            variant={"outline"}
-          >
-            <Trash />
-          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button disabled={isPending} variant={"outline"}>
+                <Trash />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  حذف شركة {info.row.original.name}؟
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  سيتم حذف الشركة نهائياً مع جميع سجلات الرحلات والوجبات الخاصة
+                  بها. لا يمكن التراجع عن هذا الإجراء.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>إلغاء</AlertDialogCancel>
+                <AlertDialogAction
+                  className={buttonVariants({ variant: "destructive" })}
+                  onClick={() => handleDelete(info.row.original.id)}
+                >
+                  حذف
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         );
       },
     },
