@@ -5,6 +5,7 @@ import {
   pgTable,
   text,
   timestamp,
+  unique,
   varchar,
 } from "drizzle-orm/pg-core";
 
@@ -34,6 +35,7 @@ export const customerFlightCountTable = pgTable(
     createdAt: timestamp().notNull().defaultNow(),
     updatedAt: timestamp().notNull().defaultNow(),
   },
+  (t) => [unique("customer_flight_count_customer_date_unique").on(t.customerId, t.date)],
 );
 
 export const auditLogs = pgTable("audit_logs", {

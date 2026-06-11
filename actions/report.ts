@@ -65,20 +65,37 @@ export async function reportAction(prevState: any, value: reportForm) {
   const { isAuthenticated } = await auth();
   if (!isAuthenticated) return { error: true, response: [] } as reportType;
 
+  if (value.companyType == "0" && value.companyId < 1)
+    return { error: true, response: [] } as reportType;
+
   try {
-    const MS = value.allComp.find((e) => e.cNumber == "077");
-    const customerType =
-      value.companyType == "0"
-        ? and(
-            between(customerFlightCountTable.date, value.from, value.to),
-            eq(customerFlightCountTable.customerId, value.companyId),
-          )
-        : value.companyType == "1"
-          ? and(
-              between(customerFlightCountTable.date, value.from, value.to),
-              not(inArray(customerFlightCountTable.customerId, [MS?.id || 1])),
-            )
-          : between(customerFlightCountTable.date, value.from, value.to);
+    const dateRange = between(customerFlightCountTable.date, value.from, value.to);
+
+    let customerType = dateRange;
+    if (value.companyType == "0") {
+      customerType = and(
+        dateRange,
+        eq(customerFlightCountTable.customerId, value.companyId),
+      )!;
+    } else if (value.companyType == "1") {
+      const MS = await db
+        .select({ id: cutomersTable.id })
+        .from(cutomersTable)
+        .where(eq(cutomersTable.cNumber, "077"));
+
+      // No MS company means every company counts as foreign
+      if (MS.length > 0) {
+        customerType = and(
+          dateRange,
+          not(
+            inArray(
+              customerFlightCountTable.customerId,
+              MS.map((m) => m.id),
+            ),
+          ),
+        )!;
+      }
+    }
 
     const request = await db
       .select()

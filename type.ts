@@ -22,7 +22,6 @@ interface reportForm {
   monthFormat: boolean;
   companyType: string;
   companyId: number;
-  allComp: Array<CompanyFormValues & { id: number }>;
 }
 
 interface reportResponseType {

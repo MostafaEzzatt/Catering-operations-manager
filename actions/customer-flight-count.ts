@@ -51,6 +51,10 @@ export async function addCount(
 
     return 1;
   } catch (error) {
+    // 23505 = Postgres unique violation: another request inserted the same
+    // customer/date between our existence check and the insert
+    if ((error as { code?: string })?.code === "23505") return 2;
+
     console.error("Insertion failed:", error);
     return 0;
   }

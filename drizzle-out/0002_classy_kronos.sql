@@ -1,0 +1,1 @@
+ALTER TABLE "co-mgr-customer-flight-count" ADD CONSTRAINT "customer_flight_count_customer_date_unique" UNIQUE("customerId","date");

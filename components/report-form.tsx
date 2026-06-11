@@ -48,7 +48,6 @@ const Reportform = ({
     monthFormat: false,
     companyType: "0",
     companyId: 0,
-    allComp: customers,
   };
   const ar_field_name = {
     from: "من",
