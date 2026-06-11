@@ -12,14 +12,15 @@ async function Update({ params }: { params: Promise<{ id: string }> }) {
   //  Display Company Id in the URL
   const { id } = await params;
 
-  if (!id) {
-    return <div>Company ID is missing.</div>;
+  const companyId = parseInt(id);
+  if (Number.isNaN(companyId)) {
+    return <div>Company not found.</div>;
   }
 
   const getCompanyById = await db
     .select()
     .from(cutomersTable)
-    .where(eq(cutomersTable.id, parseInt(id)))
+    .where(eq(cutomersTable.id, companyId))
     .limit(1);
 
   if (getCompanyById.length === 0) {

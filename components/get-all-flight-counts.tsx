@@ -20,7 +20,7 @@ const GetAllFlightCounts = async () => {
 
   return (
     <>
-      <HeadingTwo txt="قائمة الشركات" />
+      <HeadingTwo txt="قائمة اعداد الرحلات" />
 
       <FlightsCountDataTable
         records={flightsCountData}

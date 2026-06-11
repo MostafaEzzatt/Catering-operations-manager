@@ -17,7 +17,11 @@ export async function logAction({
 }) {
   try {
     const userData = await currentUser();
-    const user = userData?.username;
+    // Fall back to email/id so actions are still logged for users without a username
+    const user =
+      userData?.username ??
+      userData?.primaryEmailAddress?.emailAddress ??
+      userData?.id;
     if (!user) return;
 
     await db.insert(auditLogs).values({
@@ -28,15 +32,10 @@ export async function logAction({
       metadata,
     });
   } catch (error) {
-    console.log(
-      `Something went worng while trying to log action ${{
-        action,
-        entity,
-        entityId,
-        metadata,
-      }}`,
+    console.error(
+      "Something went wrong while trying to log action",
+      { action, entity, entityId, metadata },
+      error,
     );
-
-    console.log(error);
   }
 }
