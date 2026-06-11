@@ -7,7 +7,7 @@ import { ModeToggle } from "./ui/theme-toggle";
 
 const navList = [
   { href: "/", text: "اعدادالرحلات و الوجبات" },
-  { href: "/add-companys", text: "الشركات", adminOnly: true },
+  { href: "/add-companys", text: "الشركات" },
   { href: "/reports", text: "التقارير" },
   { href: "/logs", text: "السجلات", adminOnly: true },
 ];

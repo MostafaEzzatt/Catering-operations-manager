@@ -9,8 +9,8 @@ import { revalidatePath } from "next/cache";
 import { logAction } from "./log";
 
 export async function addCustomer(prevState: any, value: CompanyFormValues) {
-  const { isAdmin } = await getSession();
-  if (!isAdmin) return 0;
+  const { isAuthenticated } = await getSession();
+  if (!isAuthenticated) return 0;
 
   try {
     const customer: typeof cutomersTable.$inferInsert = value;

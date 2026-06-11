@@ -36,8 +36,10 @@ import {
 
 const CompanyTable = ({
   customers,
+  isAdmin,
 }: {
   customers: InferSelectModel<typeof cutomersTable>[];
+  isAdmin: boolean;
 }) => {
   const [deleteState, deleteSubmit, deleteIsPending] = useActionState(
     deleteCustomer,
@@ -72,6 +74,9 @@ const CompanyTable = ({
       accessorKey: "code",
       header: "كود الشركة",
     },
+  ];
+
+  const adminColumns: ColumnDef<InferSelectModel<typeof cutomersTable>>[] = [
     {
       accessorKey: "Delete",
       header: "مسح",
@@ -120,9 +125,11 @@ const CompanyTable = ({
     },
   ];
 
+  const visibleColumns = isAdmin ? [...columns, ...adminColumns] : columns;
+
   // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
-    columns,
+    columns: visibleColumns,
     data: customers,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -174,7 +181,10 @@ const CompanyTable = ({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
+              <TableCell
+                colSpan={visibleColumns.length}
+                className="h-24 text-center"
+              >
                 لم يتم اضافة شركات.
               </TableCell>
             </TableRow>
