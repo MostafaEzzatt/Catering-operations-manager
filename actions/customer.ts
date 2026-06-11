@@ -161,18 +161,19 @@ export async function updateCustomer(prevState: any, value: updateValue) {
       return 2;
     }
 
-    await db
+    const UpdatedData = await db
       .update(cutomersTable)
       .set({ name: value.name, cNumber: value.cNumber, code: value.code })
-      .where(eq(cutomersTable.id, value.id));
+      .where(eq(cutomersTable.id, value.id))
+      .returning();
 
     revalidatePath("/add-companys");
 
     await logAction({
       action: "UPDATE",
       entity: "Company",
-      entityId: `${SelectData[0].id}`,
-      metadata: SelectData[0],
+      entityId: `${UpdatedData[0].id}`,
+      metadata: UpdatedData[0],
     });
 
     return 1;

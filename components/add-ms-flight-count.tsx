@@ -67,14 +67,14 @@ const AddMSFlightCount = ({
 
   useEffect(() => {
     if (isPending) {
-      toast.info("بدء عملية اضافة الشركة");
+      toast.info("بدء عملية اضافة اعداد الرحلات");
     } else if (!isPending && insertState == 1) {
-      toast.success("تم اضافة الشركة.");
+      toast.success("تم اضافة اعداد الرحلات.");
       form.reset();
     } else if (!isPending && insertState == 2) {
-      toast.info("تلك الشركة و التاريخ بالفعل موجود.");
+      toast.info("يوجد بالفعل اعداد مسجلة لتلك الشركة فى هذا التاريخ.");
     } else if (!isPending && insertState === 0) {
-      toast.error("حدث خطأ ما عند اضافة الشركة");
+      toast.error("حدث خطأ ما عند اضافة اعداد الرحلات");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPending, insertState]);
@@ -256,7 +256,7 @@ const AddMSFlightCount = ({
           />
 
           <Button type="submit" disabled={isPending}>
-            {isPending && <Spinner />} أضافة الشركة
+            {isPending && <Spinner />} أضافة الاعداد
           </Button>
         </FieldGroup>
       </form>

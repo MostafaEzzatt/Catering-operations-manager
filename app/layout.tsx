@@ -26,7 +26,7 @@ export default async function RootLayout({
   const { isAuthenticated } = await getSession();
 
   return (
-    <html lang="en" dir="rtl" suppressHydrationWarning>
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body className={`${fontSans.variable} antialiased`}>
         <ThemeProvider
           attribute="class"

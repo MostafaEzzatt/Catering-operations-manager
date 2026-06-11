@@ -26,11 +26,11 @@ const actionLabels: Record<string, string> = {
 };
 
 const actionStyles: Record<string, string> = {
-  CREATE: "bg-green-500/20 text-green-400",
-  UPDATE: "bg-yellow-500/20 text-yellow-400",
-  DELETE: "bg-red-500/20 text-red-400",
-  REQUEST_DELETE: "bg-orange-500/20 text-orange-400",
-  REJECT_DELETE: "bg-blue-500/20 text-blue-400",
+  CREATE: "bg-green-500/20 text-green-700 dark:text-green-400",
+  UPDATE: "bg-yellow-500/20 text-yellow-700 dark:text-yellow-400",
+  DELETE: "bg-red-500/20 text-red-700 dark:text-red-400",
+  REQUEST_DELETE: "bg-orange-500/20 text-orange-700 dark:text-orange-400",
+  REJECT_DELETE: "bg-blue-500/20 text-blue-700 dark:text-blue-400",
 };
 
 const LogsClient = ({
@@ -143,7 +143,7 @@ const LogsClient = ({
               return (
                 <div
                   key={i.id}
-                  className={`${metaData.objType == "Flight" ? "bg-gray-900 hover:bg-gray-800" : "bg-orange-900 hover:bg-orange-800"} col-span-1 rounded-2xl p-5 shadow transition relative`}
+                  className={`${metaData.objType == "Flight" ? "bg-gray-100 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800" : "bg-orange-100 hover:bg-orange-200 dark:bg-orange-900 dark:hover:bg-orange-800"} col-span-1 rounded-2xl p-5 shadow transition relative`}
                 >
                   {/* Header */}
                   <div className="flex items-start justify-between">
@@ -153,11 +153,13 @@ const LogsClient = ({
                       </div>
 
                       <div>
-                        <h2 className="text-lg font-semibold text-white">
+                        <h2 className="text-lg font-semibold text-foreground">
                           {i.entity}
                         </h2>
-                        <p className="text-sm text-gray-400">بواسطة {i.user}</p>
-                        <p className="text-xs text-gray-500 mt-1">
+                        <p className="text-sm text-muted-foreground">
+                          بواسطة {i.user}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-1">
                           {formateARDate(i.createdAt)}
                         </p>
                       </div>
@@ -171,7 +173,7 @@ const LogsClient = ({
                   </div>
 
                   {/* Meta */}
-                  <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-2 text-sm text-gray-400 max-w-[550px]">
+                  <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-2 text-sm text-muted-foreground max-w-[550px]">
                     {metaData.objType == "Flight" && (
                       <>
                         <div className="col-span-1">مسلسل: {metaData.id}</div>
@@ -212,7 +214,7 @@ const LogsClient = ({
                     )}
                   </div>
 
-                  <div className="absolute bottom-0 left-0 w-12 h-12 bg-black/50 rounded-bl-2xl rounded-tr-2xl flex items-center justify-center font-bold text-white">
+                  <div className="absolute bottom-0 left-0 w-12 h-12 bg-black/10 dark:bg-black/50 rounded-bl-2xl rounded-tr-2xl flex items-center justify-center font-bold text-foreground">
                     {idx + 1}
                   </div>
                 </div>
@@ -223,26 +225,26 @@ const LogsClient = ({
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between mt-6">
-              <div className="text-sm text-gray-400">
+              <div className="text-sm text-muted-foreground">
                 عرض {paginatedLogs.length} من {filteredLogs.length} سجل
               </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setCurrentPage(currentPage - 1)}
                   disabled={currentPage <= 1}
-                  className="px-3 py-1 text-sm bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded cursor-pointer"
+                  className="px-3 py-1 text-sm bg-secondary text-secondary-foreground hover:bg-secondary/80 disabled:opacity-50 disabled:cursor-not-allowed rounded cursor-pointer"
                 >
                   السابق
                 </button>
 
-                <span className="text-sm text-gray-400">
+                <span className="text-sm text-muted-foreground">
                   صفحة {currentPage} من {totalPages}
                 </span>
 
                 <button
                   onClick={() => setCurrentPage(currentPage + 1)}
                   disabled={currentPage >= totalPages}
-                  className="px-3 py-1 text-sm bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded cursor-pointer"
+                  className="px-3 py-1 text-sm bg-secondary text-secondary-foreground hover:bg-secondary/80 disabled:opacity-50 disabled:cursor-not-allowed rounded cursor-pointer"
                 >
                   التالي
                 </button>

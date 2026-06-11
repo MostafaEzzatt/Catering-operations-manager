@@ -1,9 +1,9 @@
 /* eslint-disable react/no-children-prop */
 "use client";
-import { addCustomer, updateCustomer } from "@/actions/customer";
+import { updateCustomer } from "@/actions/customer";
 import { formSchema } from "@/formsSchema/add-company";
 import { useForm } from "@tanstack/react-form";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useTransition } from "react";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
@@ -16,6 +16,7 @@ const UpdateCompany = ({
 }: {
   companyData: selectCompanyByIdType;
 }) => {
+  const router = useRouter();
   const [updateState, updateSubmit, updateIsPending] = useActionState(
     updateCustomer,
     null,
@@ -53,14 +54,13 @@ const UpdateCompany = ({
       toast.info("بدء عملية تحديث الشركة");
     } else if (!isPending && updateState == 1) {
       toast.success("تم تحديث الشركة.");
-      redirect("/add-companys");
+      router.push("/add-companys");
     } else if (!isPending && updateState == 2) {
       toast.info("لم يتم العثور على الشركة لتحديثها.");
     } else if (!isPending && updateState === 0) {
       toast.error("حدث خطأ ما عند تحديث الشركة");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPending, updateState]);
+  }, [isPending, updateState, router]);
 
   return (
     <div>
