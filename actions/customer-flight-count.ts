@@ -3,7 +3,7 @@
 
 import { db } from "@/drizzle";
 import { customerFlightCountTable } from "@/drizzle/db/schema";
-import { auth } from "@clerk/nextjs/server";
+import { getSession } from "@/lib/roles";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { logAction } from "./log";
@@ -12,13 +12,14 @@ export async function addCount(
   prevState: any,
   value: CustomerFlightCountFormValues,
 ) {
-  const { isAuthenticated } = await auth();
+  const { isAuthenticated, userId } = await getSession();
   if (!isAuthenticated) return 0;
 
   try {
     const customer: typeof customerFlightCountTable.$inferInsert = {
       ...value,
       date: value.date,
+      createdBy: userId,
     };
 
     const CHECK_EXIST = await db
@@ -61,7 +62,7 @@ export async function addCount(
 }
 
 export async function deleteCount(prevState: any, value: number) {
-  const { isAuthenticated } = await auth();
+  const { isAuthenticated, isAdmin, userId } = await getSession();
   if (!isAuthenticated) return false;
 
   try {
@@ -69,6 +70,11 @@ export async function deleteCount(prevState: any, value: number) {
       .select()
       .from(customerFlightCountTable)
       .where(eq(customerFlightCountTable.id, value));
+
+    if (SelectData.length === 0) return false;
+
+    // Non-admins may only delete entries they created themselves
+    if (!isAdmin && SelectData[0].createdBy !== userId) return false;
 
     await db
       .delete(customerFlightCountTable)

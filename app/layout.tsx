@@ -2,8 +2,8 @@ import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { getSession } from "@/lib/roles";
 import { ClerkProvider, Show, SignInButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
 import type { Metadata } from "next";
 import { Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
@@ -23,7 +23,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isAuthenticated } = await auth();
+  const { isAuthenticated, isAdmin } = await getSession();
 
   return (
     <html lang="en" dir="rtl" suppressHydrationWarning>
@@ -37,7 +37,7 @@ export default async function RootLayout({
           <Toaster position="bottom-left" closeButton />
 
           <ClerkProvider>
-            <Navbar />
+            <Navbar isAdmin={isAdmin} />
             {isAuthenticated ? (
               children
             ) : (

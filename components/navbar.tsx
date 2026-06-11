@@ -7,18 +7,21 @@ import { ModeToggle } from "./ui/theme-toggle";
 
 const navList = [
   { href: "/", text: "اعدادالرحلات و الوجبات" },
-  { href: "/add-companys", text: "الشركات" },
+  { href: "/add-companys", text: "الشركات", adminOnly: true },
   { href: "/reports", text: "التقارير" },
+  { href: "/logs", text: "السجلات", adminOnly: true },
 ];
 
-const Navbar = () => {
+const Navbar = ({ isAdmin }: { isAdmin: boolean }) => {
+  const links = navList.filter((i) => !i.adminOnly || isAdmin);
+
   return (
     <nav className="px-6 py-3 border-b border-dashed mb-8 print:hidden">
       <div className="flex justify-between items-center container mx-auto">
         {/* Navigation Section */}
 
         <ul className="flex gap-4">
-          {navList.map((i) => (
+          {links.map((i) => (
             <li key={i.href}>
               <Link
                 className={

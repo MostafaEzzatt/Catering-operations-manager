@@ -42,7 +42,15 @@ interface recordsType {
   "co-mgr-customers": InferSelectModel<typeof cutomersTable> | null;
 }
 
-const FlightsCountDataTable = ({ records }: { records: recordsType[] }) => {
+const FlightsCountDataTable = ({
+  records,
+  isAdmin,
+  userId,
+}: {
+  records: recordsType[];
+  isAdmin: boolean;
+  userId: string | null;
+}) => {
   const [deleteState, deleteSubmit, deleteIsPending] = useActionState(
     deleteCount,
     null,
@@ -130,6 +138,12 @@ const FlightsCountDataTable = ({ records }: { records: recordsType[] }) => {
       cell: (info) => {
         const record = info.row.original["co-mgr-customer-flight-count"];
         const companyName = info.row.original["co-mgr-customers"]?.name ?? "";
+
+        // Mirrors the server-side rule in deleteCount
+        const canDelete =
+          isAdmin || (record.createdBy !== null && record.createdBy === userId);
+        if (!canDelete) return null;
+
         return (
           <AlertDialog>
             <AlertDialogTrigger asChild>

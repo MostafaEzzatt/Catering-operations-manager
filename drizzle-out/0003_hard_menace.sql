@@ -1,0 +1,1 @@
+ALTER TABLE "co-mgr-customer-flight-count" ADD COLUMN "createdBy" varchar(255);

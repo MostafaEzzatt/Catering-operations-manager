@@ -32,6 +32,9 @@ export const customerFlightCountTable = pgTable(
     h: integer().default(0).notNull(),
     y: integer().default(0).notNull(),
     date: date().notNull(),
+    // Clerk user id of who entered the record; null for rows that predate
+    // role support, which only admins can delete
+    createdBy: varchar({ length: 255 }),
     createdAt: timestamp().notNull().defaultNow(),
     updatedAt: timestamp().notNull().defaultNow(),
   },
