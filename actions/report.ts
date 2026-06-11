@@ -3,6 +3,7 @@
 
 import { db } from "@/drizzle";
 import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
+import { auth } from "@clerk/nextjs/server";
 import { and, between, desc, eq, inArray, not } from "drizzle-orm";
 
 const transformDataToMonthly = (
@@ -61,6 +62,9 @@ const formatDate = (date: Date) => {
 };
 
 export async function reportAction(prevState: any, value: reportForm) {
+  const { isAuthenticated } = await auth();
+  if (!isAuthenticated) return { error: true, response: [] } as reportType;
+
   try {
     const MS = value.allComp.find((e) => e.cNumber == "077");
     const customerType =

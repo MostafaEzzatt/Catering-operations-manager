@@ -3,6 +3,7 @@
 
 import { db } from "@/drizzle";
 import { customerFlightCountTable } from "@/drizzle/db/schema";
+import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { logAction } from "./log";
@@ -11,6 +12,9 @@ export async function addCount(
   prevState: any,
   value: CustomerFlightCountFormValues,
 ) {
+  const { isAuthenticated } = await auth();
+  if (!isAuthenticated) return 0;
+
   try {
     const customer: typeof customerFlightCountTable.$inferInsert = {
       ...value,
@@ -53,6 +57,9 @@ export async function addCount(
 }
 
 export async function deleteCount(prevState: any, value: number) {
+  const { isAuthenticated } = await auth();
+  if (!isAuthenticated) return false;
+
   try {
     const SelectData = await db
       .select()

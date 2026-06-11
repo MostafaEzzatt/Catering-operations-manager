@@ -3,11 +3,15 @@
 
 import { db } from "@/drizzle";
 import { cutomersTable } from "@/drizzle/db/schema";
+import { auth } from "@clerk/nextjs/server";
 import { eq, or } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { logAction } from "./log";
 
 export async function addCustomer(prevState: any, value: CompanyFormValues) {
+  const { isAuthenticated } = await auth();
+  if (!isAuthenticated) return 0;
+
   try {
     const customer: typeof cutomersTable.$inferInsert = value;
 
@@ -48,6 +52,9 @@ export async function addCustomer(prevState: any, value: CompanyFormValues) {
 }
 
 export async function deleteCustomer(prevState: any, value: number) {
+  const { isAuthenticated } = await auth();
+  if (!isAuthenticated) return false;
+
   try {
     const SelectData = await db
       .select()
@@ -79,6 +86,9 @@ interface updateValue {
   code: string;
 }
 export async function updateCustomer(prevState: any, value: updateValue) {
+  const { isAuthenticated } = await auth();
+  if (!isAuthenticated) return 0;
+
   try {
     const SelectData = await db
       .select()
