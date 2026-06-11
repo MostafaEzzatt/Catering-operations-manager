@@ -14,6 +14,10 @@ export const cutomersTable = pgTable("co-mgr-customers", {
   name: varchar({ length: 255 }).notNull(),
   code: varchar({ length: 255 }).notNull(),
   cNumber: varchar({ length: 255 }).notNull(),
+  // Set when a regular user requests deletion; the company is only deleted
+  // once an admin approves (admin delete clears it implicitly)
+  deleteRequestedBy: varchar({ length: 255 }),
+  deleteRequestedAt: timestamp(),
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
 });

@@ -4,6 +4,7 @@
 import { db } from "@/drizzle";
 import { cutomersTable } from "@/drizzle/db/schema";
 import { getSession } from "@/lib/roles";
+import { currentUser } from "@clerk/nextjs/server";
 import { eq, or } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { logAction } from "./log";
@@ -51,15 +52,41 @@ export async function addCustomer(prevState: any, value: CompanyFormValues) {
   }
 }
 
+// 0 = error, 1 = deleted (admin), 2 = deletion request submitted for approval
 export async function deleteCustomer(prevState: any, value: number) {
-  const { isAdmin } = await getSession();
-  if (!isAdmin) return false;
+  const { isAuthenticated, isAdmin, userId } = await getSession();
+  if (!isAuthenticated) return 0;
 
   try {
     const SelectData = await db
       .select()
       .from(cutomersTable)
       .where(eq(cutomersTable.id, value));
+
+    if (SelectData.length === 0) return 0;
+
+    if (!isAdmin) {
+      const user = await currentUser();
+
+      await db
+        .update(cutomersTable)
+        .set({
+          deleteRequestedBy: user?.username ?? userId,
+          deleteRequestedAt: new Date(),
+        })
+        .where(eq(cutomersTable.id, value));
+
+      revalidatePath("/add-companys");
+
+      await logAction({
+        action: "REQUEST_DELETE",
+        entity: "Company",
+        entityId: `${SelectData[0].id}`,
+        metadata: SelectData[0],
+      });
+
+      return 2;
+    }
 
     await db.delete(cutomersTable).where(eq(cutomersTable.id, value));
 
@@ -72,9 +99,43 @@ export async function deleteCustomer(prevState: any, value: number) {
       metadata: SelectData[0],
     });
 
+    return 1;
+  } catch (error) {
+    console.error("Deletion failed:", error);
+    return 0;
+  }
+}
+
+export async function rejectDeleteRequest(prevState: any, value: number) {
+  const { isAdmin } = await getSession();
+  if (!isAdmin) return false;
+
+  try {
+    const SelectData = await db
+      .select()
+      .from(cutomersTable)
+      .where(eq(cutomersTable.id, value));
+
+    if (SelectData.length === 0 || !SelectData[0].deleteRequestedBy)
+      return false;
+
+    await db
+      .update(cutomersTable)
+      .set({ deleteRequestedBy: null, deleteRequestedAt: null })
+      .where(eq(cutomersTable.id, value));
+
+    revalidatePath("/add-companys");
+
+    await logAction({
+      action: "REJECT_DELETE",
+      entity: "Company",
+      entityId: `${SelectData[0].id}`,
+      metadata: SelectData[0],
+    });
+
     return true;
   } catch (error) {
-    console.error("Insertion failed:", error);
+    console.error("Reject delete request failed:", error);
     return false;
   }
 }
@@ -86,8 +147,8 @@ interface updateValue {
   code: string;
 }
 export async function updateCustomer(prevState: any, value: updateValue) {
-  const { isAdmin } = await getSession();
-  if (!isAdmin) return 0;
+  const { isAuthenticated } = await getSession();
+  if (!isAuthenticated) return 0;
 
   try {
     const SelectData = await db

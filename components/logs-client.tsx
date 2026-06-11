@@ -17,6 +17,22 @@ import {
 
 type LogEntry = InferSelectModel<typeof auditLogs>;
 
+const actionLabels: Record<string, string> = {
+  CREATE: "انشاء",
+  UPDATE: "تعديل",
+  DELETE: "حذف",
+  REQUEST_DELETE: "طلب حذف",
+  REJECT_DELETE: "رفض طلب حذف",
+};
+
+const actionStyles: Record<string, string> = {
+  CREATE: "bg-green-500/20 text-green-400",
+  UPDATE: "bg-yellow-500/20 text-yellow-400",
+  DELETE: "bg-red-500/20 text-red-400",
+  REQUEST_DELETE: "bg-orange-500/20 text-orange-400",
+  REJECT_DELETE: "bg-blue-500/20 text-blue-400",
+};
+
 const LogsClient = ({
   logs,
   users,
@@ -148,13 +164,9 @@ const LogsClient = ({
                     </div>
 
                     <span
-                      className={`${i.action == "CREATE" ? "bg-green-500/20 text-green-400" : i.action == "UPDATE" ? "bg-yellow-500/20 text-yellow-400" : "bg-red-500/20 text-red-400"} text-xs px-3 py-1 rounded-full`}
+                      className={`${actionStyles[i.action] ?? actionStyles.DELETE} text-xs px-3 py-1 rounded-full`}
                     >
-                      {i.action == "CREATE"
-                        ? "انشاء"
-                        : i.action == "UPDATE"
-                          ? "تعديل"
-                          : "حذف"}
+                      {actionLabels[i.action] ?? i.action}
                     </span>
                   </div>
 

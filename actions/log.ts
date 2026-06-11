@@ -9,7 +9,7 @@ export async function logAction({
   entityId,
   metadata,
 }: {
-  action: "CREATE" | "UPDATE" | "DELETE";
+  action: "CREATE" | "UPDATE" | "DELETE" | "REQUEST_DELETE" | "REJECT_DELETE";
   entity: string;
   entityId?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

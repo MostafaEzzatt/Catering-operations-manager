@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteCustomer, updateCustomer } from "@/actions/customer";
+import { deleteCustomer, rejectDeleteRequest } from "@/actions/customer";
 import { cutomersTable } from "@/drizzle/db/schema";
 import {
   ColumnDef,
@@ -9,7 +9,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { InferSelectModel } from "drizzle-orm";
-import { Pen, Trash } from "lucide-react";
+import { Pen, Trash, X } from "lucide-react";
 import Link from "next/link";
 import { useActionState, useEffect, useTransition } from "react";
 import { toast } from "sonner";
@@ -24,6 +24,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
+import { Badge } from "./ui/badge";
 import { Button, buttonVariants } from "./ui/button";
 import {
   Table,
@@ -45,14 +46,24 @@ const CompanyTable = ({
     deleteCustomer,
     null,
   );
+  const [rejectState, rejectSubmit, rejectIsPending] = useActionState(
+    rejectDeleteRequest,
+    null,
+  );
 
   const [transitionPending, startTransition] = useTransition();
 
-  const isPending = transitionPending || deleteIsPending;
+  const isPending = transitionPending || deleteIsPending || rejectIsPending;
 
   function handleDelete(id: number) {
     startTransition(() => {
       deleteSubmit(id);
+    });
+  }
+
+  function handleReject(id: number) {
+    startTransition(() => {
+      rejectSubmit(id);
     });
   }
 
@@ -74,41 +85,62 @@ const CompanyTable = ({
       accessorKey: "code",
       header: "كود الشركة",
     },
-  ];
-
-  const adminColumns: ColumnDef<InferSelectModel<typeof cutomersTable>>[] = [
     {
       accessorKey: "Delete",
       header: "مسح",
       cell: (info) => {
+        const company = info.row.original;
+        const pending = company.deleteRequestedBy !== null;
+
+        // Regular users see the pending state instead of a second request
+        if (pending && !isAdmin) {
+          return <Badge variant="secondary">بانتظار موافقة المشرف</Badge>;
+        }
+
         return (
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button disabled={isPending} variant={"outline"}>
-                <Trash />
+          <div className="flex items-center gap-2">
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button disabled={isPending} variant={"outline"}>
+                  <Trash />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    {isAdmin
+                      ? `حذف شركة ${company.name}؟`
+                      : `طلب حذف شركة ${company.name}؟`}
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {isAdmin
+                      ? `${pending ? `طلب ${company.deleteRequestedBy} حذف هذه الشركة. ` : ""}سيتم حذف الشركة نهائياً مع جميع سجلات الرحلات والوجبات الخاصة بها. لا يمكن التراجع عن هذا الإجراء.`
+                      : "سيتم إرسال طلب الحذف إلى المشرف، ولن يتم حذف الشركة إلا بعد موافقته."}
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>إلغاء</AlertDialogCancel>
+                  <AlertDialogAction
+                    className={buttonVariants({ variant: "destructive" })}
+                    onClick={() => handleDelete(company.id)}
+                  >
+                    {isAdmin ? "حذف" : "إرسال الطلب"}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
+            {isAdmin && pending && (
+              <Button
+                disabled={isPending}
+                variant={"outline"}
+                title="رفض طلب الحذف"
+                onClick={() => handleReject(company.id)}
+              >
+                <X />
               </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>
-                  حذف شركة {info.row.original.name}؟
-                </AlertDialogTitle>
-                <AlertDialogDescription>
-                  سيتم حذف الشركة نهائياً مع جميع سجلات الرحلات والوجبات الخاصة
-                  بها. لا يمكن التراجع عن هذا الإجراء.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>إلغاء</AlertDialogCancel>
-                <AlertDialogAction
-                  className={buttonVariants({ variant: "destructive" })}
-                  onClick={() => handleDelete(info.row.original.id)}
-                >
-                  حذف
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+            )}
+          </div>
         );
       },
     },
@@ -125,24 +157,32 @@ const CompanyTable = ({
     },
   ];
 
-  const visibleColumns = isAdmin ? [...columns, ...adminColumns] : columns;
-
   // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
-    columns: visibleColumns,
+    columns,
     data: customers,
     getCoreRowModel: getCoreRowModel(),
   });
 
   useEffect(() => {
     if (isPending) {
-      toast.info("نعمل على مسح الشركة");
-    } else if (!isPending && deleteState == true) {
+      toast.info("جارى تنفيذ العملية");
+    } else if (!isPending && deleteState === 1) {
       toast.success("تم مسح الشركة.");
-    } else if (!isPending && deleteState === false) {
+    } else if (!isPending && deleteState === 2) {
+      toast.info("تم إرسال طلب الحذف الى المشرف.");
+    } else if (!isPending && deleteState === 0) {
       toast.error("حدث خطاء ما عند مسح الشركة.");
     }
   }, [isPending, deleteState]);
+
+  useEffect(() => {
+    if (!isPending && rejectState === true) {
+      toast.success("تم رفض طلب الحذف.");
+    } else if (!isPending && rejectState === false) {
+      toast.error("حدث خطاء ما عند رفض طلب الحذف.");
+    }
+  }, [isPending, rejectState]);
 
   return (
     <div className="overflow-hidden rounded-md border">
@@ -181,10 +221,7 @@ const CompanyTable = ({
             ))
           ) : (
             <TableRow>
-              <TableCell
-                colSpan={visibleColumns.length}
-                className="h-24 text-center"
-              >
+              <TableCell colSpan={columns.length} className="h-24 text-center">
                 لم يتم اضافة شركات.
               </TableCell>
             </TableRow>

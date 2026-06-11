@@ -6,8 +6,8 @@ import { getSession } from "@/lib/roles";
 import { eq } from "drizzle-orm";
 
 async function Update({ params }: { params: Promise<{ id: string }> }) {
-  const { isAdmin } = await getSession();
-  if (!isAdmin) return <NotAllowed />;
+  const { isAuthenticated } = await getSession();
+  if (!isAuthenticated) return <NotAllowed />;
 
   //  Display Company Id in the URL
   const { id } = await params;
