@@ -8,8 +8,9 @@ import { desc } from "drizzle-orm";
 const LOGS_PER_PAGE = 10;
 
 const Logs = async () => {
-  const { isAdmin } = await getSession();
-  if (!isAdmin) return <NotAllowed />;
+  // Unlisted page: reachable only by direct link, but still requires sign-in
+  const { isAuthenticated } = await getSession();
+  if (!isAuthenticated) return <NotAllowed />;
 
   const [logs, allUsersResult, customers] = await Promise.all([
     db.select().from(auditLogs).orderBy(desc(auditLogs.createdAt)),

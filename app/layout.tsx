@@ -23,7 +23,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isAuthenticated, isAdmin } = await getSession();
+  const { isAuthenticated } = await getSession();
 
   return (
     <html lang="en" dir="rtl" suppressHydrationWarning>
@@ -37,7 +37,7 @@ export default async function RootLayout({
           <Toaster position="bottom-left" closeButton />
 
           <ClerkProvider>
-            <Navbar isAdmin={isAdmin} />
+            <Navbar />
             {isAuthenticated ? (
               children
             ) : (

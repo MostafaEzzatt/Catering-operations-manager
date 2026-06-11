@@ -9,19 +9,16 @@ const navList = [
   { href: "/", text: "اعدادالرحلات و الوجبات" },
   { href: "/add-companys", text: "الشركات" },
   { href: "/reports", text: "التقارير" },
-  { href: "/logs", text: "السجلات", adminOnly: true },
 ];
 
-const Navbar = ({ isAdmin }: { isAdmin: boolean }) => {
-  const links = navList.filter((i) => !i.adminOnly || isAdmin);
-
+const Navbar = () => {
   return (
     <nav className="px-6 py-3 border-b border-dashed mb-8 print:hidden">
       <div className="flex justify-between items-center container mx-auto">
         {/* Navigation Section */}
 
         <ul className="flex gap-4">
-          {links.map((i) => (
+          {navList.map((i) => (
             <li key={i.href}>
               <Link
                 className={
