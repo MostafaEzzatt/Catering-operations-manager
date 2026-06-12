@@ -3,7 +3,11 @@
 
 import { db } from "@/drizzle";
 import { customerFlightCountTable } from "@/drizzle/db/schema";
-import { updateFormSchema } from "@/formsSchema/add-customer-flight-count";
+import {
+  formSchema,
+  updateFormSchema,
+} from "@/formsSchema/add-customer-flight-count";
+import { canModifyRecord } from "@/lib/permissions";
 import { getSession } from "@/lib/roles";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
@@ -16,10 +20,13 @@ export async function addCount(
   const { isAuthenticated, userId } = await getSession();
   if (!isAuthenticated) return 0;
 
+  // The client form validates too, but server actions are callable directly
+  const parsed = formSchema.safeParse(value);
+  if (!parsed.success) return 0;
+
   try {
     const customer: typeof customerFlightCountTable.$inferInsert = {
-      ...value,
-      date: value.date,
+      ...parsed.data,
       createdBy: userId,
     };
 
@@ -82,8 +89,8 @@ export async function updateCount(
 
     if (SelectData.length === 0) return 2;
 
-    // Non-admins may only update entries they created themselves
-    if (!isAdmin && SelectData[0].createdBy !== userId) return 3;
+    if (!canModifyRecord(SelectData[0].createdBy, { isAdmin, userId }))
+      return 3;
 
     const UpdatedData = await db
       .update(customerFlightCountTable)
@@ -128,8 +135,8 @@ export async function deleteCount(prevState: any, value: number) {
 
     if (SelectData.length === 0) return false;
 
-    // Non-admins may only delete entries they created themselves
-    if (!isAdmin && SelectData[0].createdBy !== userId) return false;
+    if (!canModifyRecord(SelectData[0].createdBy, { isAdmin, userId }))
+      return false;
 
     await db
       .delete(customerFlightCountTable)

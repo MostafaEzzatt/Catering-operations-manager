@@ -30,6 +30,17 @@ const ar_field_name: formValueType<UpdateFlightCountFormValues> = {
   y: "سياحى",
 };
 
+function recordValues(
+  record: InferSelectModel<typeof customerFlightCountTable>,
+): Record<EditFieldName, string> {
+  return {
+    flightCount: `${record.flightCount}`,
+    c: `${record.c}`,
+    h: `${record.h}`,
+    y: `${record.y}`,
+  };
+}
+
 // Deliberately NOT built on @tanstack/react-form: one form instance per table
 // row combined with Radix's composed refs triggers a synchronous render loop
 // on React 19 that freezes the tab (TanStack/form#2020)
@@ -42,12 +53,9 @@ const UpdateFlightCount = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const [values, setValues] = useState<Record<EditFieldName, string>>({
-    flightCount: `${record.flightCount}`,
-    c: `${record.c}`,
-    h: `${record.h}`,
-    y: `${record.y}`,
-  });
+  const [values, setValues] = useState<Record<EditFieldName, string>>(() =>
+    recordValues(record),
+  );
   const [errors, setErrors] = useState<
     Partial<Record<EditFieldName, { message: string }[]>>
   >({});
@@ -57,12 +65,7 @@ const UpdateFlightCount = ({
     // Drop abandoned edits and pick up the record's current values so a
     // reopened dialog never shows values that were cancelled or outdated
     if (nextOpen) {
-      setValues({
-        flightCount: `${record.flightCount}`,
-        c: `${record.c}`,
-        h: `${record.h}`,
-        y: `${record.y}`,
-      });
+      setValues(recordValues(record));
       setErrors({});
     }
   }

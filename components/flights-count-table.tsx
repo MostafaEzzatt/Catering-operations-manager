@@ -2,6 +2,7 @@
 
 import { deleteCount } from "@/actions/customer-flight-count";
 import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
+import { canModifyRecord } from "@/lib/permissions";
 import {
   ColumnDef,
   flexRender,
@@ -140,11 +141,9 @@ const FlightsCountDataTable = ({
         const record = info.row.original["co-mgr-customer-flight-count"];
         const companyName = info.row.original["co-mgr-customers"]?.name ?? "";
 
-        // Mirrors the server-side rule in updateCount/deleteCount: admins can
-        // modify anything, regular users only what they added themselves
-        const canModify =
-          isAdmin || (record.createdBy !== null && record.createdBy === userId);
-        if (!canModify) return null;
+        // Same rule the server enforces in updateCount/deleteCount
+        if (!canModifyRecord(record.createdBy, { isAdmin, userId }))
+          return null;
 
         return (
           <div className="flex justify-center gap-2">
