@@ -99,7 +99,6 @@ export async function updateCount(
         c: parsed.data.c,
         h: parsed.data.h,
         y: parsed.data.y,
-        updatedAt: new Date(),
       })
       .where(eq(customerFlightCountTable.id, value.id))
       .returning();
@@ -153,7 +152,7 @@ export async function deleteCount(prevState: any, value: number) {
 
     return true;
   } catch (error) {
-    console.error("Insertion failed:", error);
+    console.error("Deletion failed:", error);
     return false;
   }
 }

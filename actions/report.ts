@@ -3,8 +3,13 @@
 
 import { db } from "@/drizzle";
 import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
+import { actionSchema } from "@/formsSchema/report-flights";
 import { auth } from "@clerk/nextjs/server";
 import { and, between, desc, eq, inArray, not } from "drizzle-orm";
+
+// EgyptAir (MS) companies are identified by this cNumber; "foreign" reports
+// (companyType "1") exclude them
+const MS_COMPANY_C_NUMBER = "077";
 
 const transformDataToMonthly = (
   data: {
@@ -65,23 +70,28 @@ export async function reportAction(prevState: any, value: reportForm) {
   const { isAuthenticated } = await auth();
   if (!isAuthenticated) return { error: true, response: [] } as reportType;
 
-  if (value.companyType == "0" && value.companyId < 1)
-    return { error: true, response: [] } as reportType;
+  // The client form validates too, but server actions are callable directly
+  const parsed = actionSchema.safeParse(value);
+  if (!parsed.success) return { error: true, response: [] } as reportType;
 
   try {
-    const dateRange = between(customerFlightCountTable.date, value.from, value.to);
+    const dateRange = between(
+      customerFlightCountTable.date,
+      parsed.data.from,
+      parsed.data.to,
+    );
 
     let customerType = dateRange;
-    if (value.companyType == "0") {
+    if (parsed.data.companyType == "0") {
       customerType = and(
         dateRange,
-        eq(customerFlightCountTable.customerId, value.companyId),
+        eq(customerFlightCountTable.customerId, parsed.data.companyId),
       )!;
-    } else if (value.companyType == "1") {
+    } else if (parsed.data.companyType == "1") {
       const MS = await db
         .select({ id: cutomersTable.id })
         .from(cutomersTable)
-        .where(eq(cutomersTable.cNumber, "077"));
+        .where(eq(cutomersTable.cNumber, MS_COMPANY_C_NUMBER));
 
       // No MS company means every company counts as foreign
       if (MS.length > 0) {
@@ -117,7 +127,7 @@ export async function reportAction(prevState: any, value: reportForm) {
         y: i["co-mgr-customer-flight-count"].y,
       }))
       .sort((a, b) => a.date.getTime() - b.date.getTime());
-    return value.monthFormat
+    return parsed.data.monthFormat
       ? ({
           error: false,
           response: transformDataToMonthly(response),

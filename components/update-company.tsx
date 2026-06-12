@@ -57,6 +57,8 @@ const UpdateCompany = ({
       router.push("/add-companys");
     } else if (!isPending && updateState == 2) {
       toast.info("لم يتم العثور على الشركة لتحديثها.");
+    } else if (!isPending && updateState == 3) {
+      toast.info("توجد شركة اخرى بنفس الاسم او الكود او الرقم.");
     } else if (!isPending && updateState === 0) {
       toast.error("حدث خطأ ما عند تحديث الشركة");
     }
