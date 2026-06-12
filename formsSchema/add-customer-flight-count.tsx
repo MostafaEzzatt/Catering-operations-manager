@@ -8,3 +8,10 @@ export const formSchema = z.object({
   y: z.number().min(0),
   date: z.string(),
 });
+
+export const updateFormSchema = formSchema.pick({
+  flightCount: true,
+  c: true,
+  h: true,
+  y: true,
+});

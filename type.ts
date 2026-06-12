@@ -14,6 +14,13 @@ type CustomerFlightCountFormValues = {
   date: string;
 };
 
+type UpdateFlightCountFormValues = {
+  flightCount: number;
+  c: number;
+  h: number;
+  y: number;
+};
+
 type formValueType<T> = Record<keyof T, string>;
 
 interface reportForm {

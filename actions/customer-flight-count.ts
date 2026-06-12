@@ -3,6 +3,7 @@
 
 import { db } from "@/drizzle";
 import { customerFlightCountTable } from "@/drizzle/db/schema";
+import { updateFormSchema } from "@/formsSchema/add-customer-flight-count";
 import { getSession } from "@/lib/roles";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
@@ -57,6 +58,60 @@ export async function addCount(
     if ((error as { code?: string })?.code === "23505") return 2;
 
     console.error("Insertion failed:", error);
+    return 0;
+  }
+}
+
+// 0 = error, 1 = updated, 2 = record not found, 3 = not allowed
+export async function updateCount(
+  prevState: any,
+  value: UpdateFlightCountFormValues & { id: number },
+) {
+  const { isAuthenticated, isAdmin, userId } = await getSession();
+  if (!isAuthenticated) return 0;
+
+  // The client form validates too, but server actions are callable directly
+  const parsed = updateFormSchema.safeParse(value);
+  if (!parsed.success || !Number.isInteger(value.id)) return 0;
+
+  try {
+    const SelectData = await db
+      .select()
+      .from(customerFlightCountTable)
+      .where(eq(customerFlightCountTable.id, value.id));
+
+    if (SelectData.length === 0) return 2;
+
+    // Non-admins may only update entries they created themselves
+    if (!isAdmin && SelectData[0].createdBy !== userId) return 3;
+
+    const UpdatedData = await db
+      .update(customerFlightCountTable)
+      .set({
+        flightCount: parsed.data.flightCount,
+        c: parsed.data.c,
+        h: parsed.data.h,
+        y: parsed.data.y,
+        updatedAt: new Date(),
+      })
+      .where(eq(customerFlightCountTable.id, value.id))
+      .returning();
+
+    // The row can vanish between the permission check and the update
+    if (UpdatedData.length === 0) return 2;
+
+    revalidatePath("/");
+
+    await logAction({
+      action: "UPDATE",
+      entity: "Flight Details",
+      entityId: `${UpdatedData[0].id}`,
+      metadata: UpdatedData[0],
+    });
+
+    return 1;
+  } catch (error) {
+    console.error("Update failed:", error);
     return 0;
   }
 }

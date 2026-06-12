@@ -13,6 +13,7 @@ import { Trash } from "lucide-react";
 import { useActionState, useEffect, useMemo, useTransition } from "react";
 import { toast } from "sonner";
 import Paragraph from "./typo-p";
+import UpdateFlightCount from "./update-flight-count";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -133,43 +134,47 @@ const FlightsCountDataTable = ({
       },
     },
     {
-      accessorKey: "Delete",
-      header: "Delete",
+      id: "actions",
+      header: "إجراءات",
       cell: (info) => {
         const record = info.row.original["co-mgr-customer-flight-count"];
         const companyName = info.row.original["co-mgr-customers"]?.name ?? "";
 
-        // Mirrors the server-side rule in deleteCount
-        const canDelete =
+        // Mirrors the server-side rule in updateCount/deleteCount: admins can
+        // modify anything, regular users only what they added themselves
+        const canModify =
           isAdmin || (record.createdBy !== null && record.createdBy === userId);
-        if (!canDelete) return null;
+        if (!canModify) return null;
 
         return (
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button disabled={isPending} variant={"outline"}>
-                <Trash />
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>حذف سجل الرحلات؟</AlertDialogTitle>
-                <AlertDialogDescription>
-                  سيتم حذف سجل رحلات شركة {companyName} بتاريخ {record.date}{" "}
-                  نهائياً. لا يمكن التراجع عن هذا الإجراء.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>إلغاء</AlertDialogCancel>
-                <AlertDialogAction
-                  className={buttonVariants({ variant: "destructive" })}
-                  onClick={() => handleDelete(record.id)}
-                >
-                  حذف
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          <div className="flex justify-center gap-2">
+            <UpdateFlightCount record={record} companyName={companyName} />
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button disabled={isPending} variant={"outline"}>
+                  <Trash />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>حذف سجل الرحلات؟</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    سيتم حذف سجل رحلات شركة {companyName} بتاريخ {record.date}{" "}
+                    نهائياً. لا يمكن التراجع عن هذا الإجراء.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>إلغاء</AlertDialogCancel>
+                  <AlertDialogAction
+                    className={buttonVariants({ variant: "destructive" })}
+                    onClick={() => handleDelete(record.id)}
+                  >
+                    حذف
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
         );
       },
     },
