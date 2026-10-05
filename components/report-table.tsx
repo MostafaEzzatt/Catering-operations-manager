@@ -161,7 +161,7 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
 
   return (
     <>
-      <div className="flex justify-end mb-2 print:hidden">
+      {/* <div className="flex justify-end mb-2 print:hidden">
         <Button
           variant="outline"
           onClick={downloadExcel}
@@ -169,7 +169,7 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
         >
           <Download /> تحميل Excel
         </Button>
-      </div>
+      </div> */}
 
       <div className="overflow-hidden rounded-md border">
         <Table className="text-center">
