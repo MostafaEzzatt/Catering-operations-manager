@@ -16,7 +16,10 @@ export default async function Home({
   const { from, to } = await searchParams;
   const range = resolveDayRange(from, to);
 
-  const customers = await db.select().from(cutomersTable);
+  // Alphabetical in Arabic, the same order as the reports page
+  const customers = (await db.select().from(cutomersTable)).sort((a, b) =>
+    a.name.localeCompare(b.name, "ar"),
+  );
 
   return (
     <main className="container mx-auto">

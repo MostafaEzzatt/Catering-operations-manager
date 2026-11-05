@@ -14,14 +14,8 @@ import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { DatePicker } from "./ui/datePicker";
 import { Field, FieldError, FieldGroup, FieldLabel } from "./ui/field";
+import CompanyPicker from "./company-picker";
 import { Input } from "./ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
 import { Spinner } from "./ui/spinner";
 
 const COUNT_FIELDS = ["flightCount", "c", "h", "y"] as const;
@@ -123,33 +117,13 @@ const AddMSFlightCount = ({
                     {ar_field_name[field.name]}
                   </FieldLabel>
 
-                  {customers.length >= 1 ? (
-                    <Select
-                      dir="rtl"
-                      value={`${field.state.value}`}
-                      onValueChange={(value) => {
-                        field.handleChange(Number(value));
-                      }}
-                    >
-                      <SelectTrigger className="w-45">
-                        <SelectValue placeholder="اسم الشركة" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {customers.map((c) => (
-                          <SelectItem key={c.id} value={`${c.id}`}>
-                            {c.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  ) : (
-                    <Select dir="rtl" disabled>
-                      <SelectTrigger className="w-45">
-                        <SelectValue placeholder="اسم الشركة" />
-                      </SelectTrigger>
-                      <SelectContent></SelectContent>
-                    </Select>
-                  )}
+                  <CompanyPicker
+                    id={field.name}
+                    companies={customers}
+                    value={field.state.value}
+                    onChange={(companyId) => field.handleChange(companyId)}
+                    invalid={isInvalid}
+                  />
                   {isInvalid && <FieldError errors={field.state.meta.errors} />}
                 </Field>
               );

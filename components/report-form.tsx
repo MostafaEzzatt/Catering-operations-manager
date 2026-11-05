@@ -12,6 +12,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cutomersTable } from "@/drizzle/db/schema";
 import { formSchema, ReportPeriod } from "@/formsSchema/report-flights";
+import { searchCompanies } from "@/lib/arabic";
 import { InferSelectModel } from "drizzle-orm";
 import { ChevronDown } from "lucide-react";
 import { useActionState, useEffect, useState, useTransition } from "react";
@@ -82,16 +83,6 @@ const formatDay = (d: Date) =>
     .format(d)
     .replace(/\//g, " / ");
 
-// Lets a search match regardless of common Arabic spelling variants
-// (أ/إ/آ → ا, ى → ي, ة → ه), diacritics, and Latin letter case
-const normalizeArabic = (s: string) =>
-  s
-    .toLowerCase()
-    .replace(/[ً-ْـ]/g, "")
-    .replace(/[أإآ]/g, "ا")
-    .replace(/ى/g, "ي")
-    .replace(/ة/g, "ه");
-
 // Deliberately NOT built on @tanstack/react-form: a TanStack form next to
 // Radix inputs (RadioGroup, Select, Popover) can trigger a synchronous render
 // loop on React 19 that freezes the tab (TanStack/form#2020). Plain state plus
@@ -144,14 +135,7 @@ const Reportform = ({
   }
 
   // Companies matching the picker search, by name or code
-  const searchTerm = normalizeArabic(companySearch.trim());
-  const visibleCompanies = searchTerm
-    ? customers.filter(
-        (c) =>
-          normalizeArabic(c.name).includes(searchTerm) ||
-          normalizeArabic(c.code).includes(searchTerm),
-      )
-    : customers;
+  const visibleCompanies = searchCompanies(customers, companySearch);
 
   // Picked companies in the same order as the list, for labels
   const selectedCompanies = customers.filter((c) => companyIds.includes(c.id));

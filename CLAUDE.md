@@ -33,4 +33,4 @@ How to apply:
 
 - For new dialogs and forms, use plain `useState` plus zod `safeParse`. `components/update-flight-count.tsx` is the pattern, including reset-on-open and closing the dialog before the action to avoid Radix's stuck `pointer-events: none`.
 - Do not add per-row `useForm` instances.
-- `add-ms-flight-count` and `add-company` still use TanStack form with a Radix Select. Single instances have been fine so far, but they are the prime suspects if a freeze reappears.
+- `add-ms-flight-count` (with a Radix Popover company picker, `components/company-picker.tsx`), `add-company` and `update-company` still use TanStack form. Single instances have been fine so far, but `add-ms-flight-count` is the prime suspect if a freeze reappears.
