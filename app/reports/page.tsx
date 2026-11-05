@@ -4,7 +4,10 @@ import { db } from "@/drizzle";
 import { cutomersTable } from "@/drizzle/db/schema";
 
 const Reports = async () => {
-  const customers = await db.select().from(cutomersTable);
+  // Alphabetical with Arabic collation, so the company picker is easy to scan
+  const customers = (await db.select().from(cutomersTable)).sort((a, b) =>
+    a.name.localeCompare(b.name, "ar"),
+  );
   return (
     <main className="container mx-auto">
       <Heading1 txt="عمل تقارير" />

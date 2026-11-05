@@ -105,8 +105,9 @@ const ReportTable = ({
     {
       accessorKey: "date",
       header: "التاريخ",
-      // Keep "DD / MM / YYYY" in one direction inside the RTL table
-      cell: (info) => <bdi dir="ltr">{info.row.original.date}</bdi>,
+      // dir="auto": numeric "DD / MM / YYYY" stays left-to-right, while an
+      // Arabic month label ("فبراير 2026") reads right-to-left
+      cell: (info) => <bdi dir="auto">{info.row.original.date}</bdi>,
     },
     {
       accessorKey: "customer",
@@ -306,8 +307,11 @@ const ReportTable = ({
         </Button>
       </div> */}
 
+      {/* Sticky header: on md+ the box clips (overflow-clip is not a scroll
+          container) so the header sticks to the viewport while the page
+          scrolls. On phones it keeps the horizontal scroll instead. */}
       <div
-        className="overflow-hidden rounded-md border print:overflow-visible print:rounded-none print:border-0"
+        className="overflow-hidden md:overflow-clip md:[&_[data-slot=table-container]]:overflow-visible rounded-md border print:overflow-visible print:rounded-none print:border-0"
         hidden={hideTable}
       >
         <Table className="text-center">
@@ -316,7 +320,10 @@ const ReportTable = ({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="text-center">
+                    <TableHead
+                      key={header.id}
+                      className="text-center md:sticky md:top-0 md:z-10 bg-background shadow-[inset_0_-1px_0_var(--border)] print:static print:shadow-none"
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -352,7 +359,7 @@ const ReportTable = ({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  لم يتم اضافة اعداد رحلات للشركات.
+                  لا توجد بيانات فى هذه الفترة.
                 </TableCell>
               </TableRow>
             )}

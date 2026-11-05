@@ -94,7 +94,11 @@ const Reportform = ({
   const [state, submit, submitIsPending] = useActionState(reportAction, null);
   const pending = transitionPending || submitIsPending;
 
-  const [dateFrom, setDateFrom] = useState(() => new Date());
+  // Default range: the current month so far
+  const [dateFrom, setDateFrom] = useState(() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  });
   const [dateTo, setDateTo] = useState(() => new Date());
   const [period, setPeriod] = useState<ReportPeriod>("day");
   const [companyType, setCompanyType] = useState<CompanyType>("0");
