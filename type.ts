@@ -26,7 +26,7 @@ type formValueType<T> = Record<keyof T, string>;
 interface reportForm {
   from: string;
   to: string;
-  monthFormat: boolean;
+  period: "day" | "month" | "year";
   companyType: string;
   companyId: number;
 }

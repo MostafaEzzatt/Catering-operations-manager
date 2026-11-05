@@ -1,8 +1,5 @@
-/* eslint-disable react/no-children-prop */
-
 "use client";
 import { reportAction } from "@/actions/report";
-import { Checkbox } from "@/components/ui/checkbox";
 import { DatePicker } from "@/components/ui/datePicker";
 import {
   Field,
@@ -14,8 +11,7 @@ import {
 } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cutomersTable } from "@/drizzle/db/schema";
-import { formSchema } from "@/formsSchema/report-flights";
-import { useForm } from "@tanstack/react-form";
+import { formSchema, ReportPeriod } from "@/formsSchema/report-flights";
 import { InferSelectModel } from "drizzle-orm";
 import { useActionState, useEffect, useState, useTransition } from "react";
 import { toast } from "sonner";
@@ -28,7 +24,56 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { Spinner } from "./ui/spinner";
 
+type CompanyType = "0" | "1" | "2";
+type ReportField = "from" | "to" | "period" | "companyType" | "companyId";
+type FieldErrors = Partial<Record<ReportField, { message: string }[]>>;
+
+const ar_field_name: Record<ReportField, string> = {
+  from: "من",
+  to: "الى",
+  period: "نوع التقرير",
+  companyType: "تحديد الشركة",
+  companyId: "اسم الشركة",
+};
+
+const COMPANY_TYPE_OPTIONS: {
+  value: CompanyType;
+  label: string;
+  description: string;
+}[] = [
+  { value: "0", label: "حدد شركة", description: "حدد شركة للتقرير." },
+  {
+    value: "1",
+    label: "الشركات الاجنبية",
+    description: "الشركات الاجنبية فقط.",
+  },
+  { value: "2", label: "جميع الشركات", description: "تحديد كل الشركات." },
+];
+
+const PERIOD_OPTIONS: {
+  value: ReportPeriod;
+  label: string;
+  description: string;
+}[] = [
+  { value: "day", label: "تقرير يومى", description: "صف لكل يوم مسجل." },
+  {
+    value: "month",
+    label: "تقرير شهرى",
+    description: "مجموع شهرى لكل شركة على حدى.",
+  },
+  {
+    value: "year",
+    label: "تقرير سنوى",
+    description: "مجموع سنوى لكل شركة على حدى.",
+  },
+];
+
+// Deliberately NOT built on @tanstack/react-form: a TanStack form next to
+// Radix inputs (RadioGroup, Select, Popover) can trigger a synchronous render
+// loop on React 19 that freezes the tab (TanStack/form#2020). Plain state plus
+// zod safeParse, the same pattern as update-flight-count.tsx, avoids it.
 const Reportform = ({
   customers,
 }: {
@@ -38,40 +83,12 @@ const Reportform = ({
   const [state, submit, submitIsPending] = useActionState(reportAction, null);
   const pending = transitionPending || submitIsPending;
 
-  const [dateFrom, setDateFrom] = useState(new Date());
-  const [dateTo, setDateTo] = useState(new Date());
-  const [showCompanys, setShowCompanys] = useState(true);
-
-  const defaultValues = {
-    from: new Date(),
-    to: new Date(),
-    monthFormat: false,
-    companyType: "0",
-    companyId: 0,
-  };
-  const ar_field_name = {
-    from: "من",
-    to: "الى",
-    monthFormat: "شهرى",
-    companyType: "تحديد الشركة",
-    companyId: "نحديد الشركة",
-  };
-
-  const form = useForm({
-    defaultValues,
-    validators: {
-      onSubmit: formSchema,
-    },
-    onSubmit: ({ value }) => {
-      startTransition(() => {
-        submit({
-          ...value,
-          from: dateFrom.toDateString(),
-          to: dateTo.toDateString(),
-        });
-      });
-    },
-  });
+  const [dateFrom, setDateFrom] = useState(() => new Date());
+  const [dateTo, setDateTo] = useState(() => new Date());
+  const [period, setPeriod] = useState<ReportPeriod>("day");
+  const [companyType, setCompanyType] = useState<CompanyType>("0");
+  const [companyId, setCompanyId] = useState(0);
+  const [errors, setErrors] = useState<FieldErrors>({});
 
   useEffect(() => {
     if (pending) {
@@ -83,224 +100,211 @@ const Reportform = ({
     }
   }, [pending, state]);
 
+  function clearError(name: ReportField) {
+    setErrors((prev) => (prev[name] ? { ...prev, [name]: undefined } : prev));
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const parsed = formSchema.safeParse({
+      from: dateFrom,
+      to: dateTo,
+      period,
+      companyType,
+      companyId,
+    });
+
+    if (!parsed.success) {
+      const nextErrors: FieldErrors = {};
+      for (const issue of parsed.error.issues) {
+        const name = issue.path[0] as ReportField;
+        (nextErrors[name] ??= []).push({ message: issue.message });
+      }
+      setErrors(nextErrors);
+      return;
+    }
+
+    setErrors({});
+    const data = parsed.data;
+    startTransition(() => {
+      submit({
+        ...data,
+        from: data.from.toDateString(),
+        to: data.to.toDateString(),
+        // Only a single-company report filters by company; drop a company
+        // left selected before switching to foreign / all
+        companyId: data.companyType === "0" ? data.companyId : 0,
+      });
+    });
+  }
+
+  const showCompanys = companyType === "0";
+
   return (
     <>
       <form
         id="create-report"
-        onSubmit={(e) => {
-          e.preventDefault();
-          form.handleSubmit();
-        }}
+        onSubmit={handleSubmit}
         className="print:hidden"
       >
         <FieldGroup>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="col-span-1">
-              <form.Field
-                name="from"
-                children={(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field data-invalid={isInvalid}>
-                      <FieldLabel htmlFor={field.name} className="capitalize">
-                        {ar_field_name[field.name]}
-                      </FieldLabel>
-
-                      <DatePicker date={dateFrom} setDate={setDateFrom} />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              />
+              <Field data-invalid={!!errors.from?.length}>
+                <FieldLabel className="capitalize">
+                  {ar_field_name.from}
+                </FieldLabel>
+                <DatePicker
+                  date={dateFrom}
+                  setDate={(d) => {
+                    setDateFrom(d);
+                    clearError("from");
+                    clearError("to");
+                  }}
+                />
+                {!!errors.from?.length && <FieldError errors={errors.from} />}
+              </Field>
             </div>
             <div className="col-span-1">
-              <form.Field
-                name="to"
-                children={(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field data-invalid={isInvalid}>
-                      <FieldLabel htmlFor={field.name} className="capitalize">
-                        {ar_field_name[field.name]}
-                      </FieldLabel>
-
-                      <DatePicker date={dateTo} setDate={setDateTo} />
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              />
+              <Field data-invalid={!!errors.to?.length}>
+                <FieldLabel className="capitalize">
+                  {ar_field_name.to}
+                </FieldLabel>
+                <DatePicker
+                  date={dateTo}
+                  setDate={(d) => {
+                    setDateTo(d);
+                    clearError("to");
+                  }}
+                />
+                {!!errors.to?.length && <FieldError errors={errors.to} />}
+              </Field>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 grid-cols-1">
-            <div className="md:col-span-2 col-span-1">
-              <form.Field
-                name="companyType"
-                children={(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-
-                  return (
-                    <Field data-invalid={isInvalid}>
-                      <FieldLabel htmlFor={field.name} className="capitalize">
-                        {ar_field_name[field.name]}
-                      </FieldLabel>
-
-                      <RadioGroup
-                        defaultValue="0"
-                        className="w-fit flex"
-                        dir="rtl"
-                        id={field.name}
-                        onBlur={field.handleBlur}
-                        onValueChange={(e) => {
-                          field.handleChange(e);
-                          setShowCompanys(e === "0" ? true : false);
-                        }}
-                        aria-invalid={isInvalid}
-                      >
-                        <Field orientation="horizontal">
-                          <RadioGroupItem value="0" id="desc-r1" />
-                          <FieldContent>
-                            <FieldLabel htmlFor="desc-r1">حدد شركة</FieldLabel>
-                            <FieldDescription>
-                              حدد شركة للتقرير.
-                            </FieldDescription>
-                          </FieldContent>
-                        </Field>
-
-                        <Field orientation="horizontal">
-                          <RadioGroupItem value="1" id="desc-r2" />
-                          <FieldContent>
-                            <FieldLabel htmlFor="desc-r2">
-                              الشركات الاجنبية
-                            </FieldLabel>
-                            <FieldDescription>
-                              الشركات الاجنبية فقط.
-                            </FieldDescription>
-                          </FieldContent>
-                        </Field>
-
-                        <Field orientation="horizontal">
-                          <RadioGroupItem value="2" id="desc-r3" />
-                          <FieldContent>
-                            <FieldLabel htmlFor="desc-r3">
-                              جميع الشركات
-                            </FieldLabel>
-                            <FieldDescription>
-                              تحديد كل الشركات.
-                            </FieldDescription>
-                          </FieldContent>
-                        </Field>
-                      </RadioGroup>
-
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              />
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+            <div className="col-span-1">
+              <Field data-invalid={!!errors.companyType?.length}>
+                <FieldLabel htmlFor="report-company-type" className="capitalize">
+                  {ar_field_name.companyType}
+                </FieldLabel>
+                <RadioGroup
+                  id="report-company-type"
+                  value={companyType}
+                  className="w-fit flex"
+                  dir="rtl"
+                  onValueChange={(value) => {
+                    setCompanyType(value as CompanyType);
+                    clearError("companyType");
+                    clearError("companyId");
+                  }}
+                  aria-invalid={!!errors.companyType?.length}
+                >
+                  {COMPANY_TYPE_OPTIONS.map((option) => {
+                    const id = `report-company-type-${option.value}`;
+                    return (
+                      <Field key={option.value} orientation="horizontal">
+                        <RadioGroupItem value={option.value} id={id} />
+                        <FieldContent>
+                          <FieldLabel htmlFor={id}>{option.label}</FieldLabel>
+                          <FieldDescription>
+                            {option.description}
+                          </FieldDescription>
+                        </FieldContent>
+                      </Field>
+                    );
+                  })}
+                </RadioGroup>
+                {!!errors.companyType?.length && (
+                  <FieldError errors={errors.companyType} />
+                )}
+              </Field>
             </div>
 
             <div className="col-span-1">
-              <form.Field
-                name="monthFormat"
-                children={(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-
-                  return (
-                    <Field data-invalid={isInvalid} className="md:mt-0 mt-4">
-                      <FieldGroup className="mx-auto w-72">
-                        <Field orientation="horizontal">
-                          <Checkbox
-                            id="terms-checkbox-desc"
-                            name="terms-checkbox-desc"
-                            checked={field.state.value as boolean}
-                            onCheckedChange={(checked) => {
-                              field.handleChange(checked as boolean);
-                            }}
-                          />
-                          <FieldContent>
-                            <FieldLabel htmlFor="terms-checkbox-desc">
-                              تقرير شهرى
-                            </FieldLabel>
-                            <FieldDescription>
-                              فى حالة تحديد هذا الخيار سيكون التحديد شهرى لكل
-                              شركة على حدى.
-                            </FieldDescription>
-                          </FieldContent>
-                        </Field>
-                      </FieldGroup>
-
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              />
+              <Field data-invalid={!!errors.period?.length}>
+                <FieldLabel htmlFor="report-period" className="capitalize">
+                  {ar_field_name.period}
+                </FieldLabel>
+                <RadioGroup
+                  id="report-period"
+                  value={period}
+                  className="w-fit flex"
+                  dir="rtl"
+                  onValueChange={(value) => {
+                    setPeriod(value as ReportPeriod);
+                    clearError("period");
+                  }}
+                  aria-invalid={!!errors.period?.length}
+                >
+                  {PERIOD_OPTIONS.map((option) => {
+                    const id = `report-period-${option.value}`;
+                    return (
+                      <Field key={option.value} orientation="horizontal">
+                        <RadioGroupItem value={option.value} id={id} />
+                        <FieldContent>
+                          <FieldLabel htmlFor={id}>{option.label}</FieldLabel>
+                          <FieldDescription>
+                            {option.description}
+                          </FieldDescription>
+                        </FieldContent>
+                      </Field>
+                    );
+                  })}
+                </RadioGroup>
+                {!!errors.period?.length && (
+                  <FieldError errors={errors.period} />
+                )}
+              </Field>
             </div>
           </div>
 
           {showCompanys && (
             <div>
-              <form.Field
-                name="companyId"
-                children={(field) => {
-                  const isInvalid =
-                    field.state.meta.isTouched && !field.state.meta.isValid;
-                  return (
-                    <Field data-invalid={isInvalid}>
-                      <FieldLabel htmlFor={field.name} className="capitalize">
-                        {ar_field_name[field.name]}
-                      </FieldLabel>
+              <Field data-invalid={!!errors.companyId?.length}>
+                <FieldLabel className="capitalize">
+                  {ar_field_name.companyId}
+                </FieldLabel>
 
-                      {customers.length >= 1 ? (
-                        <Select
-                          dir="rtl"
-                          value={`${field.state.value}`}
-                          onValueChange={(value) => {
-                            field.handleChange(Number(value));
-                          }}
-                        >
-                          <SelectTrigger className="w-45">
-                            <SelectValue placeholder="اسم الشركة" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {customers.map((c) => (
-                              <SelectItem key={c.id} value={`${c.id}`}>
-                                {c.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      ) : (
-                        <Select dir="rtl" disabled>
-                          <SelectTrigger className="w-45">
-                            <SelectValue placeholder="اسم الشركة" />
-                          </SelectTrigger>
-                          <SelectContent></SelectContent>
-                        </Select>
-                      )}
-                      {isInvalid && (
-                        <FieldError errors={field.state.meta.errors} />
-                      )}
-                    </Field>
-                  );
-                }}
-              />
+                {customers.length >= 1 ? (
+                  <Select
+                    dir="rtl"
+                    value={`${companyId}`}
+                    onValueChange={(value) => {
+                      setCompanyId(Number(value));
+                      clearError("companyId");
+                    }}
+                  >
+                    <SelectTrigger className="w-45">
+                      <SelectValue placeholder="اسم الشركة" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {customers.map((c) => (
+                        <SelectItem key={c.id} value={`${c.id}`}>
+                          {c.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  <Select dir="rtl" disabled>
+                    <SelectTrigger className="w-45">
+                      <SelectValue placeholder="اسم الشركة" />
+                    </SelectTrigger>
+                    <SelectContent></SelectContent>
+                  </Select>
+                )}
+                {!!errors.companyId?.length && (
+                  <FieldError errors={errors.companyId} />
+                )}
+              </Field>
             </div>
           )}
           <div className="mb-6">
-            <Button type="submit">تطبيق التقرير</Button>
+            <Button type="submit" disabled={pending}>
+              {pending && <Spinner />} تطبيق التقرير
+            </Button>
           </div>
         </FieldGroup>
       </form>

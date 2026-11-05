@@ -11,49 +11,59 @@ import { and, between, desc, eq, inArray, not } from "drizzle-orm";
 // (companyType "1") exclude them
 const MS_COMPANY_C_NUMBER = "077";
 
-const transformDataToMonthly = (
-  data: {
-    date: Date;
-    customer: string;
-    flightCount: number;
-    c: number;
-    h: number;
-    y: number;
-  }[],
-) => {
-  const monthlyMap = new Map();
+type ReportRow = {
+  date: Date;
+  customer: string;
+  flightCount: number;
+  c: number;
+  h: number;
+  y: number;
+};
 
-  data.forEach((item) => {
-    const dateObj = new Date(item.date);
+// Flight-count dates are "YYYY-MM-DD" strings, which new Date() reads as UTC
+// midnight, so every label is built in UTC. Using the server's local timezone
+// could shift a date into the previous day, month or year.
+const periodLabel = (date: Date, period: "month" | "year") =>
+  period === "year"
+    ? String(date.getUTCFullYear()) // "2026"
+    : date.toLocaleString("en-US", {
+        month: "long",
+        year: "numeric",
+        timeZone: "UTC",
+      }); // "February 2026"
 
-    // 1. Format date as "February 2026"
-    const monthYear = dateObj.toLocaleString("en-US", {
-      month: "long",
-      year: "numeric",
-    });
+// Sums each company's rows per month or year. Rows arrive sorted by date, so
+// the groups come out in chronological order.
+const groupByPeriod = (
+  data: ReportRow[],
+  period: "month" | "year",
+): reportResponseType[] => {
+  const groups = new Map<string, reportResponseType>();
 
-    // 2. Create a unique key using Month + Year + Customer
-    const groupKey = `${monthYear}-${item.customer}`;
+  for (const item of data) {
+    const label = periodLabel(item.date, period);
+    const key = `${label}-${item.customer}`;
 
-    if (!monthlyMap.has(groupKey)) {
-      monthlyMap.set(groupKey, {
-        date: monthYear, // Now looks like "February 2026"
+    let group = groups.get(key);
+    if (!group) {
+      group = {
+        date: label,
         customer: item.customer,
         flightCount: 0,
         c: 0,
         h: 0,
         y: 0,
-      });
+      };
+      groups.set(key, group);
     }
 
-    const current = monthlyMap.get(groupKey);
-    current.flightCount += item.flightCount;
-    current.c += item.c;
-    current.h += item.h;
-    current.y += item.y;
-  });
+    group.flightCount += item.flightCount;
+    group.c += item.c;
+    group.h += item.h;
+    group.y += item.y;
+  }
 
-  return Array.from(monthlyMap.values());
+  return Array.from(groups.values());
 };
 
 const formatDate = (date: Date) => {
@@ -61,6 +71,7 @@ const formatDate = (date: Date) => {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
+    timeZone: "UTC",
   })
     .format(date)
     .replace(/\//g, " / "); // Adds the spaces around the slashes
@@ -117,7 +128,7 @@ export async function reportAction(prevState: any, value: reportForm) {
       )
       .orderBy(desc(customerFlightCountTable.createdAt));
 
-    const response = request
+    const response: ReportRow[] = request
       .map((i) => ({
         date: new Date(i["co-mgr-customer-flight-count"].date),
         customer: i["co-mgr-customers"]?.name as string,
@@ -127,15 +138,12 @@ export async function reportAction(prevState: any, value: reportForm) {
         y: i["co-mgr-customer-flight-count"].y,
       }))
       .sort((a, b) => a.date.getTime() - b.date.getTime());
-    return parsed.data.monthFormat
-      ? ({
-          error: false,
-          response: transformDataToMonthly(response),
-        } as reportType)
-      : ({
-          error: false,
-          response: response.map((i) => ({ ...i, date: formatDate(i.date) })),
-        } as reportType);
+    const records =
+      parsed.data.period === "day"
+        ? response.map((i) => ({ ...i, date: formatDate(i.date) }))
+        : groupByPeriod(response, parsed.data.period);
+
+    return { error: false, response: records } as reportType;
   } catch (error) {
     console.error("Report failed:", error);
     return { error: true, response: [] } as reportType;
