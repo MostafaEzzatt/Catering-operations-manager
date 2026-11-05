@@ -1,16 +1,16 @@
 # Graph Report - Catering-operations-manager  (2026-11-05)
 
 ## Corpus Check
-- 89 files · ~22,073 words
+- 89 files · ~22,273 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 389 nodes · 831 edges · 26 communities (16 shown, 10 thin omitted)
+- 391 nodes · 834 edges · 28 communities (18 shown, 10 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `898fc97c`
+- Built from commit: `f8e209ca`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -37,6 +37,8 @@
 - [[_COMMUNITY_Next.js Logo|Next.js Logo]]
 - [[_COMMUNITY_Vercel Logo|Vercel Logo]]
 - [[_COMMUNITY_Window Icon|Window Icon]]
+- [[_COMMUNITY_Community 26|Community 26]]
+- [[_COMMUNITY_Community 27|Community 27]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 104 edges
@@ -57,47 +59,47 @@
   components/ui/dialog.tsx → lib/utils.ts
 - `DialogFooter()` --calls--> `cn()`  [EXTRACTED]
   components/ui/dialog.tsx → lib/utils.ts
-- `FieldSet()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/field.tsx → lib/utils.ts
-- `FieldLegend()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/field.tsx → lib/utils.ts
+- `DropdownMenuCheckboxItem()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/dropdown-menu.tsx → lib/utils.ts
+- `DropdownMenuRadioItem()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/dropdown-menu.tsx → lib/utils.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (26 total, 10 thin omitted)
+## Communities (28 total, 10 thin omitted)
 
 ### Community 0 - "Audit Logs and UI Primitives"
-Cohesion: 0.07
-Nodes (40): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+32 more)
+Cohesion: 0.06
+Nodes (51): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+43 more)
 
 ### Community 1 - "Server Actions and Audit Log"
 Cohesion: 0.12
 Nodes (24): addCustomer(), deleteCustomer(), addCount(), deleteCount(), updateCount(), rejectDeleteRequest(), updateCustomer(), updateValue (+16 more)
 
 ### Community 2 - "Flight and Report Forms"
-Cohesion: 0.07
-Nodes (35): groupByPeriod(), periodLabel(), reportAction(), ReportRow, ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType, FieldErrors (+27 more)
+Cohesion: 0.10
+Nodes (18): groupByPeriod(), periodLabel(), periodStart(), reportAction(), ReportRow, ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType (+10 more)
 
 ### Community 3 - "Company and Flight Edit Forms"
-Cohesion: 0.09
-Nodes (27): ar_field_name, EditFieldName, FIELD_NAMES, formSchema, formSchema, updateFormSchema, Dialog(), DialogContent() (+19 more)
+Cohesion: 0.10
+Nodes (22): ar_field_name, EditFieldName, FIELD_NAMES, formSchema, formSchema, DatePicker(), Dialog(), DialogContent() (+14 more)
 
 ### Community 4 - "Data Tables and Dialogs"
 Cohesion: 0.16
 Nodes (23): formatNumber(), ReportTable(), Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent(), AlertDialogDescription() (+15 more)
 
 ### Community 5 - "Layout, Navbar and Menus"
-Cohesion: 0.20
-Nodes (7): fontSans, metadata, RootLayout(), navList, Toaster(), ThemeProvider(), ModeToggle()
+Cohesion: 0.09
+Nodes (18): fontSans, metadata, RootLayout(), navList, DropdownMenu(), DropdownMenuCheckboxItem(), DropdownMenuContent(), DropdownMenuItem() (+10 more)
 
 ### Community 6 - "Runtime Dependencies"
-Cohesion: 0.08
-Nodes (26): dependencies, class-variance-authority, @clerk/nextjs, clsx, date-fns, dotenv, drizzle-orm, drizzle-query-logger (+18 more)
+Cohesion: 0.07
+Nodes (27): dependencies, class-variance-authority, @clerk/nextjs, clsx, date-fns, dotenv, drizzle-orm, drizzle-query-logger (+19 more)
 
 ### Community 7 - "Dev Dependencies and Tooling"
-Cohesion: 0.09
-Nodes (22): devDependencies, drizzle-kit, eslint, eslint-config-next, shadcn, tailwindcss, @tailwindcss/postcss, tsx (+14 more)
+Cohesion: 0.15
+Nodes (13): devDependencies, drizzle-kit, eslint, eslint-config-next, shadcn, tailwindcss, @tailwindcss/postcss, tsx (+5 more)
 
 ### Community 8 - "shadcn Config"
 Cohesion: 0.10
@@ -115,6 +117,14 @@ Nodes (18): App Router docs (01-app), Cache Components and use cache directives,
 Cohesion: 0.17
 Nodes (11): CompanyFormValues, CustomerFlightCountFormValues, formValueType, logCompanyDetails, logFlightDetails, logTableMetaDataType, reportForm, reportResponseType (+3 more)
 
+### Community 26 - "Community 26"
+Cohesion: 0.33
+Nodes (6): scripts, build, db:seed, dev, lint, start
+
+### Community 27 - "Community 27"
+Cohesion: 0.50
+Nodes (3): name, private, version
+
 ## Knowledge Gaps
 - **127 isolated node(s):** `updateValue`, `ReportRow`, `fontSans`, `metadata`, `$schema` (+122 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -123,17 +133,17 @@ Nodes (11): CompanyFormValues, CustomerFlightCountFormValues, formValueType, log
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `Audit Logs and UI Primitives` to `Server Actions and Audit Log`, `Flight and Report Forms`, `Company and Flight Edit Forms`, `Data Tables and Dialogs`?**
-  _High betweenness centrality (0.176) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `Runtime Dependencies` to `Server Actions and Audit Log`, `Dev Dependencies and Tooling`?**
+- **Why does `cn()` connect `Audit Logs and UI Primitives` to `Server Actions and Audit Log`, `Flight and Report Forms`, `Company and Flight Edit Forms`, `Data Tables and Dialogs`, `Layout, Navbar and Menus`?**
+  _High betweenness centrality (0.175) - this node is a cross-community bridge._
+- **Why does `dependencies` connect `Runtime Dependencies` to `Community 27`?**
   _High betweenness centrality (0.167) - this node is a cross-community bridge._
-- **Why does `drizzle-seed` connect `Server Actions and Audit Log` to `Runtime Dependencies`?**
+- **Why does `drizzle-seed` connect `Runtime Dependencies` to `Server Actions and Audit Log`?**
   _High betweenness centrality (0.158) - this node is a cross-community bridge._
 - **What connects `updateValue`, `ReportRow`, `fontSans` to the rest of the system?**
   _128 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Audit Logs and UI Primitives` be split into smaller, more focused modules?**
-  _Cohesion score 0.06936026936026936 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06335403726708075 - nodes in this community are weakly interconnected._
 - **Should `Server Actions and Audit Log` be split into smaller, more focused modules?**
   _Cohesion score 0.12173913043478261 - nodes in this community are weakly interconnected._
 - **Should `Flight and Report Forms` be split into smaller, more focused modules?**
-  _Cohesion score 0.06636500754147813 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10256410256410256 - nodes in this community are weakly interconnected._

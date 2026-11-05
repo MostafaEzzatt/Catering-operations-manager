@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import ReportTable, { ReportPrintMeta } from "./report-table";
 import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
+import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Spinner } from "./ui/spinner";
@@ -81,6 +82,16 @@ const formatDay = (d: Date) =>
     .format(d)
     .replace(/\//g, " / ");
 
+// Lets a search match regardless of common Arabic spelling variants
+// (أ/إ/آ → ا, ى → ي, ة → ه), diacritics, and Latin letter case
+const normalizeArabic = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[ً-ْـ]/g, "")
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ى/g, "ي")
+    .replace(/ة/g, "ه");
+
 // Deliberately NOT built on @tanstack/react-form: a TanStack form next to
 // Radix inputs (RadioGroup, Select, Popover) can trigger a synchronous render
 // loop on React 19 that freezes the tab (TanStack/form#2020). Plain state plus
@@ -103,6 +114,7 @@ const Reportform = ({
   const [period, setPeriod] = useState<ReportPeriod>("day");
   const [companyType, setCompanyType] = useState<CompanyType>("0");
   const [companyIds, setCompanyIds] = useState<number[]>([]);
+  const [companySearch, setCompanySearch] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
   const [printMeta, setPrintMeta] = useState<ReportPrintMeta | null>(null);
 
@@ -130,6 +142,16 @@ const Reportform = ({
     );
     clearError("companyIds");
   }
+
+  // Companies matching the picker search, by name or code
+  const searchTerm = normalizeArabic(companySearch.trim());
+  const visibleCompanies = searchTerm
+    ? customers.filter(
+        (c) =>
+          normalizeArabic(c.name).includes(searchTerm) ||
+          normalizeArabic(c.code).includes(searchTerm),
+      )
+    : customers;
 
   // Picked companies in the same order as the list, for labels
   const selectedCompanies = customers.filter((c) => companyIds.includes(c.id));
@@ -318,7 +340,12 @@ const Reportform = ({
                   {ar_field_name.companyIds}
                 </FieldLabel>
 
-                <Popover>
+                <Popover
+                  onOpenChange={(open) => {
+                    // Start every visit with the full list
+                    if (!open) setCompanySearch("");
+                  }}
+                >
                   <PopoverTrigger asChild>
                     <Button
                       type="button"
@@ -337,17 +364,40 @@ const Reportform = ({
                     className="w-(--radix-popover-trigger-width) p-0"
                     dir="rtl"
                   >
+                    <div className="p-2 border-b">
+                      <Input
+                        type="search"
+                        value={companySearch}
+                        onChange={(e) => setCompanySearch(e.target.value)}
+                        // Enter should not submit the report form
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") e.preventDefault();
+                        }}
+                        placeholder="بحث بالاسم او الكود"
+                        aria-label="بحث عن شركة"
+                        autoComplete="off"
+                      />
+                    </div>
                     <div className="flex justify-between gap-2 p-2 border-b">
                       <Button
                         type="button"
                         variant="ghost"
                         size="sm"
+                        disabled={visibleCompanies.length === 0}
                         onClick={() => {
-                          setCompanyIds(customers.map((c) => c.id));
+                          // With a search active, only the matches are added
+                          setCompanyIds((prev) =>
+                            Array.from(
+                              new Set([
+                                ...prev,
+                                ...visibleCompanies.map((c) => c.id),
+                              ]),
+                            ),
+                          );
                           clearError("companyIds");
                         }}
                       >
-                        تحديد الكل
+                        {companySearch.trim() ? "تحديد النتائج" : "تحديد الكل"}
                       </Button>
                       <Button
                         type="button"
@@ -359,7 +409,12 @@ const Reportform = ({
                       </Button>
                     </div>
                     <div className="max-h-64 overflow-y-auto p-2 space-y-2">
-                      {customers.map((c) => {
+                      {visibleCompanies.length === 0 && (
+                        <p className="text-sm text-muted-foreground text-center py-2">
+                          لا توجد شركات مطابقة.
+                        </p>
+                      )}
+                      {visibleCompanies.map((c) => {
                         const id = `report-company-${c.id}`;
                         return (
                           <div key={c.id} className="flex items-center gap-2">
