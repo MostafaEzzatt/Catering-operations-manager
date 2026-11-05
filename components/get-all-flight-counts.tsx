@@ -3,17 +3,13 @@ import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
 import type { DayRange } from "@/lib/date-range";
 import { getSession } from "@/lib/roles";
 import { between, eq } from "drizzle-orm";
-import FlightCountFilter from "./flight-count-filter";
 import FlightsCountDataTable from "./flights-count-table";
-import HeadingTwo from "./typo-h2";
 
-// Only the records inside the range (both ends included), so the page and its
-// totals cover one period instead of every record ever entered
-const GetAllFlightCounts = async ({
-  from,
-  to,
-  isDefault,
-}: DayRange & { isDefault: boolean }) => {
+// The flight-count table for one date range (both ends included), so the page
+// and its totals cover one period instead of every record ever entered.
+// Rendered inside <Suspense> on the home page: the rest of the page shows
+// while this query runs.
+const GetAllFlightCounts = async ({ from, to }: DayRange) => {
   const { isAdmin, userId } = await getSession();
   const flightsCountData = await db
     .select()
@@ -38,22 +34,11 @@ const GetAllFlightCounts = async ({
   });
 
   return (
-    <>
-      <HeadingTwo txt="قائمة اعداد الرحلات" />
-
-      <FlightCountFilter
-        key={`${from}_${to}`}
-        from={from}
-        to={to}
-        isDefault={isDefault}
-      />
-
-      <FlightsCountDataTable
-        records={flightsCountData}
-        isAdmin={isAdmin}
-        userId={userId}
-      />
-    </>
+    <FlightsCountDataTable
+      records={flightsCountData}
+      isAdmin={isAdmin}
+      userId={userId}
+    />
   );
 };
 

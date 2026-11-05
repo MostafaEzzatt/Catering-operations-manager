@@ -9,23 +9,32 @@ import {
 } from "@/formsSchema/add-customer-flight-count";
 import { canModifyRecord } from "@/lib/permissions";
 import { getSession } from "@/lib/roles";
-import { and, eq } from "drizzle-orm";
+import { and, eq, InferSelectModel } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { getAuditUser, logAction } from "@/lib/audit-log";
 
-// 0 = error, 1 = added, 2 = already exists for that company and date,
-// 3 = date malformed or in the future
+type FlightCountRow = InferSelectModel<typeof customerFlightCountTable>;
+
+// status: 0 = error, 1 = added, 2 = already exists for that company and
+// date (with the existing record, when known, so the form can offer to edit
+// it), 3 = date malformed or in the future
+type AddCountResult =
+  | { status: 0 | 1 | 3 }
+  | { status: 2; existing?: FlightCountRow };
+
 export async function addCount(
   prevState: any,
   value: CustomerFlightCountFormValues,
-) {
+): Promise<AddCountResult> {
   const { isAuthenticated, userId } = await getSession();
-  if (!isAuthenticated) return 0;
+  if (!isAuthenticated) return { status: 0 };
 
   // The client form validates too, but server actions are callable directly
   const parsed = formSchema.safeParse(value);
   if (!parsed.success)
-    return parsed.error.issues.some((i) => i.path[0] === "date") ? 3 : 0;
+    return {
+      status: parsed.error.issues.some((i) => i.path[0] === "date") ? 3 : 0,
+    };
 
   try {
     const customer: typeof customerFlightCountTable.$inferInsert = {
@@ -44,7 +53,7 @@ export async function addCount(
       );
 
     if (CHECK_EXIST.length >= 1) {
-      return 2;
+      return { status: 2, existing: CHECK_EXIST[0] };
     }
 
     const auditUser = await getAuditUser();
@@ -65,14 +74,14 @@ export async function addCount(
 
     revalidatePath("/");
 
-    return 1;
+    return { status: 1 };
   } catch (error) {
     // 23505 = Postgres unique violation: another request inserted the same
     // customer/date between our existence check and the insert
-    if ((error as { code?: string })?.code === "23505") return 2;
+    if ((error as { code?: string })?.code === "23505") return { status: 2 };
 
     console.error("Insertion failed:", error);
-    return 0;
+    return { status: 0 };
   }
 }
 

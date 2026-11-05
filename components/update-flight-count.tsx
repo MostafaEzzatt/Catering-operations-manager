@@ -48,11 +48,17 @@ function recordValues(
 const UpdateFlightCount = ({
   record,
   companyName,
+  defaultOpen = false,
+  showTrigger = true,
 }: {
   record: InferSelectModel<typeof customerFlightCountTable>;
   companyName: string;
+  // For opening it from elsewhere (the add form, on a duplicate): mount it
+  // with a new key, defaultOpen and no trigger button
+  defaultOpen?: boolean;
+  showTrigger?: boolean;
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   const [isPending, startTransition] = useTransition();
   const [values, setValues] = useState<Record<EditFieldName, string>>(() =>
     recordValues(record),
@@ -93,28 +99,31 @@ const UpdateFlightCount = ({
     // pointer-events: none stuck on <body>, freezing the page
     setOpen(false);
     startTransition(async () => {
-      toast.info("نعمل على تحديث البيانات");
+      // One toast: it shows progress, then turns into the result
+      const toastId = toast.loading("نعمل على تحديث البيانات");
       const result = await updateCount(null, { id: record.id, ...parsed.data });
 
       if (result === 1) {
-        toast.success("تم تحديث البيانات.");
+        toast.success("تم تحديث البيانات.", { id: toastId });
       } else if (result === 2) {
-        toast.info("لم يتم العثور على السجل لتحديثه.");
+        toast.info("لم يتم العثور على السجل لتحديثه.", { id: toastId });
       } else if (result === 3) {
-        toast.error("غير مسموح لك بتعديل هذا السجل.");
+        toast.error("غير مسموح لك بتعديل هذا السجل.", { id: toastId });
       } else {
-        toast.error("حدث خطأ ما عند تحديث البيانات.");
+        toast.error("حدث خطأ ما عند تحديث البيانات.", { id: toastId });
       }
     });
   }
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogTrigger asChild>
-        <Button disabled={isPending} variant={"outline"}>
-          <Pencil />
-        </Button>
-      </DialogTrigger>
+      {showTrigger && (
+        <DialogTrigger asChild>
+          <Button disabled={isPending} variant={"outline"}>
+            <Pencil />
+          </Button>
+        </DialogTrigger>
+      )}
       <DialogContent dir="rtl">
         <DialogHeader>
           <DialogTitle>تعديل اعداد الرحلات</DialogTitle>

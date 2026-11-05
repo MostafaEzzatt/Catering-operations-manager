@@ -6,6 +6,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { formatNumber } from "@/lib/format";
 import { Download, Printer } from "lucide-react";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -31,8 +32,6 @@ export type ReportPrintMeta = {
   to: string;
   createdAt: string;
 };
-
-const formatNumber = (n: number) => n.toLocaleString("en-US");
 
 // Print rules for this report only. They live in a <style> rendered with the
 // results instead of a CSS file: Next.js keeps imported stylesheets after

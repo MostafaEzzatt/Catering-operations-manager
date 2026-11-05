@@ -3,6 +3,7 @@
 import { deleteCount } from "@/actions/customer-flight-count";
 import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
 import { formatDayString } from "@/lib/date-range";
+import { formatNumber } from "@/lib/format";
 import { canModifyRecord } from "@/lib/permissions";
 import {
   ColumnDef,
@@ -14,7 +15,6 @@ import { InferSelectModel } from "drizzle-orm";
 import { Trash } from "lucide-react";
 import { useActionState, useEffect, useMemo, useTransition } from "react";
 import { toast } from "sonner";
-import Paragraph from "./typo-p";
 import UpdateFlightCount from "./update-flight-count";
 import {
   AlertDialog,
@@ -37,6 +37,8 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
+
+const DELETE_TOAST_ID = "delete-flight-count";
 
 interface recordsType {
   "co-mgr-customer-flight-count": InferSelectModel<
@@ -112,30 +114,29 @@ const FlightsCountDataTable = ({
     {
       accessorKey: "co-mgr-customer-flight-count.flightCount",
       header: "عدد الرحلات",
+      cell: (info) => formatNumber(info.getValue<number>()),
     },
     {
       accessorKey: "co-mgr-customer-flight-count.c",
       header: "كرو",
+      cell: (info) => formatNumber(info.getValue<number>()),
     },
     {
       accessorKey: "co-mgr-customer-flight-count.h",
       header: "بزنس",
+      cell: (info) => formatNumber(info.getValue<number>()),
     },
     {
       accessorKey: "co-mgr-customer-flight-count.y",
       header: "سياحى",
+      cell: (info) => formatNumber(info.getValue<number>()),
     },
     {
       id: "Total Meals",
       header: "اعداد الوجبات",
       cell: (info) => {
-        const calc =
-          info.row.original["co-mgr-customer-flight-count"]["c"] +
-          info.row.original["co-mgr-customer-flight-count"]["h"] +
-          info.row.original["co-mgr-customer-flight-count"]["y"];
-        return (
-          <Paragraph txt={calc.toString()} className="text-center w-full" />
-        );
+        const { c, h, y } = info.row.original["co-mgr-customer-flight-count"];
+        return formatNumber(c + h + y);
       },
     },
     {
@@ -191,13 +192,14 @@ const FlightsCountDataTable = ({
     getCoreRowModel: getCoreRowModel(),
   });
 
+  // One toast per delete: it shows progress, then turns into the result
   useEffect(() => {
     if (isPending) {
-      toast.info("نعمل على مسح البيانات");
-    } else if (!isPending && deleteState == true) {
-      toast.success("تم مسح البيانات.");
-    } else if (!isPending && deleteState === false) {
-      toast.error("حدث خطاء ما عند مسح البيانات.");
+      toast.loading("نعمل على مسح البيانات", { id: DELETE_TOAST_ID });
+    } else if (deleteState === true) {
+      toast.success("تم مسح البيانات.", { id: DELETE_TOAST_ID });
+    } else if (deleteState === false) {
+      toast.error("حدث خطاء ما عند مسح البيانات.", { id: DELETE_TOAST_ID });
     }
   }, [isPending, deleteState]);
   return (
@@ -246,11 +248,11 @@ const FlightsCountDataTable = ({
         <TableFooter>
           <TableRow>
             <TableCell colSpan={3}>المجموع</TableCell>
-            <TableCell>{Totals.flightCount}</TableCell>
-            <TableCell>{Totals.c}</TableCell>
-            <TableCell>{Totals.h}</TableCell>
-            <TableCell>{Totals.y}</TableCell>
-            <TableCell>{Totals.totalMeals}</TableCell>
+            <TableCell>{formatNumber(Totals.flightCount)}</TableCell>
+            <TableCell>{formatNumber(Totals.c)}</TableCell>
+            <TableCell>{formatNumber(Totals.h)}</TableCell>
+            <TableCell>{formatNumber(Totals.y)}</TableCell>
+            <TableCell>{formatNumber(Totals.totalMeals)}</TableCell>
             <TableCell></TableCell>
           </TableRow>
         </TableFooter>

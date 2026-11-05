@@ -1,7 +1,7 @@
 # Graph Report - Catering-operations-manager  (2026-11-05)
 
 ## Corpus Check
-- 93 files · ~24,741 words
+- 93 files · ~24,856 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b94191fa`
+- Built from commit: `f03f92ea`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
