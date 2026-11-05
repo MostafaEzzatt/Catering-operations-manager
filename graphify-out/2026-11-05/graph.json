@@ -600,57 +600,87 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_add_ms_flight_count",
-      "community": 26,
+      "community": 3,
       "norm_label": "add-ms-flight-count.tsx"
     },
     {
       "label": "COUNT_FIELDS",
       "file_type": "code",
       "source_file": "components/add-ms-flight-count.tsx",
-      "source_location": "L23",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "components_add_ms_flight_count_count_fields",
-      "community": 26,
+      "community": 3,
       "norm_label": "count_fields"
     },
     {
       "label": "CountField",
       "file_type": "code",
       "source_file": "components/add-ms-flight-count.tsx",
-      "source_location": "L24",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "components_add_ms_flight_count_countfield",
-      "community": 26,
+      "community": 3,
       "norm_label": "countfield"
     },
     {
-      "label": "AddFormValues",
+      "label": "AddField",
       "file_type": "code",
       "source_file": "components/add-ms-flight-count.tsx",
-      "source_location": "L28",
+      "source_location": "L20",
       "_origin": "ast",
-      "id": "components_add_ms_flight_count_addformvalues",
-      "community": 26,
-      "norm_label": "addformvalues"
+      "id": "components_add_ms_flight_count_addfield",
+      "community": 3,
+      "norm_label": "addfield"
+    },
+    {
+      "label": "FieldErrors",
+      "file_type": "code",
+      "source_file": "components/add-ms-flight-count.tsx",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "components_add_ms_flight_count_fielderrors",
+      "community": 3,
+      "norm_label": "fielderrors"
     },
     {
       "label": "FlightCountRow",
       "file_type": "code",
       "source_file": "components/add-ms-flight-count.tsx",
-      "source_location": "L31",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "components_add_ms_flight_count_flightcountrow",
-      "community": 26,
+      "community": 3,
       "norm_label": "flightcountrow"
+    },
+    {
+      "label": "EMPTY_COUNTS",
+      "file_type": "code",
+      "source_file": "components/add-ms-flight-count.tsx",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "components_add_ms_flight_count_empty_counts",
+      "community": 3,
+      "norm_label": "empty_counts"
+    },
+    {
+      "label": "ar_field_name",
+      "file_type": "code",
+      "source_file": "components/add-ms-flight-count.tsx",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "components_add_ms_flight_count_ar_field_name",
+      "community": 3,
+      "norm_label": "ar_field_name"
     },
     {
       "label": "AddMSFlightCount()",
       "file_type": "code",
       "source_file": "components/add-ms-flight-count.tsx",
-      "source_location": "L36",
+      "source_location": "L51",
       "_origin": "ast",
       "id": "components_add_ms_flight_count_addmsflightcount",
-      "community": 26,
+      "community": 3,
       "norm_label": "addmsflightcount()"
     },
     {
@@ -880,7 +910,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_logs_filter",
-      "community": 26,
+      "community": 2,
       "norm_label": "logs-filter.tsx"
     },
     {
@@ -890,7 +920,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "components_logs_filter_logsfilter",
-      "community": 26,
+      "community": 2,
       "norm_label": "logsfilter()"
     },
     {
@@ -900,7 +930,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_navbar",
-      "community": 5,
+      "community": 2,
       "norm_label": "navbar.tsx"
     },
     {
@@ -910,7 +940,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "components_navbar_navlist",
-      "community": 5,
+      "community": 2,
       "norm_label": "navlist"
     },
     {
@@ -920,7 +950,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "components_navbar_navbar",
-      "community": 5,
+      "community": 2,
       "norm_label": "navbar()"
     },
     {
@@ -1370,7 +1400,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_button",
-      "community": 4,
+      "community": 2,
       "norm_label": "button.tsx"
     },
     {
@@ -1390,7 +1420,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "ui_button_button",
-      "community": 4,
+      "community": 2,
       "norm_label": "button()"
     },
     {
@@ -1400,7 +1430,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_calendar",
-      "community": 4,
+      "community": 2,
       "norm_label": "calendar.tsx"
     },
     {
@@ -1410,7 +1440,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "ui_calendar_calendar",
-      "community": 4,
+      "community": 2,
       "norm_label": "calendar()"
     },
     {
@@ -1420,7 +1450,7 @@
       "source_location": "L182",
       "_origin": "ast",
       "id": "ui_calendar_calendardaybutton",
-      "community": 0,
+      "community": 2,
       "norm_label": "calendardaybutton()"
     },
     {
@@ -1430,7 +1460,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_checkbox",
-      "community": 26,
+      "community": 2,
       "norm_label": "checkbox.tsx"
     },
     {
@@ -1440,7 +1470,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_checkbox_checkbox",
-      "community": 26,
+      "community": 2,
       "norm_label": "checkbox()"
     },
     {
@@ -1840,7 +1870,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_field",
-      "community": 0,
+      "community": 3,
       "norm_label": "field.tsx"
     },
     {
@@ -1850,7 +1880,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "ui_field_fieldset",
-      "community": 0,
+      "community": 3,
       "norm_label": "fieldset()"
     },
     {
@@ -1860,7 +1890,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "ui_field_fieldlegend",
-      "community": 0,
+      "community": 3,
       "norm_label": "fieldlegend()"
     },
     {
@@ -1900,7 +1930,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "ui_field_fieldcontent",
-      "community": 2,
+      "community": 3,
       "norm_label": "fieldcontent()"
     },
     {
@@ -1920,7 +1950,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "ui_field_fieldtitle",
-      "community": 0,
+      "community": 3,
       "norm_label": "fieldtitle()"
     },
     {
@@ -1930,7 +1960,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "ui_field_fielddescription",
-      "community": 2,
+      "community": 3,
       "norm_label": "fielddescription()"
     },
     {
@@ -1940,7 +1970,7 @@
       "source_location": "L156",
       "_origin": "ast",
       "id": "ui_field_fieldseparator",
-      "community": 0,
+      "community": 3,
       "norm_label": "fieldseparator()"
     },
     {
@@ -1980,7 +2010,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_label",
-      "community": 0,
+      "community": 2,
       "norm_label": "label.tsx"
     },
     {
@@ -1990,7 +2020,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_label_label",
-      "community": 0,
+      "community": 2,
       "norm_label": "label()"
     },
     {
@@ -2210,7 +2240,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_select",
-      "community": 26,
+      "community": 2,
       "norm_label": "select.tsx"
     },
     {
@@ -2220,7 +2250,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_select_select",
-      "community": 26,
+      "community": 2,
       "norm_label": "select()"
     },
     {
@@ -2230,7 +2260,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "ui_select_selectgroup",
-      "community": 26,
+      "community": 2,
       "norm_label": "selectgroup()"
     },
     {
@@ -2240,7 +2270,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "ui_select_selectvalue",
-      "community": 26,
+      "community": 2,
       "norm_label": "selectvalue()"
     },
     {
@@ -2250,7 +2280,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "ui_select_selecttrigger",
-      "community": 26,
+      "community": 2,
       "norm_label": "selecttrigger()"
     },
     {
@@ -2260,7 +2290,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "ui_select_selectcontent",
-      "community": 26,
+      "community": 2,
       "norm_label": "selectcontent()"
     },
     {
@@ -2270,7 +2300,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "ui_select_selectlabel",
-      "community": 26,
+      "community": 2,
       "norm_label": "selectlabel()"
     },
     {
@@ -2280,7 +2310,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "ui_select_selectitem",
-      "community": 26,
+      "community": 2,
       "norm_label": "selectitem()"
     },
     {
@@ -2290,7 +2320,7 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "ui_select_selectseparator",
-      "community": 26,
+      "community": 2,
       "norm_label": "selectseparator()"
     },
     {
@@ -2300,7 +2330,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "ui_select_selectscrollupbutton",
-      "community": 26,
+      "community": 2,
       "norm_label": "selectscrollupbutton()"
     },
     {
@@ -2310,7 +2340,7 @@
       "source_location": "L161",
       "_origin": "ast",
       "id": "ui_select_selectscrolldownbutton",
-      "community": 26,
+      "community": 2,
       "norm_label": "selectscrolldownbutton()"
     },
     {
@@ -2460,7 +2490,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "ui_table_tablecaption",
-      "community": 4,
+      "community": 0,
       "norm_label": "tablecaption()"
     },
     {
@@ -2500,7 +2530,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "ui_theme_toggle_modetoggle",
-      "community": 5,
+      "community": 2,
       "norm_label": "modetoggle()"
     },
     {
@@ -3400,7 +3430,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "package_dependencies_drizzle_seed",
-      "community": 1,
+      "community": 6,
       "norm_label": "drizzle-seed"
     },
     {
@@ -4379,9 +4409,9 @@
       "source_file": "actions/customer-flight-count.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "actions_customer_flight_count",
-      "target": "actions_customer_flight_count_addcountresult",
-      "confidence_score": 1.0
+      "target": "actions_customer_flight_count_addcountresult"
     },
     {
       "relation": "contains",
@@ -4399,9 +4429,9 @@
       "source_file": "actions/customer-flight-count.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "actions_customer_flight_count",
-      "target": "actions_customer_flight_count_flightcountrow",
-      "confidence_score": 1.0
+      "target": "actions_customer_flight_count_flightcountrow"
     },
     {
       "relation": "contains",
@@ -5807,9 +5837,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "app_page_tableloading",
-      "confidence_score": 1.0
+      "target": "app_page_tableloading"
     },
     {
       "relation": "imports_from",
@@ -5829,9 +5859,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "components_flight_count_filter",
-      "confidence_score": 1.0
+      "target": "components_flight_count_filter"
     },
     {
       "relation": "imports",
@@ -5840,9 +5870,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "components_flight_count_filter_flightcountfilter",
-      "confidence_score": 1.0
+      "target": "components_flight_count_filter_flightcountfilter"
     },
     {
       "relation": "imports_from",
@@ -5895,9 +5925,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "components_typo_h2",
-      "confidence_score": 1.0
+      "target": "components_typo_h2"
     },
     {
       "relation": "imports",
@@ -5906,9 +5936,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "components_typo_h2_headingtwo",
-      "confidence_score": 1.0
+      "target": "components_typo_h2_headingtwo"
     },
     {
       "relation": "imports_from",
@@ -5983,9 +6013,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "lib_roles",
-      "confidence_score": 1.0
+      "target": "lib_roles"
     },
     {
       "relation": "imports",
@@ -5994,9 +6024,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "lib_roles_getsession",
-      "confidence_score": 1.0
+      "target": "lib_roles_getsession"
     },
     {
       "relation": "imports_from",
@@ -6005,9 +6035,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "ui_spinner",
-      "confidence_score": 1.0
+      "target": "ui_spinner"
     },
     {
       "relation": "imports",
@@ -6016,9 +6046,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "ui_spinner_spinner",
-      "confidence_score": 1.0
+      "target": "ui_spinner_spinner"
     },
     {
       "relation": "calls",
@@ -6476,11 +6506,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/add-ms-flight-count.tsx",
-      "source_location": "L32",
+      "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "components_add_ms_flight_count",
-      "target": "components_add_ms_flight_count_addformvalues"
+      "target": "components_add_ms_flight_count_addfield",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6491,6 +6521,16 @@
       "confidence_score": 1.0,
       "source": "components_add_ms_flight_count",
       "target": "components_add_ms_flight_count_addmsflightcount"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/add-ms-flight-count.tsx",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "components_add_ms_flight_count",
+      "target": "components_add_ms_flight_count_ar_field_name",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6516,11 +6556,31 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/add-ms-flight-count.tsx",
-      "source_location": "L31",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "components_add_ms_flight_count",
-      "target": "components_add_ms_flight_count_flightcountrow",
+      "target": "components_add_ms_flight_count_empty_counts",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/add-ms-flight-count.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "components_add_ms_flight_count",
+      "target": "components_add_ms_flight_count_fielderrors",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/add-ms-flight-count.tsx",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_add_ms_flight_count",
+      "target": "components_add_ms_flight_count_flightcountrow"
     },
     {
       "relation": "imports_from",
@@ -6551,9 +6611,9 @@
       "source_file": "components/add-ms-flight-count.tsx",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_add_ms_flight_count",
-      "target": "components_update_flight_count",
-      "confidence_score": 1.0
+      "target": "components_update_flight_count"
     },
     {
       "relation": "imports_from",
@@ -6573,9 +6633,9 @@
       "source_file": "components/add-ms-flight-count.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_add_ms_flight_count",
-      "target": "db_schema_customerflightcounttable",
-      "confidence_score": 1.0
+      "target": "db_schema_customerflightcounttable"
     },
     {
       "relation": "imports",
@@ -6639,9 +6699,9 @@
       "source_file": "components/add-ms-flight-count.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_add_ms_flight_count",
-      "target": "lib_permissions",
-      "confidence_score": 1.0
+      "target": "lib_permissions"
     },
     {
       "relation": "imports",
@@ -6650,9 +6710,9 @@
       "source_file": "components/add-ms-flight-count.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_add_ms_flight_count",
-      "target": "lib_permissions_canmodifyrecord",
-      "confidence_score": 1.0
+      "target": "lib_permissions_canmodifyrecord"
     },
     {
       "relation": "imports_from",
@@ -7622,9 +7682,9 @@
       "source_file": "components/flights-count-table.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flights_count_table",
-      "target": "lib_format",
-      "confidence_score": 1.0
+      "target": "lib_format"
     },
     {
       "relation": "imports",
@@ -7633,9 +7693,9 @@
       "source_file": "components/flights-count-table.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flights_count_table",
-      "target": "lib_format_formatnumber",
-      "confidence_score": 1.0
+      "target": "lib_format_formatnumber"
     },
     {
       "relation": "imports_from",
@@ -9262,9 +9322,9 @@
       "source_file": "components/report-table.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_table",
-      "target": "lib_format",
-      "confidence_score": 1.0
+      "target": "lib_format"
     },
     {
       "relation": "imports",
@@ -9273,9 +9333,9 @@
       "source_file": "components/report-table.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_table",
-      "target": "lib_format_formatnumber",
-      "confidence_score": 1.0
+      "target": "lib_format_formatnumber"
     },
     {
       "relation": "imports_from",
@@ -13373,9 +13433,9 @@
       "source_file": "lib/format.ts",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_format",
-      "target": "lib_format_formatnumber",
-      "confidence_score": 1.0
+      "target": "lib_format_formatnumber"
     },
     {
       "relation": "contains",
@@ -14531,5 +14591,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "dc351219820cda3fdd9bd75e7af8531b8f83a5b2"
+  "built_at_commit": "940cce3636d09dae934859b3e2d37cd443399ae8"
 }

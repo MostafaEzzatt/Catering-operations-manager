@@ -11,7 +11,7 @@ import {
   cutomersTable,
 } from "@/drizzle/db/schema";
 import { currentUser } from "@clerk/nextjs/server";
-import { InferSelectModel } from "drizzle-orm";
+import type { InferSelectModel } from "drizzle-orm";
 
 type CompanyRow = InferSelectModel<typeof cutomersTable>;
 type FlightCountRow = InferSelectModel<typeof customerFlightCountTable>;
@@ -48,23 +48,37 @@ export async function getAuditUser(): Promise<string> {
   return user;
 }
 
-// Writes the audit entry inside the caller's transaction. Errors are NOT
+// Postgres allows at most 65,535 parameters per statement; each audit row
+// uses 5, so a batch of 1,000 rows stays far below that
+const BATCH_SIZE = 1000;
+
+// Writes the audit entries inside the caller's transaction. Errors are NOT
 // caught on purpose: a failed audit write rolls the whole change back, so a
-// change is never saved without its audit entry.
-export async function logAction(
+// change is never saved without its audit entries.
+export async function logActions(
   tx: DbTransaction,
   user: string,
-  { action, entity, record }: AuditEntry,
+  entries: AuditEntry[],
 ) {
-  // jsonb stores the row as JSON, which turns its Date fields into ISO
-  // strings. Converting here makes the stored value match its type.
-  const metadata = JSON.parse(JSON.stringify(record)) as logStoredMetadata;
-
-  await tx.insert(auditLogs).values({
+  const rows = entries.map(({ action, entity, record }) => ({
     user,
     action,
     entity,
     entityId: String(record.id),
-    metadata,
-  });
+    // jsonb stores the row as JSON, which turns its Date fields into ISO
+    // strings. Converting here makes the stored value match its type.
+    metadata: JSON.parse(JSON.stringify(record)) as logStoredMetadata,
+  }));
+
+  for (let i = 0; i < rows.length; i += BATCH_SIZE) {
+    await tx.insert(auditLogs).values(rows.slice(i, i + BATCH_SIZE));
+  }
+}
+
+export async function logAction(
+  tx: DbTransaction,
+  user: string,
+  entry: AuditEntry,
+) {
+  await logActions(tx, user, [entry]);
 }

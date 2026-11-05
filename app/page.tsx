@@ -1,6 +1,7 @@
 import AddMSFlightCount from "@/components/add-ms-flight-count";
 import FlightCountFilter from "@/components/flight-count-filter";
 import GetAllFlightCounts from "@/components/get-all-flight-counts";
+import SignInRequired from "@/components/sign-in-required";
 import Heading1 from "@/components/typo-h1";
 import HeadingTwo from "@/components/typo-h2";
 import { Spinner } from "@/components/ui/spinner";
@@ -31,7 +32,10 @@ export default async function Home({
   const { from, to } = await searchParams;
   const range = resolveDayRange(from, to);
 
-  const { isAdmin, userId } = await getSession();
+  // Checked before any query: the layout hiding the page does not stop its
+  // data from being sent (proxy.ts normally redirects before this runs)
+  const { isAuthenticated, isAdmin, userId } = await getSession();
+  if (!isAuthenticated) return <SignInRequired />;
 
   // Alphabetical in Arabic, the same order as the reports page
   const customers = (await db.select().from(cutomersTable)).sort((a, b) =>

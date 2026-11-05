@@ -23,6 +23,14 @@ Always use the graphify skill in this project for questions about the codebase, 
 - After code changes, refresh it with `/graphify . --update`.
 - The graph is mostly built from code parsing, so confirm details in the source before acting on them.
 
+## Sign-in checks
+
+The root layout hiding a page from signed-out visitors does not protect its data. Next.js still renders the page and sends its data with the response, and on in-app navigation the layout is not re-run at all. In November 2026 a signed-out visitor could read every flight count and company this way.
+
+- `proxy.ts` requires sign-in for every route (`auth.protect()`). Keep it that way. If a public route is ever needed, list it explicitly.
+- Every page that queries data still checks `getSession()` itself before its first query, and returns `<SignInRequired />` (or `<NotAllowed />` for admin-only pages). Do the same in new pages.
+- Every server action checks `getSession()` at its start.
+
 ## TanStack form + React 19 freeze
 
 In this repo (React 19, the `radix-ui` umbrella package, `@tanstack/react-form` 1.28), mounting a TanStack `useForm` per table row next to Radix dialogs caused a synchronous render loop. It froze the tab ("Page Unresponsive") after every flight-count update (June 2026). Upstream issue: TanStack/form#2020, closed without a fix and blamed on Radix. Upgrading the library does not help.

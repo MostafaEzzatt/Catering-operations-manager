@@ -1,5 +1,6 @@
 import LogsClient from "@/components/logs-client";
 import NotAllowed from "@/components/not-allowed";
+import SignInRequired from "@/components/sign-in-required";
 import { db } from "@/drizzle";
 import { auditLogs, cutomersTable } from "@/drizzle/db/schema";
 import { getSession } from "@/lib/roles";
@@ -11,7 +12,8 @@ const Logs = async () => {
   // Unlisted page (direct link only) and admins only: the audit trail holds
   // every user's actions plus full snapshots of the changed rows. The check
   // runs before any query, so non-admins never load the data.
-  const { isAdmin } = await getSession();
+  const { isAuthenticated, isAdmin } = await getSession();
+  if (!isAuthenticated) return <SignInRequired />;
   if (!isAdmin) return <NotAllowed />;
 
   const [logs, allUsersResult, customers] = await Promise.all([

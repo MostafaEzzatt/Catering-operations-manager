@@ -2,13 +2,18 @@
 "use server";
 
 import { db } from "@/drizzle";
-import { cutomersTable } from "@/drizzle/db/schema";
+import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
 import { formSchema } from "@/formsSchema/add-company";
 import { getSession } from "@/lib/roles";
 import { currentUser } from "@clerk/nextjs/server";
 import { and, eq, ne, or } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { getAuditUser, logAction } from "@/lib/audit-log";
+import {
+  type AuditEntry,
+  getAuditUser,
+  logAction,
+  logActions,
+} from "@/lib/audit-log";
 
 export async function addCustomer(prevState: any, value: CompanyFormValues) {
   const { isAuthenticated } = await getSession();
@@ -105,18 +110,45 @@ export async function deleteCustomer(prevState: any, value: number) {
       return 2;
     }
 
-    // The delete and its audit entry are saved together or not at all
-    await db.transaction(async (tx) => {
+    // The delete and its audit entries are saved together or not at all
+    const deleted = await db.transaction(async (tx) => {
+      // Lock the company first. A flight count added for it by a concurrent
+      // request then waits for this transaction (and fails once the company
+      // is gone) instead of slipping in and being removed unlogged.
+      const [company] = await tx
+        .select()
+        .from(cutomersTable)
+        .where(eq(cutomersTable.id, value))
+        .for("update");
+      if (!company) return false;
+
+      // Delete the company's flight counts explicitly, rather than leaving
+      // them to the database's cascade, so each one gets its own log entry
+      const removedCounts = await tx
+        .delete(customerFlightCountTable)
+        .where(eq(customerFlightCountTable.customerId, value))
+        .returning();
+
       await tx.delete(cutomersTable).where(eq(cutomersTable.id, value));
 
-      await logAction(tx, auditUser, {
-        action: "DELETE",
-        entity: "Company",
-        record: SelectData[0],
-      });
+      await logActions(tx, auditUser, [
+        ...removedCounts.map(
+          (record): AuditEntry => ({
+            action: "DELETE",
+            entity: "Flight Details",
+            record,
+          }),
+        ),
+        { action: "DELETE", entity: "Company", record: company },
+      ]);
+      return true;
     });
 
+    if (!deleted) return 0;
+
     revalidatePath("/add-companys");
+    // The home page lists the removed flight counts
+    revalidatePath("/");
 
     return 1;
   } catch (error) {

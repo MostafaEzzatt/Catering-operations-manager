@@ -1,9 +1,9 @@
 import Navbar from "@/components/navbar";
-import { Button } from "@/components/ui/button";
+import SignInRequired from "@/components/sign-in-required";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { getSession } from "@/lib/roles";
-import { ClerkProvider, Show, SignInButton } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
@@ -38,25 +38,10 @@ export default async function RootLayout({
 
           <ClerkProvider>
             <Navbar />
-            {isAuthenticated ? (
-              children
-            ) : (
-              <div className="container mx-auto text-center font-bold text-3xl">
-                قم{" "}
-                <Show when="signed-out">
-                  <SignInButton>
-                    <Button
-                      variant={"link"}
-                      size={"lg"}
-                      className="text-3xl px-0 text-orange-400"
-                    >
-                      بتسجيل الدخول
-                    </Button>
-                  </SignInButton>
-                </Show>{" "}
-                حتى تستطيع ان تكمل
-              </div>
-            )}
+            {/* Hides pages from signed-out visitors, but does NOT keep their
+                data from being sent: that is proxy.ts and each page's own
+                check */}
+            {isAuthenticated ? children : <SignInRequired />}
           </ClerkProvider>
         </ThemeProvider>
       </body>
