@@ -14,9 +14,12 @@ import * as React from "react";
 export function DatePicker({
   date,
   setDate,
+  maxDate,
 }: {
   date: Date | undefined;
   setDate: React.Dispatch<React.SetStateAction<Date>>;
+  // Days after this one are greyed out and can't be picked
+  maxDate?: Date;
 }) {
   return (
     <Field className="mx-auto w-44">
@@ -38,6 +41,7 @@ export function DatePicker({
             selected={date}
             onSelect={setDate}
             defaultMonth={date}
+            disabled={maxDate ? { after: maxDate } : undefined}
           />
         </PopoverContent>
       </Popover>

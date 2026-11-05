@@ -13,6 +13,8 @@ import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { getAuditUser, logAction } from "@/lib/audit-log";
 
+// 0 = error, 1 = added, 2 = already exists for that company and date,
+// 3 = date malformed or in the future
 export async function addCount(
   prevState: any,
   value: CustomerFlightCountFormValues,
@@ -22,7 +24,8 @@ export async function addCount(
 
   // The client form validates too, but server actions are callable directly
   const parsed = formSchema.safeParse(value);
-  if (!parsed.success) return 0;
+  if (!parsed.success)
+    return parsed.error.issues.some((i) => i.path[0] === "date") ? 3 : 0;
 
   try {
     const customer: typeof customerFlightCountTable.$inferInsert = {

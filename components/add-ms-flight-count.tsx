@@ -4,6 +4,7 @@ import { addCount } from "@/actions/customer-flight-count";
 import { cutomersTable } from "@/drizzle/db/schema";
 import { formSchema } from "@/formsSchema/add-customer-flight-count";
 import { useForm } from "@tanstack/react-form";
+import { format } from "date-fns";
 import { InferSelectModel } from "drizzle-orm";
 import { useActionState, useEffect, useState, useTransition } from "react";
 import { toast } from "sonner";
@@ -31,6 +32,8 @@ const AddMSFlightCount = ({
   );
   const [tansitionIsPending, startTransition] = useTransition();
 
+  // The picked date lives here, not in the form, so it stays picked after a
+  // successful add (handy when entering many companies for the same day)
   const [date, setDate] = useState<Date>(new Date());
 
   const isPending = insertIsPending || tansitionIsPending;
@@ -41,7 +44,7 @@ const AddMSFlightCount = ({
     c: 0,
     h: 0,
     y: 0,
-    date: new Date().toDateString(),
+    date: format(new Date(), "yyyy-MM-dd"),
   };
 
   const ar_field_name: formValueType<CustomerFlightCountFormValues> = {
@@ -60,7 +63,8 @@ const AddMSFlightCount = ({
     },
     onSubmit: ({ value }) => {
       startTransition(() => {
-        insertSubmit({ ...value, date: date.toDateString() });
+        // "YYYY-MM-DD" of the day picked, the format the server accepts
+        insertSubmit({ ...value, date: format(date, "yyyy-MM-dd") });
       });
     },
   });
@@ -73,6 +77,8 @@ const AddMSFlightCount = ({
       form.reset();
     } else if (!isPending && insertState == 2) {
       toast.info("يوجد بالفعل اعداد مسجلة لتلك الشركة فى هذا التاريخ.");
+    } else if (!isPending && insertState == 3) {
+      toast.error("التاريخ غير صحيح، لا يمكن اضافة اعداد لتاريخ مستقبلى.");
     } else if (!isPending && insertState === 0) {
       toast.error("حدث خطأ ما عند اضافة اعداد الرحلات");
     }
@@ -248,7 +254,11 @@ const AddMSFlightCount = ({
                     {ar_field_name[field.name]}
                   </FieldLabel>
 
-                  <DatePicker date={date} setDate={setDate} />
+                  <DatePicker
+                    date={date}
+                    setDate={setDate}
+                    maxDate={new Date()}
+                  />
                   {isInvalid && <FieldError errors={field.state.meta.errors} />}
                 </Field>
               );

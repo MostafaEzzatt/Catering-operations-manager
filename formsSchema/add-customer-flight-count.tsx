@@ -1,3 +1,4 @@
+import { isDayString, todayDayString } from "@/lib/date-range";
 import z from "zod";
 
 const wholeNumber = "يجب ان يكون رقم صحيح";
@@ -11,7 +12,13 @@ export const formSchema = z.object({
   c: z.number().int(wholeNumber).min(0),
   h: z.number().int(wholeNumber).min(0),
   y: z.number().int(wholeNumber).min(0),
-  date: z.string(),
+  // "YYYY-MM-DD", a real calendar day, and not after today (Cairo time)
+  date: z
+    .string()
+    .refine(isDayString, { message: "التاريخ غير صحيح", abort: true })
+    .refine((d) => d <= todayDayString(), {
+      message: "لا يمكن اضافة اعداد لتاريخ مستقبلى",
+    }),
 });
 
 export const updateFormSchema = formSchema.pick({

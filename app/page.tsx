@@ -3,10 +3,19 @@ import GetAllFlightCounts from "@/components/get-all-flight-counts";
 import Heading1 from "@/components/typo-h1";
 import { db } from "@/drizzle";
 import { cutomersTable } from "@/drizzle/db/schema";
+import { resolveDayRange } from "@/lib/date-range";
 
 export const dynamic = "force-dynamic";
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  // The table's date range from ?from=&to=, the current month by default
+  const { from, to } = await searchParams;
+  const range = resolveDayRange(from, to);
+
   const customers = await db.select().from(cutomersTable);
 
   return (
@@ -19,7 +28,7 @@ export default async function Home() {
         </section>
 
         <section className="border border-dashed p-4">
-          <GetAllFlightCounts />
+          <GetAllFlightCounts {...range} />
         </section>
       </div>
     </main>

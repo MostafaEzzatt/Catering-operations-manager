@@ -1,16 +1,16 @@
 # Graph Report - Catering-operations-manager  (2026-11-05)
 
 ## Corpus Check
-- 89 files · ~23,072 words
+- 91 files · ~23,962 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 402 nodes · 861 edges · 26 communities (16 shown, 10 thin omitted)
+- 411 nodes · 892 edges · 26 communities (16 shown, 10 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6b395d2b`
+- Built from commit: `f89eb94a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -41,14 +41,14 @@
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 104 edges
 2. `getSession()` - 20 edges
-3. `Button()` - 17 edges
+3. `Button()` - 18 edges
 4. `compilerOptions` - 16 edges
 5. `cutomersTable` - 15 edges
 6. `db` - 12 edges
-7. `getAuditUser()` - 10 edges
-8. `logAction()` - 10 edges
-9. `buttonVariants` - 9 edges
-10. `Field()` - 9 edges
+7. `Field()` - 10 edges
+8. `getAuditUser()` - 10 edges
+9. `logAction()` - 10 edges
+10. `buttonVariants` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `RootLayout()` --calls--> `getSession()`  [EXTRACTED]
@@ -69,35 +69,35 @@
 
 ### Community 0 - "Audit Logs and UI Primitives"
 Cohesion: 0.06
-Nodes (48): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+40 more)
+Nodes (51): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+43 more)
 
 ### Community 1 - "Server Actions and Audit Log"
-Cohesion: 0.11
-Nodes (30): addCustomer(), deleteCustomer(), addCount(), deleteCount(), updateCount(), rejectDeleteRequest(), updateCustomer(), updateValue (+22 more)
+Cohesion: 0.09
+Nodes (37): addCustomer(), deleteCustomer(), addCount(), deleteCount(), updateCount(), rejectDeleteRequest(), updateCustomer(), updateValue (+29 more)
 
 ### Community 2 - "Flight and Report Forms"
 Cohesion: 0.07
-Nodes (36): groupByPeriod(), periodLabel(), periodStart(), reportAction(), ReportRow, ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType (+28 more)
+Nodes (34): groupByPeriod(), periodLabel(), periodStart(), reportAction(), ReportRow, ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType (+26 more)
 
 ### Community 3 - "Company and Flight Edit Forms"
-Cohesion: 0.10
-Nodes (21): ar_field_name, EditFieldName, FIELD_NAMES, formSchema, formSchema, updateFormSchema, Dialog(), DialogContent() (+13 more)
+Cohesion: 0.11
+Nodes (20): FlightCountFilter(), ar_field_name, EditFieldName, FIELD_NAMES, formSchema, DatePicker(), Dialog(), DialogContent() (+12 more)
 
 ### Community 4 - "Data Tables and Dialogs"
-Cohesion: 0.15
-Nodes (24): formatNumber(), ReportPrintMeta, ReportTable(), Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent() (+16 more)
+Cohesion: 0.16
+Nodes (23): formatNumber(), ReportTable(), Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent(), AlertDialogDescription() (+15 more)
 
 ### Community 5 - "Layout, Navbar and Menus"
 Cohesion: 0.22
 Nodes (6): fontSans, metadata, RootLayout(), navList, Toaster(), ThemeProvider()
 
 ### Community 6 - "Runtime Dependencies"
-Cohesion: 0.07
-Nodes (27): dependencies, class-variance-authority, @clerk/nextjs, clsx, date-fns, dotenv, drizzle-orm, drizzle-query-logger (+19 more)
+Cohesion: 0.05
+Nodes (37): dependencies, class-variance-authority, @clerk/nextjs, clsx, date-fns, dotenv, drizzle-orm, drizzle-query-logger (+29 more)
 
 ### Community 7 - "Dev Dependencies and Tooling"
-Cohesion: 0.09
-Nodes (22): devDependencies, drizzle-kit, eslint, eslint-config-next, shadcn, tailwindcss, @tailwindcss/postcss, tsx (+14 more)
+Cohesion: 0.15
+Nodes (13): devDependencies, drizzle-kit, eslint, eslint-config-next, shadcn, tailwindcss, @tailwindcss/postcss, tsx (+5 more)
 
 ### Community 8 - "shadcn Config"
 Cohesion: 0.10
@@ -124,16 +124,16 @@ Nodes (14): CompanyFormValues, CustomerFlightCountFormValues, formValueType, log
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `cn()` connect `Audit Logs and UI Primitives` to `Server Actions and Audit Log`, `Flight and Report Forms`, `Company and Flight Edit Forms`, `Data Tables and Dialogs`?**
-  _High betweenness centrality (0.168) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `Runtime Dependencies` to `Server Actions and Audit Log`, `Dev Dependencies and Tooling`?**
-  _High betweenness centrality (0.165) - this node is a cross-community bridge._
-- **Why does `drizzle-seed` connect `Server Actions and Audit Log` to `Runtime Dependencies`?**
-  _High betweenness centrality (0.156) - this node is a cross-community bridge._
+  _High betweenness centrality (0.166) - this node is a cross-community bridge._
+- **Why does `drizzle-seed` connect `Runtime Dependencies` to `Server Actions and Audit Log`?**
+  _High betweenness centrality (0.155) - this node is a cross-community bridge._
 - **What connects `updateValue`, `ReportRow`, `fontSans` to the rest of the system?**
   _133 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Audit Logs and UI Primitives` be split into smaller, more focused modules?**
-  _Cohesion score 0.06057692307692308 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.056692242114237 - nodes in this community are weakly interconnected._
 - **Should `Server Actions and Audit Log` be split into smaller, more focused modules?**
-  _Cohesion score 0.10784313725490197 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09209039548022599 - nodes in this community are weakly interconnected._
 - **Should `Flight and Report Forms` be split into smaller, more focused modules?**
-  _Cohesion score 0.06708595387840671 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06887755102040816 - nodes in this community are weakly interconnected._
+- **Should `Company and Flight Edit Forms` be split into smaller, more focused modules?**
+  _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._

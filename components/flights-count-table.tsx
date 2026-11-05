@@ -233,7 +233,7 @@ const FlightsCountDataTable = ({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                لم يتم اضافة اعداد رحلات للشركات.
+                لا توجد اعداد رحلات فى هذه الفترة.
               </TableCell>
             </TableRow>
           )}

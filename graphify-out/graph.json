@@ -17,7 +17,7 @@
       "label": "addCount()",
       "file_type": "code",
       "source_file": "actions/customer-flight-count.ts",
-      "source_location": "L16",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "actions_customer_flight_count_addcount",
       "community": 1,
@@ -27,7 +27,7 @@
       "label": "updateCount()",
       "file_type": "code",
       "source_file": "actions/customer-flight-count.ts",
-      "source_location": "L77",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "actions_customer_flight_count_updatecount",
       "community": 1,
@@ -37,7 +37,7 @@
       "label": "deleteCount()",
       "file_type": "code",
       "source_file": "actions/customer-flight-count.ts",
-      "source_location": "L136",
+      "source_location": "L139",
       "_origin": "ast",
       "id": "actions_customer_flight_count_deletecount",
       "community": 1,
@@ -317,7 +317,7 @@
       "label": "Home()",
       "file_type": "code",
       "source_file": "app/page.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "app_page_home",
       "community": 1,
@@ -570,17 +570,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_add_ms_flight_count",
-      "community": 2,
+      "community": 3,
       "norm_label": "add-ms-flight-count.tsx"
     },
     {
       "label": "AddMSFlightCount()",
       "file_type": "code",
       "source_file": "components/add-ms-flight-count.tsx",
-      "source_location": "L23",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "components_add_ms_flight_count_addmsflightcount",
-      "community": 2,
+      "community": 3,
       "norm_label": "addmsflightcount()"
     },
     {
@@ -602,6 +602,36 @@
       "id": "components_company_table_companytable",
       "community": 4,
       "norm_label": "companytable()"
+    },
+    {
+      "label": "flight-count-filter.tsx",
+      "file_type": "code",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "components_flight_count_filter",
+      "community": 3,
+      "norm_label": "flight-count-filter.tsx"
+    },
+    {
+      "label": "toLocalDate()",
+      "file_type": "code",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "components_flight_count_filter_tolocaldate",
+      "community": 3,
+      "norm_label": "tolocaldate()"
+    },
+    {
+      "label": "FlightCountFilter()",
+      "file_type": "code",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "components_flight_count_filter_flightcountfilter",
+      "community": 3,
+      "norm_label": "flightcountfilter()"
     },
     {
       "label": "flights-count-table.tsx",
@@ -647,7 +677,7 @@
       "label": "GetAllFlightCounts()",
       "file_type": "code",
       "source_file": "components/get-all-flight-counts.tsx",
-      "source_location": "L8",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "components_get_all_flight_counts_getallflightcounts",
       "community": 1,
@@ -930,7 +960,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "components_report_table_reportprintmeta",
-      "community": 4,
+      "community": 2,
       "norm_label": "reportprintmeta"
     },
     {
@@ -1350,7 +1380,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "ui_datepicker_datepicker",
-      "community": 2,
+      "community": 3,
       "norm_label": "datepicker()"
     },
     {
@@ -1770,7 +1800,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "ui_field_fieldvariants",
-      "community": 3,
+      "community": 0,
       "norm_label": "fieldvariants"
     },
     {
@@ -2070,7 +2100,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_radio_group",
-      "community": 2,
+      "community": 0,
       "norm_label": "radio-group.tsx"
     },
     {
@@ -2080,7 +2110,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_radio_group_radiogroup",
-      "community": 2,
+      "community": 0,
       "norm_label": "radiogroup()"
     },
     {
@@ -2090,7 +2120,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "ui_radio_group_radiogroupitem",
-      "community": 2,
+      "community": 0,
       "norm_label": "radiogroupitem()"
     },
     {
@@ -2620,27 +2650,27 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "formsschema_add_customer_flight_count",
-      "community": 3,
+      "community": 1,
       "norm_label": "add-customer-flight-count.tsx"
     },
     {
       "label": "formSchema",
       "file_type": "code",
       "source_file": "formsSchema/add-customer-flight-count.tsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "_origin": "ast",
       "id": "formsschema_add_customer_flight_count_formschema",
-      "community": 3,
+      "community": 1,
       "norm_label": "formschema"
     },
     {
       "label": "updateFormSchema",
       "file_type": "code",
       "source_file": "formsSchema/add-customer-flight-count.tsx",
-      "source_location": "L17",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "formsschema_add_customer_flight_count_updateformschema",
-      "community": 3,
+      "community": 1,
       "norm_label": "updateformschema"
     },
     {
@@ -2774,6 +2804,66 @@
       "norm_label": "logaction()"
     },
     {
+      "label": "date-range.ts",
+      "file_type": "code",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lib_date_range",
+      "community": 1,
+      "norm_label": "date-range.ts"
+    },
+    {
+      "label": "DayRange",
+      "file_type": "code",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "lib_date_range_dayrange",
+      "community": 1,
+      "norm_label": "dayrange"
+    },
+    {
+      "label": "isDayString()",
+      "file_type": "code",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "lib_date_range_isdaystring",
+      "community": 1,
+      "norm_label": "isdaystring()"
+    },
+    {
+      "label": "todayDayString()",
+      "file_type": "code",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "lib_date_range_todaydaystring",
+      "community": 1,
+      "norm_label": "todaydaystring()"
+    },
+    {
+      "label": "currentMonthRange()",
+      "file_type": "code",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "lib_date_range_currentmonthrange",
+      "community": 1,
+      "norm_label": "currentmonthrange()"
+    },
+    {
+      "label": "resolveDayRange()",
+      "file_type": "code",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "lib_date_range_resolvedayrange",
+      "community": 1,
+      "norm_label": "resolvedayrange()"
+    },
+    {
       "label": "permissions.ts",
       "file_type": "code",
       "source_file": "lib/permissions.ts",
@@ -2870,7 +2960,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "package",
-      "community": 7,
+      "community": 6,
       "norm_label": "package.json"
     },
     {
@@ -2880,7 +2970,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "package_name",
-      "community": 7,
+      "community": 6,
       "norm_label": "name"
     },
     {
@@ -2890,7 +2980,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "package_version",
-      "community": 7,
+      "community": 6,
       "norm_label": "version"
     },
     {
@@ -2900,7 +2990,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "package_private",
-      "community": 7,
+      "community": 6,
       "norm_label": "private"
     },
     {
@@ -2910,7 +3000,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "package_scripts",
-      "community": 7,
+      "community": 6,
       "norm_label": "scripts"
     },
     {
@@ -2920,7 +3010,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "package_scripts_dev",
-      "community": 7,
+      "community": 6,
       "norm_label": "dev"
     },
     {
@@ -2930,7 +3020,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "package_scripts_build",
-      "community": 7,
+      "community": 6,
       "norm_label": "build"
     },
     {
@@ -2940,7 +3030,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "package_scripts_start",
-      "community": 7,
+      "community": 6,
       "norm_label": "start"
     },
     {
@@ -2950,7 +3040,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "package_scripts_lint",
-      "community": 7,
+      "community": 6,
       "norm_label": "lint"
     },
     {
@@ -2960,7 +3050,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "package_scripts_db_seed",
-      "community": 7,
+      "community": 6,
       "norm_label": "db:seed"
     },
     {
@@ -3110,7 +3200,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "package_dependencies_drizzle_seed",
-      "community": 1,
+      "community": 6,
       "norm_label": "drizzle-seed"
     },
     {
@@ -4198,9 +4288,9 @@
       "source_file": "actions/customer-flight-count.ts",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "actions_customer_flight_count",
-      "target": "lib_audit_log_getaudituser",
-      "confidence_score": 1.0
+      "target": "lib_audit_log_getaudituser"
     },
     {
       "relation": "imports",
@@ -4578,9 +4668,9 @@
       "source_file": "actions/customer.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "actions_customer",
-      "target": "lib_audit_log_getaudituser",
-      "confidence_score": 1.0
+      "target": "lib_audit_log_getaudituser"
     },
     {
       "relation": "imports",
@@ -5594,6 +5684,39 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_page",
+      "target": "lib_date_range"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_page",
+      "target": "lib_date_range_resolvedayrange"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/page.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "app_page_home",
+      "target": "lib_date_range_resolvedayrange"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "app/reports/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
@@ -6571,6 +6694,169 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "components_flight_count_filter_flightcountfilter"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "components_flight_count_filter_tolocaldate"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_button"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_button_button"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_datepicker"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_datepicker_datepicker"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_field"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_field_field"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_field_fielderror"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_field_fieldgroup"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_field_fieldlabel"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_spinner"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/flight-count-filter.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_flight_count_filter",
+      "target": "ui_spinner_spinner"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/get-all-flight-counts.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_get_all_flight_counts",
+      "target": "components_flight_count_filter"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/get-all-flight-counts.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_get_all_flight_counts",
+      "target": "components_flight_count_filter_flightcountfilter"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "components/flights-count-table.tsx",
       "source_location": "L47",
       "weight": 1.0,
@@ -7026,6 +7312,28 @@
       "confidence_score": 1.0,
       "source": "components_get_all_flight_counts",
       "target": "drizzle_index_db"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/get-all-flight-counts.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_get_all_flight_counts",
+      "target": "lib_date_range"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/get-all-flight-counts.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_get_all_flight_counts",
+      "target": "lib_date_range_dayrange"
     },
     {
       "relation": "imports_from",
@@ -11847,9 +12155,9 @@
       "source_file": "drizzle/index.ts",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "drizzle_index",
-      "target": "drizzle_index_pool",
-      "confidence_score": 1.0
+      "target": "drizzle_index_pool"
     },
     {
       "relation": "imports_from",
@@ -11957,6 +12265,39 @@
       "target": "formsschema_add_customer_flight_count_updateformschema"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "formsSchema/add-customer-flight-count.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "formsschema_add_customer_flight_count",
+      "target": "lib_date_range",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "formsSchema/add-customer-flight-count.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "formsschema_add_customer_flight_count",
+      "target": "lib_date_range_isdaystring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "formsSchema/add-customer-flight-count.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "formsschema_add_customer_flight_count",
+      "target": "lib_date_range_todaydaystring",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "formsSchema/report-flights.tsx",
@@ -12032,9 +12373,9 @@
       "source_file": "lib/audit-log.ts",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_audit_log",
-      "target": "lib_audit_log_dbtransaction",
-      "confidence_score": 1.0
+      "target": "lib_audit_log_dbtransaction"
     },
     {
       "relation": "contains",
@@ -12052,9 +12393,9 @@
       "source_file": "lib/audit-log.ts",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_audit_log",
-      "target": "lib_audit_log_getaudituser",
-      "confidence_score": 1.0
+      "target": "lib_audit_log_getaudituser"
     },
     {
       "relation": "contains",
@@ -12065,6 +12406,89 @@
       "confidence_score": 1.0,
       "source": "lib_audit_log",
       "target": "lib_audit_log_logaction"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_date_range",
+      "target": "lib_date_range_currentmonthrange"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_date_range",
+      "target": "lib_date_range_dayrange"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_date_range",
+      "target": "lib_date_range_isdaystring"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_date_range",
+      "target": "lib_date_range_resolvedayrange"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "lib_date_range",
+      "target": "lib_date_range_todaydaystring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L45",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_date_range_resolvedayrange",
+      "target": "lib_date_range_isdaystring"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "lib_date_range_currentmonthrange",
+      "target": "lib_date_range_todaydaystring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_date_range_resolvedayrange",
+      "target": "lib_date_range_currentmonthrange"
     },
     {
       "relation": "contains",
@@ -13220,5 +13644,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6b395d2b2aca54930fbe30505f63caf537e018fd"
+  "built_at_commit": "f89eb94a8a7684238dcbbb640d723aaaf03117da"
 }
