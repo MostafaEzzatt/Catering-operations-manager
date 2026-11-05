@@ -1,0 +1,472 @@
+{
+  "D:\\Claude-Projects\\Catering-operations-manager\\actions\\customer-flight-count.ts": {
+    "mtime": 1781281881.5533664,
+    "ast_hash": "f0748a068c0bf824cd98cf3a5f081742",
+    "semantic_hash": "f0748a068c0bf824cd98cf3a5f081742"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\actions\\customer.ts": {
+    "mtime": 1781281858.6377103,
+    "ast_hash": "03440d9ace8fe1904309b6035e533524",
+    "semantic_hash": "03440d9ace8fe1904309b6035e533524"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\actions\\log.ts": {
+    "mtime": 1781221012.398075,
+    "ast_hash": "4d3c8823a5a93a79dd339775a8161356",
+    "semantic_hash": "4d3c8823a5a93a79dd339775a8161356"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\actions\\report.ts": {
+    "mtime": 1781281955.1193025,
+    "ast_hash": "f5a2763ffcda379a1598df39d1ed9458",
+    "semantic_hash": "f5a2763ffcda379a1598df39d1ed9458"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\app\\add-companys\\page.tsx": {
+    "mtime": 1781198321.610366,
+    "ast_hash": "0e4f4ee1e84e6c9a0c12c497c4634c02",
+    "semantic_hash": "0e4f4ee1e84e6c9a0c12c497c4634c02"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\app\\add-companys\\update\\[id]\\page.tsx": {
+    "mtime": 1781221007.501382,
+    "ast_hash": "fb2a373e27cbc788a5981334180207b7",
+    "semantic_hash": "fb2a373e27cbc788a5981334180207b7"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\app\\add-companys\\update\\page.tsx": {
+    "mtime": 1781191883.9661481,
+    "ast_hash": "c02c08b04aad7b8d2fa66a5045517b1e",
+    "semantic_hash": "c02c08b04aad7b8d2fa66a5045517b1e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\app\\layout.tsx": {
+    "mtime": 1781219366.2069204,
+    "ast_hash": "3b944a4cdef8b24b30e313549615195e",
+    "semantic_hash": "3b944a4cdef8b24b30e313549615195e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\app\\logs\\page.tsx": {
+    "mtime": 1781199415.0262828,
+    "ast_hash": "96e814378d6da00a2f37fa1157bd365f",
+    "semantic_hash": "96e814378d6da00a2f37fa1157bd365f"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\app\\page.tsx": {
+    "mtime": 1781191883.9681506,
+    "ast_hash": "f0c1f7beb4df7252dbfdfd020f34d157",
+    "semantic_hash": "f0c1f7beb4df7252dbfdfd020f34d157"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\app\\reports\\page.tsx": {
+    "mtime": 1781191883.9691494,
+    "ast_hash": "7ba52cfb5a4194eb370993a4550774af",
+    "semantic_hash": "7ba52cfb5a4194eb370993a4550774af"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components.json": {
+    "mtime": 1781191883.9691494,
+    "ast_hash": "cba1bba20d8d9ca35f6ebde6ff35ea5b",
+    "semantic_hash": "cba1bba20d8d9ca35f6ebde6ff35ea5b"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\add-company.tsx": {
+    "mtime": 1781191883.9701495,
+    "ast_hash": "a046deec29d912fe903aaea506c6d22e",
+    "semantic_hash": "a046deec29d912fe903aaea506c6d22e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\add-ms-flight-count.tsx": {
+    "mtime": 1781219356.7036395,
+    "ast_hash": "a1fb209a9302ad69829600794d38e407",
+    "semantic_hash": "a1fb209a9302ad69829600794d38e407"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\company-table.tsx": {
+    "mtime": 1781199037.7064333,
+    "ast_hash": "07c68a021d7099ff6c7663adb63a88f8",
+    "semantic_hash": "07c68a021d7099ff6c7663adb63a88f8"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\flights-count-table.tsx": {
+    "mtime": 1781280033.1109495,
+    "ast_hash": "8395f43e5cdcc8a76a5af6928f51e88f",
+    "semantic_hash": "8395f43e5cdcc8a76a5af6928f51e88f"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\get-all-flight-counts.tsx": {
+    "mtime": 1781221006.118064,
+    "ast_hash": "a23413900beea2cb481ecf59095104cf",
+    "semantic_hash": "a23413900beea2cb481ecf59095104cf"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\get_all_companys.tsx": {
+    "mtime": 1781198338.1607485,
+    "ast_hash": "91b6712d6e9b436e14717a0fd17b035e",
+    "semantic_hash": "91b6712d6e9b436e14717a0fd17b035e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\inline-note.tsx": {
+    "mtime": 1781191883.9721491,
+    "ast_hash": "a3d9d00f3899316976a172e3176f6df2",
+    "semantic_hash": "a3d9d00f3899316976a172e3176f6df2"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\logs-client.tsx": {
+    "mtime": 1781219404.635442,
+    "ast_hash": "6cb04363d8e22d31677f192ad31dd379",
+    "semantic_hash": "6cb04363d8e22d31677f192ad31dd379"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\logs-filter.tsx": {
+    "mtime": 1781191883.9721491,
+    "ast_hash": "f48ccd017dfd7b0fe040643fe242d4e7",
+    "semantic_hash": "f48ccd017dfd7b0fe040643fe242d4e7"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\navbar.tsx": {
+    "mtime": 1781219367.530379,
+    "ast_hash": "dcf5e2aac4d8cca3accff0c2015a8edf",
+    "semantic_hash": "dcf5e2aac4d8cca3accff0c2015a8edf"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\not-allowed.tsx": {
+    "mtime": 1781197698.5903814,
+    "ast_hash": "84094bad2fd4062b52e693f5cd91ee7b",
+    "semantic_hash": "84094bad2fd4062b52e693f5cd91ee7b"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\report-form.tsx": {
+    "mtime": 1781196004.1263304,
+    "ast_hash": "b51a6f9d2057162d2041c284738b893e",
+    "semantic_hash": "b51a6f9d2057162d2041c284738b893e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\report-table.tsx": {
+    "mtime": 1791220825.5165312,
+    "ast_hash": "b668b715f9c7aa31546af9b86deb0f5c",
+    "semantic_hash": "b668b715f9c7aa31546af9b86deb0f5c"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\typo-h1.tsx": {
+    "mtime": 1781191883.9732704,
+    "ast_hash": "c0e6b8f169b1b5dedadaf2af6f33f262",
+    "semantic_hash": "c0e6b8f169b1b5dedadaf2af6f33f262"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\typo-h2.tsx": {
+    "mtime": 1781191883.9747777,
+    "ast_hash": "a6b0184f6f0d744c15d9f0177e0a75b0",
+    "semantic_hash": "a6b0184f6f0d744c15d9f0177e0a75b0"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\typo-h3.tsx": {
+    "mtime": 1781191883.9747777,
+    "ast_hash": "fbca1b3305fb36a3a172a87d7b0f5c23",
+    "semantic_hash": "fbca1b3305fb36a3a172a87d7b0f5c23"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\typo-lead.tsx": {
+    "mtime": 1781191883.9747777,
+    "ast_hash": "a170d6bcc7fd2c92332822826dd0ab26",
+    "semantic_hash": "a170d6bcc7fd2c92332822826dd0ab26"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\typo-p.tsx": {
+    "mtime": 1781191883.9747777,
+    "ast_hash": "0c0b7ae5d19f6e854f39bc3488df376d",
+    "semantic_hash": "0c0b7ae5d19f6e854f39bc3488df376d"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\accordion.tsx": {
+    "mtime": 1781191883.9758859,
+    "ast_hash": "020c167e0ef128908a5c7bd7e62692ec",
+    "semantic_hash": "020c167e0ef128908a5c7bd7e62692ec"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\alert-dialog.tsx": {
+    "mtime": 1781195039.0382218,
+    "ast_hash": "cee9ab1c9b6a2b6b1720c0d0ab033c06",
+    "semantic_hash": "cee9ab1c9b6a2b6b1720c0d0ab033c06"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\badge.tsx": {
+    "mtime": 1781191883.9758859,
+    "ast_hash": "e6b67abad9bef9c9d94db50ac5d98780",
+    "semantic_hash": "e6b67abad9bef9c9d94db50ac5d98780"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\button.tsx": {
+    "mtime": 1781191883.9768858,
+    "ast_hash": "bb264f471298844ba6781727d036551c",
+    "semantic_hash": "bb264f471298844ba6781727d036551c"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\calendar.tsx": {
+    "mtime": 1781191883.9773965,
+    "ast_hash": "8ddc91a22966a83e2d43fca0d9828a2a",
+    "semantic_hash": "8ddc91a22966a83e2d43fca0d9828a2a"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\checkbox.tsx": {
+    "mtime": 1781191883.9773965,
+    "ast_hash": "981508fc6d89bc73a4c15547a90f4623",
+    "semantic_hash": "981508fc6d89bc73a4c15547a90f4623"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\datePicker.tsx": {
+    "mtime": 1781191883.9773965,
+    "ast_hash": "d50bcfe0407ec6ca1807f1f1581b7ba7",
+    "semantic_hash": "d50bcfe0407ec6ca1807f1f1581b7ba7"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\dialog.tsx": {
+    "mtime": 1781276651.4570441,
+    "ast_hash": "da46d42167df28e4ae35195cc8bfa718",
+    "semantic_hash": "da46d42167df28e4ae35195cc8bfa718"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\direction.tsx": {
+    "mtime": 1781191883.9784005,
+    "ast_hash": "24b29efd4632fc426971a170d7c5462e",
+    "semantic_hash": "24b29efd4632fc426971a170d7c5462e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\dropdown-menu.tsx": {
+    "mtime": 1781191883.9784005,
+    "ast_hash": "a5abe5befddae9adab499c50b54e9e90",
+    "semantic_hash": "a5abe5befddae9adab499c50b54e9e90"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\empty.tsx": {
+    "mtime": 1781191883.9784005,
+    "ast_hash": "818016f634062740306e2341e0f0625a",
+    "semantic_hash": "818016f634062740306e2341e0f0625a"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\field.tsx": {
+    "mtime": 1781191883.9793983,
+    "ast_hash": "44fc69e08be4b37098b213a2e720627b",
+    "semantic_hash": "44fc69e08be4b37098b213a2e720627b"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\input.tsx": {
+    "mtime": 1781191883.9793983,
+    "ast_hash": "229513f0e77fbd6da03231cdb66cc50d",
+    "semantic_hash": "229513f0e77fbd6da03231cdb66cc50d"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\label.tsx": {
+    "mtime": 1781191883.9793983,
+    "ast_hash": "83a4dee523e5fa680b528a13f6cea20f",
+    "semantic_hash": "83a4dee523e5fa680b528a13f6cea20f"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\navigation-menu.tsx": {
+    "mtime": 1781191883.9803987,
+    "ast_hash": "38ad0066156bd56bcadefcffba66d85e",
+    "semantic_hash": "38ad0066156bd56bcadefcffba66d85e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\popover.tsx": {
+    "mtime": 1781191883.9803987,
+    "ast_hash": "e6604baa128dfc28e9ee7c9285dfda19",
+    "semantic_hash": "e6604baa128dfc28e9ee7c9285dfda19"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\radio-group.tsx": {
+    "mtime": 1781191883.9814003,
+    "ast_hash": "02df1e0cfbb293342829df90124c4546",
+    "semantic_hash": "02df1e0cfbb293342829df90124c4546"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\select.tsx": {
+    "mtime": 1781191883.9814003,
+    "ast_hash": "f807f1615fb648022bd396fccf74cdb3",
+    "semantic_hash": "f807f1615fb648022bd396fccf74cdb3"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\separator.tsx": {
+    "mtime": 1781191883.9824004,
+    "ast_hash": "d4241f285fbf32712f5c65b9ca558390",
+    "semantic_hash": "d4241f285fbf32712f5c65b9ca558390"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\sonner.tsx": {
+    "mtime": 1781191883.9824004,
+    "ast_hash": "b7f913557c5305c5642266e62a64f3c4",
+    "semantic_hash": "b7f913557c5305c5642266e62a64f3c4"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\spinner.tsx": {
+    "mtime": 1781191883.9824004,
+    "ast_hash": "950317316cd2d2c4e49a050348c837cd",
+    "semantic_hash": "950317316cd2d2c4e49a050348c837cd"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\table.tsx": {
+    "mtime": 1781191883.9834015,
+    "ast_hash": "0f265f958bc950dbd89a218a478eb140",
+    "semantic_hash": "0f265f958bc950dbd89a218a478eb140"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\theme-provider.tsx": {
+    "mtime": 1781191883.9834015,
+    "ast_hash": "cb27d872a539d07c5c8542881dd50822",
+    "semantic_hash": "cb27d872a539d07c5c8542881dd50822"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\ui\\theme-toggle.tsx": {
+    "mtime": 1781191883.9834015,
+    "ast_hash": "2c1ffe7e49e190aee72afef38e92a672",
+    "semantic_hash": "2c1ffe7e49e190aee72afef38e92a672"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\update-company.tsx": {
+    "mtime": 1781281868.5949907,
+    "ast_hash": "9200ec0e89c480b5fcc1e9cb29bad418",
+    "semantic_hash": "9200ec0e89c480b5fcc1e9cb29bad418"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\components\\update-flight-count.tsx": {
+    "mtime": 1781280040.5861924,
+    "ast_hash": "70729ea6139fc7d1b56325552fd7db30",
+    "semantic_hash": "70729ea6139fc7d1b56325552fd7db30"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\0000_fresh_prodigy.sql": {
+    "mtime": 1781191883.9849093,
+    "ast_hash": "5c5465da11c399cd361a94f60245c34f",
+    "semantic_hash": "5c5465da11c399cd361a94f60245c34f"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\0001_simple_talkback.sql": {
+    "mtime": 1781191883.9849093,
+    "ast_hash": "e191e9a1fef3baf77fcde547e5468f62",
+    "semantic_hash": "e191e9a1fef3baf77fcde547e5468f62"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\0002_classy_kronos.sql": {
+    "mtime": 1781196113.9539506,
+    "ast_hash": "36ddfeab1a9ea6a29c35076ecef949cb",
+    "semantic_hash": "36ddfeab1a9ea6a29c35076ecef949cb"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\0003_hard_menace.sql": {
+    "mtime": 1781197549.4323187,
+    "ast_hash": "ae6ff20b95e67f52f4cc12d2bfd8b8db",
+    "semantic_hash": "ae6ff20b95e67f52f4cc12d2bfd8b8db"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\0004_talented_mephisto.sql": {
+    "mtime": 1781198894.7780983,
+    "ast_hash": "31f5be83a1437fa84f60dfe377e79f5f",
+    "semantic_hash": "31f5be83a1437fa84f60dfe377e79f5f"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\0005_silent_maddog.sql": {
+    "mtime": 1781281977.9597301,
+    "ast_hash": "cbacca69c01b92f130b4046c19ca04b0",
+    "semantic_hash": "cbacca69c01b92f130b4046c19ca04b0"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\meta\\0000_snapshot.json": {
+    "mtime": 1781191883.9859178,
+    "ast_hash": "1617eb02fe50c4118dab4a25786655e2",
+    "semantic_hash": "1617eb02fe50c4118dab4a25786655e2"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\meta\\0001_snapshot.json": {
+    "mtime": 1781191883.9864748,
+    "ast_hash": "09f8cd4353e569eb172b26a6ad1213d3",
+    "semantic_hash": "09f8cd4353e569eb172b26a6ad1213d3"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\meta\\0002_snapshot.json": {
+    "mtime": 1781196113.9529445,
+    "ast_hash": "6c9660c41246d5b47e1ff6a407131ad9",
+    "semantic_hash": "6c9660c41246d5b47e1ff6a407131ad9"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\meta\\0003_snapshot.json": {
+    "mtime": 1781197549.4308805,
+    "ast_hash": "1f8ee6edaeb30ce5b2dc3f7983f56194",
+    "semantic_hash": "1f8ee6edaeb30ce5b2dc3f7983f56194"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\meta\\0004_snapshot.json": {
+    "mtime": 1781198894.7780983,
+    "ast_hash": "027c38c3f0b103c9d330c130151e9166",
+    "semantic_hash": "027c38c3f0b103c9d330c130151e9166"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\meta\\0005_snapshot.json": {
+    "mtime": 1781281977.9597301,
+    "ast_hash": "6d1f658900d60951fc2f4f65cda246b7",
+    "semantic_hash": "6d1f658900d60951fc2f4f65cda246b7"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle-out\\meta\\_journal.json": {
+    "mtime": 1781281977.9597301,
+    "ast_hash": "e772482b37ae90dbba728364a1cf3501",
+    "semantic_hash": "e772482b37ae90dbba728364a1cf3501"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle.config.ts": {
+    "mtime": 1781191883.9864748,
+    "ast_hash": "be920ff8787a3fe6a4a71ed211f17355",
+    "semantic_hash": "be920ff8787a3fe6a4a71ed211f17355"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle\\db\\schema.ts": {
+    "mtime": 1781281813.0806673,
+    "ast_hash": "35fde5ca8761d3f5b4a5dcac789e12ea",
+    "semantic_hash": "35fde5ca8761d3f5b4a5dcac789e12ea"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle\\index.ts": {
+    "mtime": 1781191883.987486,
+    "ast_hash": "fb08b9c04a7d2f616d4891820ce38fac",
+    "semantic_hash": "fb08b9c04a7d2f616d4891820ce38fac"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\drizzle\\seed.ts": {
+    "mtime": 1781191884.9884849,
+    "ast_hash": "91bd1610d49b635bad6de02f8d7ebb56",
+    "semantic_hash": "91bd1610d49b635bad6de02f8d7ebb56"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\eslint.config.mjs": {
+    "mtime": 1781191883.9884844,
+    "ast_hash": "6c4307ffa009658f5c97f5629094c0c2",
+    "semantic_hash": "6c4307ffa009658f5c97f5629094c0c2"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\formsSchema\\add-company.ts": {
+    "mtime": 1781191883.9894836,
+    "ast_hash": "8ac61451a51130981693b723ba9e3f97",
+    "semantic_hash": "8ac61451a51130981693b723ba9e3f97"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\formsSchema\\add-customer-flight-count.tsx": {
+    "mtime": 1781279943.0911596,
+    "ast_hash": "2b34ed06cec4c13e208253a21b9e3c94",
+    "semantic_hash": "2b34ed06cec4c13e208253a21b9e3c94"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\formsSchema\\report-flights.tsx": {
+    "mtime": 1781281913.772901,
+    "ast_hash": "5aff36cca6172ab62628a81d2c5b627a",
+    "semantic_hash": "5aff36cca6172ab62628a81d2c5b627a"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\lib\\permissions.ts": {
+    "mtime": 1781279963.4338968,
+    "ast_hash": "f787c03ea96739c4e066c1794956939e",
+    "semantic_hash": "f787c03ea96739c4e066c1794956939e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\lib\\roles.ts": {
+    "mtime": 1781197442.6000416,
+    "ast_hash": "c3b20aa1509a97304d6282cf779c184c",
+    "semantic_hash": "c3b20aa1509a97304d6282cf779c184c"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\lib\\utils.ts": {
+    "mtime": 1781191883.9904828,
+    "ast_hash": "26dd730ff346827af463fe367fd8beb4",
+    "semantic_hash": "26dd730ff346827af463fe367fd8beb4"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\next.config.ts": {
+    "mtime": 1781191883.9904828,
+    "ast_hash": "025f4fcb6024b3524d19492cf7ce54a2",
+    "semantic_hash": "025f4fcb6024b3524d19492cf7ce54a2"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\package.json": {
+    "mtime": 1781199722.9272418,
+    "ast_hash": "15740ec9274e21310a2fe80b6948cf6b",
+    "semantic_hash": "15740ec9274e21310a2fe80b6948cf6b"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\postcss.config.mjs": {
+    "mtime": 1781191884.005816,
+    "ast_hash": "481fac0fdecd70e1821cc30b86030c1a",
+    "semantic_hash": "481fac0fdecd70e1821cc30b86030c1a"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\proxy.ts": {
+    "mtime": 1781191884.005816,
+    "ast_hash": "09c71866bb352a940943c9ce3458a929",
+    "semantic_hash": "09c71866bb352a940943c9ce3458a929"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\tsconfig.json": {
+    "mtime": 1781191884.0078166,
+    "ast_hash": "ab575e944f15d39a5486cf9fca385c5e",
+    "semantic_hash": "ab575e944f15d39a5486cf9fca385c5e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\type.ts": {
+    "mtime": 1781276627.5312898,
+    "ast_hash": "3fee6d096e6bf004e4640fdde9328b0b",
+    "semantic_hash": "3fee6d096e6bf004e4640fdde9328b0b"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\AGENTS.md": {
+    "mtime": 1781281449.1923413,
+    "ast_hash": "a7f26bdfd6c7821c339332aa5cde07d5",
+    "semantic_hash": "a7f26bdfd6c7821c339332aa5cde07d5"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\CLAUDE.md": {
+    "mtime": 1781281470.205127,
+    "ast_hash": "5c27369b226fcf2be8a6cfe52224e767",
+    "semantic_hash": "5c27369b226fcf2be8a6cfe52224e767"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\README.md": {
+    "mtime": 1781191883.9477649,
+    "ast_hash": "9162add00befbcdb432430f405c4ad8d",
+    "semantic_hash": "9162add00befbcdb432430f405c4ad8d"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\public\\file.svg": {
+    "mtime": 1781191884.0068164,
+    "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
+    "semantic_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\public\\globe.svg": {
+    "mtime": 1781191884.0068164,
+    "ast_hash": "2aaafa6a49b6563925fe440891e32717",
+    "semantic_hash": "2aaafa6a49b6563925fe440891e32717"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\public\\next.svg": {
+    "mtime": 1781191884.0078166,
+    "ast_hash": "8e061864f388b47f33a1c3780831193e",
+    "semantic_hash": "8e061864f388b47f33a1c3780831193e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\public\\vercel.svg": {
+    "mtime": 1781191884.0078166,
+    "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
+    "semantic_hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+  },
+  "D:\\Claude-Projects\\Catering-operations-manager\\public\\window.svg": {
+    "mtime": 1781191884.0078166,
+    "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": "a2760511c65806022ad20adf74370ff3"
+  }
+}
