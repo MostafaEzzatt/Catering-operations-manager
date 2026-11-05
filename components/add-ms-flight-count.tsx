@@ -178,6 +178,7 @@ const AddMSFlightCount = ({
                   </FieldLabel>
 
                   <DatePicker
+                    id={field.name}
                     date={date}
                     setDate={setDate}
                     maxDate={new Date()}

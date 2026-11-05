@@ -59,8 +59,11 @@ const FlightCountFilter = ({
       <FieldGroup>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Field>
-            <FieldLabel className="capitalize">من تاريخ</FieldLabel>
+            <FieldLabel htmlFor="filter-from" className="capitalize">
+              من تاريخ
+            </FieldLabel>
             <DatePicker
+              id="filter-from"
               date={dateFrom}
               setDate={(d) => {
                 setDateFrom(d);
@@ -69,8 +72,11 @@ const FlightCountFilter = ({
             />
           </Field>
           <Field data-invalid={!!error}>
-            <FieldLabel className="capitalize">الى تاريخ</FieldLabel>
+            <FieldLabel htmlFor="filter-to" className="capitalize">
+              الى تاريخ
+            </FieldLabel>
             <DatePicker
+              id="filter-to"
               date={dateTo}
               setDate={(d) => {
                 setDateTo(d);
