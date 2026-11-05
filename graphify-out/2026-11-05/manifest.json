@@ -1,18 +1,13 @@
 {
   "actions/customer-flight-count.ts": {
-    "mtime": 1781281881.5533664,
-    "ast_hash": "f0748a068c0bf824cd98cf3a5f081742",
-    "semantic_hash": "f0748a068c0bf824cd98cf3a5f081742"
+    "mtime": 1793872443.5167134,
+    "ast_hash": "ea9201b9897f6eb2799cd9b63a00b4a0",
+    "semantic_hash": ""
   },
   "actions/customer.ts": {
-    "mtime": 1781281858.6377103,
-    "ast_hash": "03440d9ace8fe1904309b6035e533524",
-    "semantic_hash": "03440d9ace8fe1904309b6035e533524"
-  },
-  "actions/log.ts": {
-    "mtime": 1781221012.398075,
-    "ast_hash": "4d3c8823a5a93a79dd339775a8161356",
-    "semantic_hash": "4d3c8823a5a93a79dd339775a8161356"
+    "mtime": 1793872440.401321,
+    "ast_hash": "3f6ad0033fba598c7ddbb9f6eae37937",
+    "semantic_hash": ""
   },
   "actions/report.ts": {
     "mtime": 1793869733.9067948,
@@ -115,8 +110,8 @@
     "semantic_hash": "84094bad2fd4062b52e693f5cd91ee7b"
   },
   "components/report-form.tsx": {
-    "mtime": 1793869735.1564493,
-    "ast_hash": "3addaabba1bb9b049241603050195746",
+    "mtime": 1793870158.2766173,
+    "ast_hash": "65054231a3f06f022914605afd20a9fc",
     "semantic_hash": ""
   },
   "components/report-table.tsx": {
@@ -350,9 +345,9 @@
     "semantic_hash": "be920ff8787a3fe6a4a71ed211f17355"
   },
   "drizzle/db/schema.ts": {
-    "mtime": 1781281813.0806673,
-    "ast_hash": "35fde5ca8761d3f5b4a5dcac789e12ea",
-    "semantic_hash": "35fde5ca8761d3f5b4a5dcac789e12ea"
+    "mtime": 1793872428.7047825,
+    "ast_hash": "3dc00888952c2c504ac586dc15ca8c8d",
+    "semantic_hash": ""
   },
   "drizzle/index.ts": {
     "mtime": 1781191883.987486,
@@ -405,9 +400,9 @@
     "semantic_hash": "025f4fcb6024b3524d19492cf7ce54a2"
   },
   "package.json": {
-    "mtime": 1781199722.9272418,
-    "ast_hash": "15740ec9274e21310a2fe80b6948cf6b",
-    "semantic_hash": "15740ec9274e21310a2fe80b6948cf6b"
+    "mtime": 1793871854.6473207,
+    "ast_hash": "9c680a01541433b57c666705a8352f16",
+    "semantic_hash": ""
   },
   "postcss.config.mjs": {
     "mtime": 1781191884.005816,
@@ -425,8 +420,8 @@
     "semantic_hash": "ab575e944f15d39a5486cf9fca385c5e"
   },
   "type.ts": {
-    "mtime": 1793868855.7144587,
-    "ast_hash": "d2cb0638730d65e49681fe3d261d51ba",
+    "mtime": 1793872422.9440322,
+    "ast_hash": "92b6fc4d0369a40f149805b3d3fdaf67",
     "semantic_hash": ""
   },
   "AGENTS.md": {
@@ -468,5 +463,10 @@
     "mtime": 1781191884.0078166,
     "ast_hash": "a2760511c65806022ad20adf74370ff3",
     "semantic_hash": "a2760511c65806022ad20adf74370ff3"
+  },
+  "lib/audit-log.ts": {
+    "mtime": 1793872418.1280975,
+    "ast_hash": "2e91e13421f66dafca427ecf49e4074a",
+    "semantic_hash": ""
   }
 }

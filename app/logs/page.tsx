@@ -8,9 +8,11 @@ import { desc } from "drizzle-orm";
 const LOGS_PER_PAGE = 10;
 
 const Logs = async () => {
-  // Unlisted page: reachable only by direct link, but still requires sign-in
-  const { isAuthenticated } = await getSession();
-  if (!isAuthenticated) return <NotAllowed />;
+  // Unlisted page (direct link only) and admins only: the audit trail holds
+  // every user's actions plus full snapshots of the changed rows. The check
+  // runs before any query, so non-admins never load the data.
+  const { isAdmin } = await getSession();
+  if (!isAdmin) return <NotAllowed />;
 
   const [logs, allUsersResult, customers] = await Promise.all([
     db.select().from(auditLogs).orderBy(desc(auditLogs.createdAt)),

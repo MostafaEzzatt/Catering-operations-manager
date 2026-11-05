@@ -27,7 +27,7 @@
       "label": "updateCount()",
       "file_type": "code",
       "source_file": "actions/customer-flight-count.ts",
-      "source_location": "L73",
+      "source_location": "L77",
       "_origin": "ast",
       "id": "actions_customer_flight_count_updatecount",
       "community": 1,
@@ -37,7 +37,7 @@
       "label": "deleteCount()",
       "file_type": "code",
       "source_file": "actions/customer-flight-count.ts",
-      "source_location": "L125",
+      "source_location": "L136",
       "_origin": "ast",
       "id": "actions_customer_flight_count_deletecount",
       "community": 1,
@@ -67,7 +67,7 @@
       "label": "deleteCustomer()",
       "file_type": "code",
       "source_file": "actions/customer.ts",
-      "source_location": "L65",
+      "source_location": "L69",
       "_origin": "ast",
       "id": "actions_customer_deletecustomer",
       "community": 1,
@@ -77,7 +77,7 @@
       "label": "rejectDeleteRequest()",
       "file_type": "code",
       "source_file": "actions/customer.ts",
-      "source_location": "L118",
+      "source_location": "L128",
       "_origin": "ast",
       "id": "actions_customer_rejectdeleterequest",
       "community": 1,
@@ -87,7 +87,7 @@
       "label": "updateValue",
       "file_type": "code",
       "source_file": "actions/customer.ts",
-      "source_location": "L152",
+      "source_location": "L166",
       "_origin": "ast",
       "id": "actions_customer_updatevalue",
       "community": 1,
@@ -97,31 +97,11 @@
       "label": "updateCustomer()",
       "file_type": "code",
       "source_file": "actions/customer.ts",
-      "source_location": "L159",
+      "source_location": "L173",
       "_origin": "ast",
       "id": "actions_customer_updatecustomer",
       "community": 1,
       "norm_label": "updatecustomer()"
-    },
-    {
-      "label": "log.ts",
-      "file_type": "code",
-      "source_file": "actions/log.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "actions_log",
-      "community": 1,
-      "norm_label": "log.ts"
-    },
-    {
-      "label": "logAction()",
-      "file_type": "code",
-      "source_file": "actions/log.ts",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "actions_log_logaction",
-      "community": 1,
-      "norm_label": "logaction()"
     },
     {
       "label": "report.ts",
@@ -950,7 +930,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "components_report_table_reportprintmeta",
-      "community": 2,
+      "community": 4,
       "norm_label": "reportprintmeta"
     },
     {
@@ -1170,7 +1150,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "ui_alert_dialog_alertdialogoverlay",
-      "community": 4,
+      "community": 0,
       "norm_label": "alertdialogoverlay()"
     },
     {
@@ -1280,7 +1260,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_button",
-      "community": 5,
+      "community": 4,
       "norm_label": "button.tsx"
     },
     {
@@ -1290,7 +1270,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "ui_button_buttonvariants",
-      "community": 5,
+      "community": 4,
       "norm_label": "buttonvariants"
     },
     {
@@ -1300,7 +1280,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "ui_button_button",
-      "community": 5,
+      "community": 4,
       "norm_label": "button()"
     },
     {
@@ -1310,7 +1290,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_calendar",
-      "community": 5,
+      "community": 4,
       "norm_label": "calendar.tsx"
     },
     {
@@ -1320,7 +1300,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "ui_calendar_calendar",
-      "community": 5,
+      "community": 4,
       "norm_label": "calendar()"
     },
     {
@@ -1330,7 +1310,7 @@
       "source_location": "L182",
       "_origin": "ast",
       "id": "ui_calendar_calendardaybutton",
-      "community": 5,
+      "community": 0,
       "norm_label": "calendardaybutton()"
     },
     {
@@ -1520,7 +1500,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenu",
-      "community": 5,
+      "community": 0,
       "norm_label": "dropdownmenu()"
     },
     {
@@ -1540,7 +1520,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenutrigger",
-      "community": 5,
+      "community": 0,
       "norm_label": "dropdownmenutrigger()"
     },
     {
@@ -2090,7 +2070,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_radio_group",
-      "community": 0,
+      "community": 2,
       "norm_label": "radio-group.tsx"
     },
     {
@@ -2100,7 +2080,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_radio_group_radiogroup",
-      "community": 0,
+      "community": 2,
       "norm_label": "radiogroup()"
     },
     {
@@ -2110,7 +2090,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "ui_radio_group_radiogroupitem",
-      "community": 0,
+      "community": 2,
       "norm_label": "radiogroupitem()"
     },
     {
@@ -2400,7 +2380,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_theme_toggle",
-      "community": 5,
+      "community": 0,
       "norm_label": "theme-toggle.tsx"
     },
     {
@@ -2410,7 +2390,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "ui_theme_toggle_modetoggle",
-      "community": 5,
+      "community": 0,
       "norm_label": "modetoggle()"
     },
     {
@@ -2554,10 +2534,20 @@
       "norm_label": "index.ts"
     },
     {
+      "label": "pool",
+      "file_type": "code",
+      "source_file": "drizzle/index.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "drizzle_index_pool",
+      "community": 1,
+      "norm_label": "pool"
+    },
+    {
       "label": "db",
       "file_type": "code",
       "source_file": "drizzle/index.ts",
-      "source_location": "L6",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "drizzle_index_db",
       "community": 1,
@@ -2630,7 +2620,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "formsschema_add_customer_flight_count",
-      "community": 1,
+      "community": 3,
       "norm_label": "add-customer-flight-count.tsx"
     },
     {
@@ -2640,7 +2630,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "formsschema_add_customer_flight_count_formschema",
-      "community": 1,
+      "community": 3,
       "norm_label": "formschema"
     },
     {
@@ -2650,7 +2640,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "formsschema_add_customer_flight_count_updateformschema",
-      "community": 1,
+      "community": 3,
       "norm_label": "updateformschema"
     },
     {
@@ -2712,6 +2702,76 @@
       "id": "formsschema_report_flights_actionschema",
       "community": 2,
       "norm_label": "actionschema"
+    },
+    {
+      "label": "audit-log.ts",
+      "file_type": "code",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lib_audit_log",
+      "community": 1,
+      "norm_label": "audit-log.ts"
+    },
+    {
+      "label": "CompanyRow",
+      "file_type": "code",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "lib_audit_log_companyrow",
+      "community": 1,
+      "norm_label": "companyrow"
+    },
+    {
+      "label": "FlightCountRow",
+      "file_type": "code",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "lib_audit_log_flightcountrow",
+      "community": 1,
+      "norm_label": "flightcountrow"
+    },
+    {
+      "label": "DbTransaction",
+      "file_type": "code",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "lib_audit_log_dbtransaction",
+      "community": 1,
+      "norm_label": "dbtransaction"
+    },
+    {
+      "label": "AuditEntry",
+      "file_type": "code",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "lib_audit_log_auditentry",
+      "community": 1,
+      "norm_label": "auditentry"
+    },
+    {
+      "label": "getAuditUser()",
+      "file_type": "code",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "lib_audit_log_getaudituser",
+      "community": 1,
+      "norm_label": "getaudituser()"
+    },
+    {
+      "label": "logAction()",
+      "file_type": "code",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "lib_audit_log_logaction",
+      "community": 1,
+      "norm_label": "logaction()"
     },
     {
       "label": "permissions.ts",
@@ -2810,7 +2870,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "package",
-      "community": 6,
+      "community": 7,
       "norm_label": "package.json"
     },
     {
@@ -2820,7 +2880,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "package_name",
-      "community": 6,
+      "community": 7,
       "norm_label": "name"
     },
     {
@@ -2830,7 +2890,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "package_version",
-      "community": 6,
+      "community": 7,
       "norm_label": "version"
     },
     {
@@ -2840,7 +2900,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "package_private",
-      "community": 6,
+      "community": 7,
       "norm_label": "private"
     },
     {
@@ -2850,7 +2910,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "package_scripts",
-      "community": 6,
+      "community": 7,
       "norm_label": "scripts"
     },
     {
@@ -2860,7 +2920,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "package_scripts_dev",
-      "community": 6,
+      "community": 7,
       "norm_label": "dev"
     },
     {
@@ -2870,7 +2930,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "package_scripts_build",
-      "community": 6,
+      "community": 7,
       "norm_label": "build"
     },
     {
@@ -2880,7 +2940,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "package_scripts_start",
-      "community": 6,
+      "community": 7,
       "norm_label": "start"
     },
     {
@@ -2890,7 +2950,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "package_scripts_lint",
-      "community": 6,
+      "community": 7,
       "norm_label": "lint"
     },
     {
@@ -2900,7 +2960,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "package_scripts_db_seed",
-      "community": 6,
+      "community": 7,
       "norm_label": "db:seed"
     },
     {
@@ -3144,10 +3204,20 @@
       "norm_label": "react-dom"
     },
     {
-      "label": "sonner",
+      "label": "server-only",
       "file_type": "code",
       "source_file": "package.json",
       "source_location": "L36",
+      "_origin": "ast",
+      "id": "package_dependencies_server_only",
+      "community": 6,
+      "norm_label": "server-only"
+    },
+    {
+      "label": "sonner",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "package_dependencies_sonner",
       "community": 6,
@@ -3157,7 +3227,7 @@
       "label": "tailwind-merge",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L37",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "package_dependencies_tailwind_merge",
       "community": 6,
@@ -3167,7 +3237,7 @@
       "label": "zod",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L38",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "package_dependencies_zod",
       "community": 6,
@@ -3177,7 +3247,7 @@
       "label": "devDependencies",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L40",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "package_devdependencies",
       "community": 7,
@@ -3187,7 +3257,7 @@
       "label": "@tailwindcss/postcss",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L41",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "package_devdependencies_tailwindcss_postcss",
       "community": 7,
@@ -3197,7 +3267,7 @@
       "label": "@types/node",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L42",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "package_devdependencies_types_node",
       "community": 7,
@@ -3207,7 +3277,7 @@
       "label": "@types/react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L43",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "package_devdependencies_types_react",
       "community": 7,
@@ -3217,7 +3287,7 @@
       "label": "@types/react-dom",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L44",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "package_devdependencies_types_react_dom",
       "community": 7,
@@ -3227,7 +3297,7 @@
       "label": "drizzle-kit",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L45",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "package_devdependencies_drizzle_kit",
       "community": 7,
@@ -3237,7 +3307,7 @@
       "label": "eslint",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L46",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "package_devdependencies_eslint",
       "community": 7,
@@ -3247,7 +3317,7 @@
       "label": "eslint-config-next",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L47",
+      "source_location": "L48",
       "_origin": "ast",
       "id": "package_devdependencies_eslint_config_next",
       "community": 7,
@@ -3257,7 +3327,7 @@
       "label": "shadcn",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L48",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "package_devdependencies_shadcn",
       "community": 7,
@@ -3267,7 +3337,7 @@
       "label": "tailwindcss",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L49",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "package_devdependencies_tailwindcss",
       "community": 7,
@@ -3277,7 +3347,7 @@
       "label": "tsx",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L50",
+      "source_location": "L51",
       "_origin": "ast",
       "id": "package_devdependencies_tsx",
       "community": 7,
@@ -3287,7 +3357,7 @@
       "label": "tw-animate-css",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L51",
+      "source_location": "L52",
       "_origin": "ast",
       "id": "package_devdependencies_tw_animate_css",
       "community": 7,
@@ -3297,7 +3367,7 @@
       "label": "typescript",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L52",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "package_devdependencies_typescript",
       "community": 7,
@@ -3624,10 +3694,40 @@
       "norm_label": "reporttype"
     },
     {
+      "label": "storedFlightDetails",
+      "file_type": "code",
+      "source_file": "type.ts",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "type_storedflightdetails",
+      "community": 11,
+      "norm_label": "storedflightdetails"
+    },
+    {
+      "label": "storedCompanyDetails",
+      "file_type": "code",
+      "source_file": "type.ts",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "type_storedcompanydetails",
+      "community": 11,
+      "norm_label": "storedcompanydetails"
+    },
+    {
+      "label": "logStoredMetadata",
+      "file_type": "code",
+      "source_file": "type.ts",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "type_logstoredmetadata",
+      "community": 11,
+      "norm_label": "logstoredmetadata"
+    },
+    {
       "label": "logFlightDetails",
       "file_type": "code",
       "source_file": "type.ts",
-      "source_location": "L48",
+      "source_location": "L79",
       "_origin": "ast",
       "id": "type_logflightdetails",
       "community": 11,
@@ -3637,7 +3737,7 @@
       "label": "logCompanyDetails",
       "file_type": "code",
       "source_file": "type.ts",
-      "source_location": "L61",
+      "source_location": "L83",
       "_origin": "ast",
       "id": "type_logcompanydetails",
       "community": 11,
@@ -3647,7 +3747,7 @@
       "label": "logTableMetaDataType",
       "file_type": "code",
       "source_file": "type.ts",
-      "source_location": "L71",
+      "source_location": "L87",
       "_origin": "ast",
       "id": "type_logtablemetadatatype",
       "community": 11,
@@ -3657,7 +3757,7 @@
       "label": "selectCompanyByIdType",
       "file_type": "code",
       "source_file": "type.ts",
-      "source_location": "L73",
+      "source_location": "L89",
       "_origin": "ast",
       "id": "type_selectcompanybyidtype",
       "community": 11,
@@ -4008,28 +4108,6 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "actions/customer-flight-count.ts",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "actions_customer_flight_count",
-      "target": "actions_log"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "actions/customer-flight-count.ts",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "actions_customer_flight_count",
-      "target": "actions_log_logaction"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "actions/customer-flight-count.ts",
       "source_location": "L5",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4101,6 +4179,39 @@
       "confidence_score": 1.0,
       "source": "actions_customer_flight_count",
       "target": "formsschema_add_customer_flight_count_updateformschema"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "actions/customer-flight-count.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "actions_customer_flight_count",
+      "target": "lib_audit_log"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "actions/customer-flight-count.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "actions_customer_flight_count",
+      "target": "lib_audit_log_getaudituser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "actions/customer-flight-count.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "actions_customer_flight_count",
+      "target": "lib_audit_log_logaction"
     },
     {
       "relation": "imports_from",
@@ -4185,10 +4296,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "actions/customer-flight-count.ts",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "actions_customer_flight_count_addcount",
+      "target": "lib_audit_log_getaudituser"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "actions/customer-flight-count.ts",
       "source_location": "L54",
       "weight": 1.0,
       "source": "actions_customer_flight_count_addcount",
-      "target": "actions_log_logaction"
+      "target": "lib_audit_log_logaction"
     },
     {
       "relation": "calls",
@@ -4218,10 +4340,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "actions/customer-flight-count.ts",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "actions_customer_flight_count_updatecount",
+      "target": "lib_audit_log_getaudituser"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "actions/customer-flight-count.ts",
       "source_location": "L111",
       "weight": 1.0,
       "source": "actions_customer_flight_count_updatecount",
-      "target": "actions_log_logaction"
+      "target": "lib_audit_log_logaction"
     },
     {
       "relation": "calls",
@@ -4262,10 +4395,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "actions/customer-flight-count.ts",
+      "source_location": "L151",
+      "weight": 1.0,
+      "source": "actions_customer_flight_count_deletecount",
+      "target": "lib_audit_log_getaudituser"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "actions/customer-flight-count.ts",
       "source_location": "L146",
       "weight": 1.0,
       "source": "actions_customer_flight_count_deletecount",
-      "target": "actions_log_logaction"
+      "target": "lib_audit_log_logaction"
     },
     {
       "relation": "calls",
@@ -4355,28 +4499,6 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "actions/customer.ts",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "actions_customer",
-      "target": "actions_log"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "actions/customer.ts",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "actions_customer",
-      "target": "actions_log_logaction"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "actions/customer.ts",
       "source_location": "L5",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4443,6 +4565,39 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "actions/customer.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "actions_customer",
+      "target": "lib_audit_log"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "actions/customer.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "actions_customer",
+      "target": "lib_audit_log_getaudituser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "actions/customer.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "actions_customer",
+      "target": "lib_audit_log_logaction"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "actions/customer.ts",
       "source_location": "L7",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4499,10 +4654,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "actions/customer.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "actions_customer_addcustomer",
+      "target": "lib_audit_log_getaudituser"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "actions/customer.ts",
       "source_location": "L46",
       "weight": 1.0,
       "source": "actions_customer_addcustomer",
-      "target": "actions_log_logaction"
+      "target": "lib_audit_log_logaction"
     },
     {
       "relation": "calls",
@@ -4532,10 +4698,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "actions/customer.ts",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "actions_customer_deletecustomer",
+      "target": "lib_audit_log_getaudituser"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "actions/customer.ts",
       "source_location": "L90",
       "weight": 1.0,
       "source": "actions_customer_deletecustomer",
-      "target": "actions_log_logaction"
+      "target": "lib_audit_log_logaction"
     },
     {
       "relation": "calls",
@@ -4565,10 +4742,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "actions/customer.ts",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "actions_customer_rejectdeleterequest",
+      "target": "lib_audit_log_getaudituser"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "actions/customer.ts",
       "source_location": "L138",
       "weight": 1.0,
       "source": "actions_customer_rejectdeleterequest",
-      "target": "actions_log_logaction"
+      "target": "lib_audit_log_logaction"
     },
     {
       "relation": "calls",
@@ -4598,10 +4786,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "actions/customer.ts",
+      "source_location": "L212",
+      "weight": 1.0,
+      "source": "actions_customer_updatecustomer",
+      "target": "lib_audit_log_getaudituser"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "actions/customer.ts",
       "source_location": "L213",
       "weight": 1.0,
       "source": "actions_customer_updatecustomer",
-      "target": "actions_log_logaction"
+      "target": "lib_audit_log_logaction"
     },
     {
       "relation": "calls",
@@ -4624,60 +4823,6 @@
       "confidence_score": 1.0,
       "source": "components_update_company",
       "target": "actions_customer_updatecustomer"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "actions/log.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "actions_log",
-      "target": "actions_log_logaction"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "actions/log.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "actions_log",
-      "target": "db_schema"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "actions/log.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "actions_log",
-      "target": "db_schema_auditlogs"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "actions/log.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "actions_log",
-      "target": "drizzle_index"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "actions/log.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "actions_log",
-      "target": "drizzle_index_db"
     },
     {
       "relation": "contains",
@@ -7566,9 +7711,9 @@
       "source_file": "components/report-form.tsx",
       "source_location": "L87",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_form",
-      "target": "components_report_form_normalizearabic",
-      "confidence_score": 1.0
+      "target": "components_report_form_normalizearabic"
     },
     {
       "relation": "contains",
@@ -7827,9 +7972,9 @@
       "source_file": "components/report-form.tsx",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_form",
-      "target": "ui_input",
-      "confidence_score": 1.0
+      "target": "ui_input"
     },
     {
       "relation": "imports",
@@ -7838,9 +7983,9 @@
       "source_file": "components/report-form.tsx",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_form",
-      "target": "ui_input_input",
-      "confidence_score": 1.0
+      "target": "ui_input_input"
     },
     {
       "relation": "imports_from",
@@ -8036,9 +8181,9 @@
       "source_file": "components/report-form.tsx",
       "source_location": "L147",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_form_reportform",
-      "target": "components_report_form_normalizearabic",
-      "confidence_score": 1.0
+      "target": "components_report_form_normalizearabic"
     },
     {
       "relation": "contains",
@@ -11632,6 +11777,28 @@
       "target": "db_schema"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_audit_log",
+      "target": "db_schema"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_audit_log",
+      "target": "db_schema_cutomerstable"
+    },
+    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -11643,6 +11810,28 @@
       "target": "db_schema_customerflightcounttable"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_audit_log",
+      "target": "db_schema_customerflightcounttable"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_audit_log",
+      "target": "db_schema_auditlogs"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "drizzle/index.ts",
@@ -11651,6 +11840,16 @@
       "confidence_score": 1.0,
       "source": "drizzle_index",
       "target": "drizzle_index_db"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "drizzle/index.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "drizzle_index",
+      "target": "drizzle_index_pool",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -11664,6 +11863,17 @@
       "target": "drizzle_index"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_audit_log",
+      "target": "drizzle_index"
+    },
+    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -11672,6 +11882,17 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "drizzle_seed",
+      "target": "drizzle_index_db"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_audit_log",
       "target": "drizzle_index_db"
     },
     {
@@ -11784,6 +12005,66 @@
       "confidence_score": 1.0,
       "source": "formsschema_report_flights",
       "target": "formsschema_report_flights_reportperiod"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_audit_log",
+      "target": "lib_audit_log_auditentry"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_audit_log",
+      "target": "lib_audit_log_companyrow"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "lib_audit_log",
+      "target": "lib_audit_log_dbtransaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_audit_log",
+      "target": "lib_audit_log_flightcountrow"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "lib_audit_log",
+      "target": "lib_audit_log_getaudituser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/audit-log.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_audit_log",
+      "target": "lib_audit_log_logaction"
     },
     {
       "relation": "contains",
@@ -12114,6 +12395,16 @@
       "confidence_score": 1.0,
       "source": "package_dependencies",
       "target": "package_dependencies_react_dom"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "package_dependencies",
+      "target": "package_dependencies_server_only"
     },
     {
       "relation": "contains",
@@ -12589,6 +12880,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "type.ts",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "type",
+      "target": "type_logstoredmetadata"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "type.ts",
       "source_location": "L71",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -12639,11 +12940,53 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "type.ts",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "type",
+      "target": "type_storedcompanydetails"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "type.ts",
+      "source_location": "L51",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "type",
+      "target": "type_storedflightdetails"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "type.ts",
       "source_location": "L17",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "type",
       "target": "type_updateflightcountformvalues"
+    },
+    {
+      "relation": "inherits",
+      "context": "type",
+      "confidence": "EXTRACTED",
+      "source_file": "type.ts",
+      "source_location": "L79",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "type_logflightdetails",
+      "target": "type_storedflightdetails"
+    },
+    {
+      "relation": "inherits",
+      "context": "type",
+      "confidence": "EXTRACTED",
+      "source_file": "type.ts",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "type_logcompanydetails",
+      "target": "type_storedcompanydetails"
     },
     {
       "relation": "references",
@@ -12877,5 +13220,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b6073ddbf47ec026a233fc1cc543ea6ff60d6c77"
+  "built_at_commit": "6b395d2b2aca54930fbe30505f63caf537e018fd"
 }

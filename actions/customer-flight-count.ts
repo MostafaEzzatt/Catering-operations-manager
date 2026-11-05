@@ -11,7 +11,7 @@ import { canModifyRecord } from "@/lib/permissions";
 import { getSession } from "@/lib/roles";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { logAction } from "./log";
+import { getAuditUser, logAction } from "@/lib/audit-log";
 
 export async function addCount(
   prevState: any,
@@ -44,19 +44,23 @@ export async function addCount(
       return 2;
     }
 
-    const INSERT_DATA = await db
-      .insert(customerFlightCountTable)
-      .values(customer)
-      .returning();
+    const auditUser = await getAuditUser();
+
+    // The insert and its audit entry are saved together or not at all
+    await db.transaction(async (tx) => {
+      const [created] = await tx
+        .insert(customerFlightCountTable)
+        .values(customer)
+        .returning();
+
+      await logAction(tx, auditUser, {
+        action: "CREATE",
+        entity: "Flight Details",
+        record: created,
+      });
+    });
 
     revalidatePath("/");
-
-    await logAction({
-      action: "CREATE",
-      entity: "Flight Details",
-      entityId: `${INSERT_DATA[0].id}`,
-      metadata: INSERT_DATA[0],
-    });
 
     return 1;
   } catch (error) {
@@ -92,28 +96,35 @@ export async function updateCount(
     if (!canModifyRecord(SelectData[0].createdBy, { isAdmin, userId }))
       return 3;
 
-    const UpdatedData = await db
-      .update(customerFlightCountTable)
-      .set({
-        flightCount: parsed.data.flightCount,
-        c: parsed.data.c,
-        h: parsed.data.h,
-        y: parsed.data.y,
-      })
-      .where(eq(customerFlightCountTable.id, value.id))
-      .returning();
+    const auditUser = await getAuditUser();
 
-    // The row can vanish between the permission check and the update
-    if (UpdatedData.length === 0) return 2;
+    // The update and its audit entry are saved together or not at all
+    const updated = await db.transaction(async (tx) => {
+      const [row] = await tx
+        .update(customerFlightCountTable)
+        .set({
+          flightCount: parsed.data.flightCount,
+          c: parsed.data.c,
+          h: parsed.data.h,
+          y: parsed.data.y,
+        })
+        .where(eq(customerFlightCountTable.id, value.id))
+        .returning();
+
+      // The row can vanish between the permission check and the update
+      if (!row) return null;
+
+      await logAction(tx, auditUser, {
+        action: "UPDATE",
+        entity: "Flight Details",
+        record: row,
+      });
+      return row;
+    });
+
+    if (!updated) return 2;
 
     revalidatePath("/");
-
-    await logAction({
-      action: "UPDATE",
-      entity: "Flight Details",
-      entityId: `${UpdatedData[0].id}`,
-      metadata: UpdatedData[0],
-    });
 
     return 1;
   } catch (error) {
@@ -137,18 +148,22 @@ export async function deleteCount(prevState: any, value: number) {
     if (!canModifyRecord(SelectData[0].createdBy, { isAdmin, userId }))
       return false;
 
-    await db
-      .delete(customerFlightCountTable)
-      .where(eq(customerFlightCountTable.id, value));
+    const auditUser = await getAuditUser();
+
+    // The delete and its audit entry are saved together or not at all
+    await db.transaction(async (tx) => {
+      await tx
+        .delete(customerFlightCountTable)
+        .where(eq(customerFlightCountTable.id, value));
+
+      await logAction(tx, auditUser, {
+        action: "DELETE",
+        entity: "Flight Details",
+        record: SelectData[0],
+      });
+    });
 
     revalidatePath("/");
-
-    await logAction({
-      action: "DELETE",
-      entity: "Flight Details",
-      entityId: `${value}`,
-      metadata: SelectData[0],
-    });
 
     return true;
   } catch (error) {

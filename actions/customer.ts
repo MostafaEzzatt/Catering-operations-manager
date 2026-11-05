@@ -8,7 +8,7 @@ import { getSession } from "@/lib/roles";
 import { currentUser } from "@clerk/nextjs/server";
 import { and, eq, ne, or } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { logAction } from "./log";
+import { getAuditUser, logAction } from "@/lib/audit-log";
 
 export async function addCustomer(prevState: any, value: CompanyFormValues) {
   const { isAuthenticated } = await getSession();
@@ -36,19 +36,23 @@ export async function addCustomer(prevState: any, value: CompanyFormValues) {
       return 2;
     }
 
-    const INSERT_DATA = await db
-      .insert(cutomersTable)
-      .values(customer)
-      .returning();
+    const auditUser = await getAuditUser();
+
+    // The insert and its audit entry are saved together or not at all
+    await db.transaction(async (tx) => {
+      const [created] = await tx
+        .insert(cutomersTable)
+        .values(customer)
+        .returning();
+
+      await logAction(tx, auditUser, {
+        action: "CREATE",
+        entity: "Company",
+        record: created,
+      });
+    });
 
     revalidatePath("/add-companys");
-
-    await logAction({
-      action: "CREATE",
-      entity: "Company",
-      entityId: `${INSERT_DATA[0].id}`,
-      metadata: INSERT_DATA[0],
-    });
 
     return 1;
   } catch (error) {
@@ -74,39 +78,45 @@ export async function deleteCustomer(prevState: any, value: number) {
 
     if (SelectData.length === 0) return 0;
 
+    const auditUser = await getAuditUser();
+
     if (!isAdmin) {
       const user = await currentUser();
 
-      await db
-        .update(cutomersTable)
-        .set({
-          deleteRequestedBy: user?.username ?? userId,
-          deleteRequestedAt: new Date(),
-        })
-        .where(eq(cutomersTable.id, value));
+      // The request and its audit entry are saved together or not at all
+      await db.transaction(async (tx) => {
+        await tx
+          .update(cutomersTable)
+          .set({
+            deleteRequestedBy: user?.username ?? userId,
+            deleteRequestedAt: new Date(),
+          })
+          .where(eq(cutomersTable.id, value));
+
+        await logAction(tx, auditUser, {
+          action: "REQUEST_DELETE",
+          entity: "Company",
+          record: SelectData[0],
+        });
+      });
 
       revalidatePath("/add-companys");
-
-      await logAction({
-        action: "REQUEST_DELETE",
-        entity: "Company",
-        entityId: `${SelectData[0].id}`,
-        metadata: SelectData[0],
-      });
 
       return 2;
     }
 
-    await db.delete(cutomersTable).where(eq(cutomersTable.id, value));
+    // The delete and its audit entry are saved together or not at all
+    await db.transaction(async (tx) => {
+      await tx.delete(cutomersTable).where(eq(cutomersTable.id, value));
+
+      await logAction(tx, auditUser, {
+        action: "DELETE",
+        entity: "Company",
+        record: SelectData[0],
+      });
+    });
 
     revalidatePath("/add-companys");
-
-    await logAction({
-      action: "DELETE",
-      entity: "Company",
-      entityId: `${SelectData[0].id}`,
-      metadata: SelectData[0],
-    });
 
     return 1;
   } catch (error) {
@@ -128,19 +138,23 @@ export async function rejectDeleteRequest(prevState: any, value: number) {
     if (SelectData.length === 0 || !SelectData[0].deleteRequestedBy)
       return false;
 
-    await db
-      .update(cutomersTable)
-      .set({ deleteRequestedBy: null, deleteRequestedAt: null })
-      .where(eq(cutomersTable.id, value));
+    const auditUser = await getAuditUser();
+
+    // The rejection and its audit entry are saved together or not at all
+    await db.transaction(async (tx) => {
+      await tx
+        .update(cutomersTable)
+        .set({ deleteRequestedBy: null, deleteRequestedAt: null })
+        .where(eq(cutomersTable.id, value));
+
+      await logAction(tx, auditUser, {
+        action: "REJECT_DELETE",
+        entity: "Company",
+        record: SelectData[0],
+      });
+    });
 
     revalidatePath("/add-companys");
-
-    await logAction({
-      action: "REJECT_DELETE",
-      entity: "Company",
-      entityId: `${SelectData[0].id}`,
-      metadata: SelectData[0],
-    });
 
     return true;
   } catch (error) {
@@ -195,27 +209,34 @@ export async function updateCustomer(prevState: any, value: updateValue) {
       return 3;
     }
 
-    const UpdatedData = await db
-      .update(cutomersTable)
-      .set({
-        name: parsed.data.name,
-        cNumber: parsed.data.cNumber,
-        code: parsed.data.code,
-      })
-      .where(eq(cutomersTable.id, value.id))
-      .returning();
+    const auditUser = await getAuditUser();
 
-    // The row can vanish between the existence check and the update
-    if (UpdatedData.length === 0) return 2;
+    // The update and its audit entry are saved together or not at all
+    const updated = await db.transaction(async (tx) => {
+      const [row] = await tx
+        .update(cutomersTable)
+        .set({
+          name: parsed.data.name,
+          cNumber: parsed.data.cNumber,
+          code: parsed.data.code,
+        })
+        .where(eq(cutomersTable.id, value.id))
+        .returning();
+
+      // The row can vanish between the existence check and the update
+      if (!row) return null;
+
+      await logAction(tx, auditUser, {
+        action: "UPDATE",
+        entity: "Company",
+        record: row,
+      });
+      return row;
+    });
+
+    if (!updated) return 2;
 
     revalidatePath("/add-companys");
-
-    await logAction({
-      action: "UPDATE",
-      entity: "Company",
-      entityId: `${UpdatedData[0].id}`,
-      metadata: UpdatedData[0],
-    });
 
     return 1;
   } catch (error) {

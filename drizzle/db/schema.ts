@@ -64,9 +64,9 @@ export const customerFlightCountTable = pgTable(
 export const auditLogs = pgTable("audit_logs", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   user: text().notNull(),
-  action: text().notNull(), // CREATE | UPDATE | DELETE
-  entity: text().notNull(), // posts, projects, tasks etc
-  entityId: text(),
-  metadata: jsonb().$type<logTableMetaDataType>(), // optional extra info
+  action: text().notNull(), // CREATE | UPDATE | DELETE | REQUEST_DELETE | REJECT_DELETE
+  entity: text().notNull(), // "Company" | "Flight Details"
+  entityId: text(), // id of the affected row
+  metadata: jsonb().$type<logStoredMetadata>(), // the affected row, as JSON
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
