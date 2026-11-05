@@ -2,7 +2,7 @@ import { db } from "@/drizzle";
 import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
 import type { DayRange } from "@/lib/date-range";
 import { getSession } from "@/lib/roles";
-import { between, desc, eq } from "drizzle-orm";
+import { between, eq } from "drizzle-orm";
 import FlightCountFilter from "./flight-count-filter";
 import FlightsCountDataTable from "./flights-count-table";
 import HeadingTwo from "./typo-h2";
@@ -22,8 +22,20 @@ const GetAllFlightCounts = async ({
       cutomersTable,
       eq(customerFlightCountTable.customerId, cutomersTable.id),
     )
-    .where(between(customerFlightCountTable.date, from, to))
-    .orderBy(desc(customerFlightCountTable.date));
+    .where(between(customerFlightCountTable.date, from, to));
+
+  // Newest day first, then companies in Arabic alphabetical order within a
+  // day. Sorted here, not in SQL, so names sort like everywhere else in the
+  // app (the database's collation may order Arabic differently).
+  flightsCountData.sort((a, b) => {
+    const dayA = a["co-mgr-customer-flight-count"].date;
+    const dayB = b["co-mgr-customer-flight-count"].date;
+    if (dayA !== dayB) return dayA < dayB ? 1 : -1;
+    return (a["co-mgr-customers"]?.name ?? "").localeCompare(
+      b["co-mgr-customers"]?.name ?? "",
+      "ar",
+    );
+  });
 
   return (
     <>

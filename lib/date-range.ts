@@ -15,6 +15,14 @@ export function isDayString(value: unknown): value is string {
   return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === value;
 }
 
+// "YYYY-MM-DD" → "DD / MM / YYYY", the format the reports use. Show it inside
+// <bdi dir="ltr">: on a right-to-left page the parts would otherwise appear
+// in reverse order.
+export function formatDayString(day: string): string {
+  const [year, month, dayOfMonth] = day.split("-");
+  return `${dayOfMonth} / ${month} / ${year}`;
+}
+
 // Today's date in Cairo, as "YYYY-MM-DD"
 export function todayDayString(now = new Date()): string {
   const parts = new Intl.DateTimeFormat("en-US", {

@@ -40,8 +40,8 @@
     "semantic_hash": ""
   },
   "app/page.tsx": {
-    "mtime": 1793875369.0158553,
-    "ast_hash": "3d2c604e517db42d654fdcb06892e6cb",
+    "mtime": 1793877105.067222,
+    "ast_hash": "129b68dcf0f088a262c8cc39b54c325c",
     "semantic_hash": ""
   },
   "app/reports/page.tsx": {
@@ -60,8 +60,8 @@
     "semantic_hash": "a046deec29d912fe903aaea506c6d22e"
   },
   "components/add-ms-flight-count.tsx": {
-    "mtime": 1793876345.0884917,
-    "ast_hash": "d1c138fc705f1677b35ff444281f830c",
+    "mtime": 1793877103.7357893,
+    "ast_hash": "d667f48fa74cc4dd8e6735b8c70a558e",
     "semantic_hash": ""
   },
   "components/company-table.tsx": {
@@ -110,8 +110,8 @@
     "semantic_hash": "84094bad2fd4062b52e693f5cd91ee7b"
   },
   "components/report-form.tsx": {
-    "mtime": 1793870158.2766173,
-    "ast_hash": "65054231a3f06f022914605afd20a9fc",
+    "mtime": 1793877070.2334137,
+    "ast_hash": "2e704e457876b189d8318836e19323d8",
     "semantic_hash": ""
   },
   "components/report-table.tsx": {
@@ -430,8 +430,8 @@
     "semantic_hash": "a7f26bdfd6c7821c339332aa5cde07d5"
   },
   "CLAUDE.md": {
-    "mtime": 1793865370.9478786,
-    "ast_hash": "7255c0d11c8c72adc10aeafe542ccf31",
+    "mtime": 1793877389.049642,
+    "ast_hash": "3c9b1de0bd2424e4bfc327eff09b2800",
     "semantic_hash": ""
   },
   "README.md": {
@@ -477,6 +477,16 @@
   "lib/date-range.ts": {
     "mtime": 1793875802.782632,
     "ast_hash": "a3445ae3b5cfd5da9655e7c2192dc0c1",
+    "semantic_hash": ""
+  },
+  "components/company-picker.tsx": {
+    "mtime": 1793877098.758803,
+    "ast_hash": "28be0b72a6f0f0e0661f453dfcf07ce7",
+    "semantic_hash": ""
+  },
+  "lib/arabic.ts": {
+    "mtime": 1793877065.440677,
+    "ast_hash": "ce1056e0359cf469c1f497940b5332d8",
     "semantic_hash": ""
   }
 }

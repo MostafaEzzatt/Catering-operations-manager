@@ -1,16 +1,16 @@
 # Graph Report - Catering-operations-manager  (2026-11-05)
 
 ## Corpus Check
-- 93 files · ~24,600 words
+- 93 files · ~24,741 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 425 nodes · 928 edges · 28 communities (18 shown, 10 thin omitted)
+- 426 nodes · 934 edges · 28 communities (18 shown, 10 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `45abe8fb`
+- Built from commit: `b94191fa`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -55,14 +55,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `RootLayout()` --calls--> `getSession()`  [EXTRACTED]
   app/layout.tsx → lib/roles.ts
+- `AlertDialogOverlay()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/alert-dialog.tsx → lib/utils.ts
 - `DialogOverlay()` --calls--> `cn()`  [EXTRACTED]
   components/ui/dialog.tsx → lib/utils.ts
 - `DialogFooter()` --calls--> `cn()`  [EXTRACTED]
   components/ui/dialog.tsx → lib/utils.ts
-- `PopoverHeader()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/popover.tsx → lib/utils.ts
-- `PopoverTitle()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/popover.tsx → lib/utils.ts
+- `FieldSet()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/field.tsx → lib/utils.ts
 
 ## Import Cycles
 - None detected.
@@ -71,31 +71,31 @@
 
 ### Community 0 - "Audit Logs and UI Primitives"
 Cohesion: 0.06
-Nodes (48): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+40 more)
+Nodes (45): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+37 more)
 
 ### Community 1 - "Server Actions and Audit Log"
-Cohesion: 0.12
-Nodes (29): addCustomer(), deleteCustomer(), addCount(), deleteCount(), updateCount(), rejectDeleteRequest(), updateCustomer(), updateValue (+21 more)
+Cohesion: 0.11
+Nodes (30): addCustomer(), deleteCustomer(), addCount(), deleteCount(), updateCount(), rejectDeleteRequest(), updateCustomer(), updateValue (+22 more)
 
 ### Community 2 - "Flight and Report Forms"
 Cohesion: 0.08
-Nodes (33): AddFormValues, COUNT_FIELDS, CountField, Company, CompanyPicker(), ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType (+25 more)
+Nodes (42): AddFormValues, COUNT_FIELDS, CountField, Company, CompanyPicker(), ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType (+34 more)
 
 ### Community 3 - "Company and Flight Edit Forms"
-Cohesion: 0.10
-Nodes (21): FlightCountFilter(), ar_field_name, EditFieldName, FIELD_NAMES, formSchema, DatePicker(), Dialog(), DialogContent() (+13 more)
+Cohesion: 0.09
+Nodes (25): Home(), ar_field_name, EditFieldName, FIELD_NAMES, UpdateFlightCount(), flightCountNumber, formSchema, formTextSchema (+17 more)
 
 ### Community 4 - "Data Tables and Dialogs"
-Cohesion: 0.16
-Nodes (23): formatNumber(), ReportTable(), Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent(), AlertDialogDescription() (+15 more)
+Cohesion: 0.14
+Nodes (25): formatNumber(), ReportPrintMeta, ReportTable(), Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent() (+17 more)
 
 ### Community 5 - "Layout, Navbar and Menus"
-Cohesion: 0.22
-Nodes (6): fontSans, metadata, RootLayout(), navList, Toaster(), ThemeProvider()
+Cohesion: 0.20
+Nodes (7): fontSans, metadata, RootLayout(), navList, Toaster(), ThemeProvider(), ModeToggle()
 
 ### Community 6 - "Runtime Dependencies"
-Cohesion: 0.05
-Nodes (37): dependencies, class-variance-authority, @clerk/nextjs, clsx, date-fns, dotenv, drizzle-orm, drizzle-query-logger (+29 more)
+Cohesion: 0.07
+Nodes (28): dependencies, class-variance-authority, @clerk/nextjs, clsx, date-fns, dotenv, drizzle-orm, drizzle-query-logger (+20 more)
 
 ### Community 7 - "Dev Dependencies and Tooling"
 Cohesion: 0.15
@@ -122,8 +122,8 @@ Cohesion: 0.19
 Nodes (9): groupByPeriod(), periodLabel(), periodStart(), reportAction(), ReportRow, actionSchema, formSchema, REPORT_PERIODS (+1 more)
 
 ### Community 27 - "Community 27"
-Cohesion: 0.17
-Nodes (12): Home(), flightCountNumber, formSchema, formTextSchema, mealCountNumber, updateFormSchema, updateFormTextSchema, currentMonthRange() (+4 more)
+Cohesion: 0.20
+Nodes (9): name, private, scripts, build, db:seed, dev, lint, start (+1 more)
 
 ## Knowledge Gaps
 - **138 isolated node(s):** `updateValue`, `ReportRow`, `fontSans`, `metadata`, `$schema` (+133 more)
@@ -135,15 +135,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `cn()` connect `Audit Logs and UI Primitives` to `Server Actions and Audit Log`, `Flight and Report Forms`, `Company and Flight Edit Forms`, `Data Tables and Dialogs`?**
   _High betweenness centrality (0.171) - this node is a cross-community bridge._
+- **Why does `dependencies` connect `Runtime Dependencies` to `Community 27`?**
+  _High betweenness centrality (0.160) - this node is a cross-community bridge._
 - **Why does `drizzle-seed` connect `Runtime Dependencies` to `Server Actions and Audit Log`?**
   _High betweenness centrality (0.153) - this node is a cross-community bridge._
 - **What connects `updateValue`, `ReportRow`, `fontSans` to the rest of the system?**
   _139 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Audit Logs and UI Primitives` be split into smaller, more focused modules?**
-  _Cohesion score 0.059673659673659674 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05868118572292801 - nodes in this community are weakly interconnected._
 - **Should `Server Actions and Audit Log` be split into smaller, more focused modules?**
-  _Cohesion score 0.11510204081632654 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11137254901960784 - nodes in this community are weakly interconnected._
 - **Should `Flight and Report Forms` be split into smaller, more focused modules?**
-  _Cohesion score 0.08048103607770583 - nodes in this community are weakly interconnected._
-- **Should `Company and Flight Edit Forms` be split into smaller, more focused modules?**
-  _Cohesion score 0.10317460317460317 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07967806841046278 - nodes in this community are weakly interconnected._

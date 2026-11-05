@@ -2,6 +2,7 @@
 import { updateCount } from "@/actions/customer-flight-count";
 import { customerFlightCountTable } from "@/drizzle/db/schema";
 import { updateFormTextSchema } from "@/formsSchema/add-customer-flight-count";
+import { formatDayString } from "@/lib/date-range";
 import { InferSelectModel } from "drizzle-orm";
 import { Pencil } from "lucide-react";
 import { useState, useTransition } from "react";
@@ -118,7 +119,8 @@ const UpdateFlightCount = ({
         <DialogHeader>
           <DialogTitle>تعديل اعداد الرحلات</DialogTitle>
           <DialogDescription>
-            تعديل اعداد رحلات شركة {companyName} بتاريخ {record.date}.
+            تعديل اعداد رحلات شركة {companyName} بتاريخ{" "}
+            <bdi dir="ltr">{formatDayString(record.date)}</bdi>.
           </DialogDescription>
         </DialogHeader>
         <form id={`update-flight-count-${record.id}`} onSubmit={handleSubmit}>

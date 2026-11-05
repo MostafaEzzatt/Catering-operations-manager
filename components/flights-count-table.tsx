@@ -2,6 +2,7 @@
 
 import { deleteCount } from "@/actions/customer-flight-count";
 import { customerFlightCountTable, cutomersTable } from "@/drizzle/db/schema";
+import { formatDayString } from "@/lib/date-range";
 import { canModifyRecord } from "@/lib/permissions";
 import {
   ColumnDef,
@@ -100,6 +101,9 @@ const FlightsCountDataTable = ({
     {
       accessorKey: "co-mgr-customer-flight-count.date",
       header: "التاريخ",
+      cell: (info) => (
+        <bdi dir="ltr">{formatDayString(info.getValue<string>())}</bdi>
+      ),
     },
     {
       accessorKey: "co-mgr-customers.name",
@@ -158,8 +162,9 @@ const FlightsCountDataTable = ({
                 <AlertDialogHeader>
                   <AlertDialogTitle>حذف سجل الرحلات؟</AlertDialogTitle>
                   <AlertDialogDescription>
-                    سيتم حذف سجل رحلات شركة {companyName} بتاريخ {record.date}{" "}
-                    نهائياً. لا يمكن التراجع عن هذا الإجراء.
+                    سيتم حذف سجل رحلات شركة {companyName} بتاريخ{" "}
+                    <bdi dir="ltr">{formatDayString(record.date)}</bdi> نهائياً.
+                    لا يمكن التراجع عن هذا الإجراء.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
