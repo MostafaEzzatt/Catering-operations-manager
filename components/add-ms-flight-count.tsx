@@ -2,7 +2,10 @@
 "use client";
 import { addCount } from "@/actions/customer-flight-count";
 import { cutomersTable } from "@/drizzle/db/schema";
-import { formSchema } from "@/formsSchema/add-customer-flight-count";
+import {
+  formTextSchema,
+  updateFormTextSchema,
+} from "@/formsSchema/add-customer-flight-count";
 import { useForm } from "@tanstack/react-form";
 import { format } from "date-fns";
 import { InferSelectModel } from "drizzle-orm";
@@ -21,6 +24,14 @@ import {
 } from "./ui/select";
 import { Spinner } from "./ui/spinner";
 
+const COUNT_FIELDS = ["flightCount", "c", "h", "y"] as const;
+type CountField = (typeof COUNT_FIELDS)[number];
+
+// The count boxes hold their text as typed, so a box can be empty; the
+// schema turns the text into numbers
+type AddFormValues = Omit<CustomerFlightCountFormValues, CountField> &
+  Record<CountField, string>;
+
 const AddMSFlightCount = ({
   customers,
 }: {
@@ -38,12 +49,12 @@ const AddMSFlightCount = ({
 
   const isPending = insertIsPending || tansitionIsPending;
 
-  const defaultValues: CustomerFlightCountFormValues = {
+  const defaultValues: AddFormValues = {
     customerId: 0,
-    flightCount: 0,
-    c: 0,
-    h: 0,
-    y: 0,
+    flightCount: "",
+    c: "",
+    h: "",
+    y: "",
     date: format(new Date(), "yyyy-MM-dd"),
   };
 
@@ -59,12 +70,18 @@ const AddMSFlightCount = ({
   const form = useForm({
     defaultValues,
     validators: {
-      onSubmit: formSchema,
+      onSubmit: formTextSchema,
     },
     onSubmit: ({ value }) => {
+      // Runs only after validation passed, so the counts parse as numbers
+      const counts = updateFormTextSchema.parse(value);
       startTransition(() => {
-        // "YYYY-MM-DD" of the day picked, the format the server accepts
-        insertSubmit({ ...value, date: format(date, "yyyy-MM-dd") });
+        insertSubmit({
+          ...value,
+          ...counts,
+          // "YYYY-MM-DD" of the day picked, the format the server accepts
+          date: format(date, "yyyy-MM-dd"),
+        });
       });
     },
   });
@@ -139,109 +156,41 @@ const AddMSFlightCount = ({
             }}
           />
 
-          <form.Field
-            name="flightCount"
-            children={(field) => {
-              const isInvalid =
-                field.state.meta.isTouched && !field.state.meta.isValid;
-              return (
-                <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name} className="capitalize">
-                    {ar_field_name[field.name]}
-                  </FieldLabel>
-                  <Input
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(Number(e.target.value))}
-                    aria-invalid={isInvalid}
-                    placeholder={ar_field_name[field.name]}
-                    autoComplete="off"
-                  />
-                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
-                </Field>
-              );
-            }}
-          />
-
-          <form.Field
-            name="c"
-            children={(field) => {
-              const isInvalid =
-                field.state.meta.isTouched && !field.state.meta.isValid;
-              return (
-                <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name} className="capitalize">
-                    {ar_field_name[field.name]}
-                  </FieldLabel>
-                  <Input
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(Number(e.target.value))}
-                    aria-invalid={isInvalid}
-                    placeholder={ar_field_name[field.name]}
-                    autoComplete="off"
-                  />
-                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
-                </Field>
-              );
-            }}
-          />
-
-          <form.Field
-            name="h"
-            children={(field) => {
-              const isInvalid =
-                field.state.meta.isTouched && !field.state.meta.isValid;
-              return (
-                <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name} className="capitalize">
-                    {ar_field_name[field.name]}
-                  </FieldLabel>
-                  <Input
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(Number(e.target.value))}
-                    aria-invalid={isInvalid}
-                    placeholder={ar_field_name[field.name]}
-                    autoComplete="off"
-                  />
-                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
-                </Field>
-              );
-            }}
-          />
-
-          <form.Field
-            name="y"
-            children={(field) => {
-              const isInvalid =
-                field.state.meta.isTouched && !field.state.meta.isValid;
-              return (
-                <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name} className="capitalize">
-                    {ar_field_name[field.name]}
-                  </FieldLabel>
-                  <Input
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(Number(e.target.value))}
-                    aria-invalid={isInvalid}
-                    placeholder={ar_field_name[field.name]}
-                    autoComplete="off"
-                  />
-                  {isInvalid && <FieldError errors={field.state.meta.errors} />}
-                </Field>
-              );
-            }}
-          />
+          {COUNT_FIELDS.map((name) => (
+            <form.Field
+              key={name}
+              name={name}
+              children={(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                return (
+                  <Field data-invalid={isInvalid}>
+                    <FieldLabel htmlFor={field.name} className="capitalize">
+                      {ar_field_name[name]}
+                    </FieldLabel>
+                    <Input
+                      id={field.name}
+                      name={field.name}
+                      value={field.state.value}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      aria-invalid={isInvalid}
+                      // Number pad on phones; still a text box, so it can be empty
+                      inputMode="numeric"
+                      // An empty meal box counts as 0; flights must be filled in
+                      placeholder={
+                        name === "flightCount" ? ar_field_name[name] : "0"
+                      }
+                      autoComplete="off"
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+            />
+          ))}
 
           <form.Field
             name="date"

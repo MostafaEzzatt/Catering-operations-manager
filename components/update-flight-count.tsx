@@ -1,7 +1,7 @@
 "use client";
 import { updateCount } from "@/actions/customer-flight-count";
 import { customerFlightCountTable } from "@/drizzle/db/schema";
-import { updateFormSchema } from "@/formsSchema/add-customer-flight-count";
+import { updateFormTextSchema } from "@/formsSchema/add-customer-flight-count";
 import { InferSelectModel } from "drizzle-orm";
 import { Pencil } from "lucide-react";
 import { useState, useTransition } from "react";
@@ -73,12 +73,8 @@ const UpdateFlightCount = ({
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const parsed = updateFormSchema.safeParse({
-      flightCount: Number(values.flightCount),
-      c: Number(values.c),
-      h: Number(values.h),
-      y: Number(values.y),
-    });
+    // The schema turns the boxes' text into numbers (an empty meal box is 0)
+    const parsed = updateFormTextSchema.safeParse(values);
 
     if (!parsed.success) {
       const nextErrors: typeof errors = {};
@@ -143,7 +139,10 @@ const UpdateFlightCount = ({
                       setValues((v) => ({ ...v, [name]: e.target.value }))
                     }
                     aria-invalid={isInvalid}
-                    placeholder={ar_field_name[name]}
+                    // Number pad on phones; still a text box, so it can be empty
+                    inputMode="numeric"
+                    // An empty meal box counts as 0; flights must be filled in
+                    placeholder={name === "flightCount" ? ar_field_name[name] : "0"}
                     autoComplete="off"
                   />
                   {isInvalid && <FieldError errors={errors[name]} />}

@@ -17,7 +17,7 @@
       "label": "addCount()",
       "file_type": "code",
       "source_file": "actions/customer-flight-count.ts",
-      "source_location": "L16",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "actions_customer_flight_count_addcount",
       "community": 1,
@@ -27,7 +27,7 @@
       "label": "updateCount()",
       "file_type": "code",
       "source_file": "actions/customer-flight-count.ts",
-      "source_location": "L77",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "actions_customer_flight_count_updatecount",
       "community": 1,
@@ -37,7 +37,7 @@
       "label": "deleteCount()",
       "file_type": "code",
       "source_file": "actions/customer-flight-count.ts",
-      "source_location": "L136",
+      "source_location": "L139",
       "_origin": "ast",
       "id": "actions_customer_flight_count_deletecount",
       "community": 1,
@@ -110,7 +110,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "actions_report",
-      "community": 26,
+      "community": 2,
       "norm_label": "report.ts"
     },
     {
@@ -120,7 +120,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "actions_report_reportrow",
-      "community": 26,
+      "community": 2,
       "norm_label": "reportrow"
     },
     {
@@ -130,7 +130,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "actions_report_bycompany",
-      "community": 26,
+      "community": 2,
       "norm_label": "bycompany()"
     },
     {
@@ -140,7 +140,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "actions_report_periodlabel",
-      "community": 26,
+      "community": 2,
       "norm_label": "periodlabel()"
     },
     {
@@ -150,7 +150,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "actions_report_periodstart",
-      "community": 26,
+      "community": 2,
       "norm_label": "periodstart()"
     },
     {
@@ -160,7 +160,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "actions_report_groupbyperiod",
-      "community": 26,
+      "community": 2,
       "norm_label": "groupbyperiod()"
     },
     {
@@ -170,7 +170,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "actions_report_formatdate",
-      "community": 26,
+      "community": 2,
       "norm_label": "formatdate()"
     },
     {
@@ -180,7 +180,7 @@
       "source_location": "L101",
       "_origin": "ast",
       "id": "actions_report_reportaction",
-      "community": 26,
+      "community": 2,
       "norm_label": "reportaction()"
     },
     {
@@ -550,7 +550,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_add_company",
-      "community": 2,
+      "community": 3,
       "norm_label": "add-company.tsx"
     },
     {
@@ -560,7 +560,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "components_add_company_addcompany",
-      "community": 2,
+      "community": 3,
       "norm_label": "addcompany()"
     },
     {
@@ -570,17 +570,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_add_ms_flight_count",
-      "community": 2,
+      "community": 3,
       "norm_label": "add-ms-flight-count.tsx"
     },
     {
       "label": "AddMSFlightCount()",
       "file_type": "code",
       "source_file": "components/add-ms-flight-count.tsx",
-      "source_location": "L23",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "components_add_ms_flight_count_addmsflightcount",
-      "community": 2,
+      "community": 3,
       "norm_label": "addmsflightcount()"
     },
     {
@@ -610,7 +610,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_flight_count_filter",
-      "community": 2,
+      "community": 3,
       "norm_label": "flight-count-filter.tsx"
     },
     {
@@ -620,7 +620,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "components_flight_count_filter_tolocaldate",
-      "community": 2,
+      "community": 3,
       "norm_label": "tolocaldate()"
     },
     {
@@ -630,7 +630,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "components_flight_count_filter_flightcountfilter",
-      "community": 1,
+      "community": 3,
       "norm_label": "flightcountfilter()"
     },
     {
@@ -960,7 +960,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "components_report_table_reportprintmeta",
-      "community": 4,
+      "community": 2,
       "norm_label": "reportprintmeta"
     },
     {
@@ -1180,7 +1180,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "ui_alert_dialog_alertdialogoverlay",
-      "community": 4,
+      "community": 0,
       "norm_label": "alertdialogoverlay()"
     },
     {
@@ -1290,7 +1290,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_button",
-      "community": 2,
+      "community": 4,
       "norm_label": "button.tsx"
     },
     {
@@ -1310,7 +1310,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "ui_button_button",
-      "community": 2,
+      "community": 4,
       "norm_label": "button()"
     },
     {
@@ -1320,7 +1320,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_calendar",
-      "community": 2,
+      "community": 4,
       "norm_label": "calendar.tsx"
     },
     {
@@ -1330,7 +1330,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "ui_calendar_calendar",
-      "community": 2,
+      "community": 4,
       "norm_label": "calendar()"
     },
     {
@@ -1340,7 +1340,7 @@
       "source_location": "L182",
       "_origin": "ast",
       "id": "ui_calendar_calendardaybutton",
-      "community": 2,
+      "community": 0,
       "norm_label": "calendardaybutton()"
     },
     {
@@ -1380,7 +1380,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "ui_datepicker_datepicker",
-      "community": 2,
+      "community": 3,
       "norm_label": "datepicker()"
     },
     {
@@ -1760,7 +1760,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_field",
-      "community": 2,
+      "community": 0,
       "norm_label": "field.tsx"
     },
     {
@@ -1790,7 +1790,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "ui_field_fieldgroup",
-      "community": 2,
+      "community": 3,
       "norm_label": "fieldgroup()"
     },
     {
@@ -1800,7 +1800,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "ui_field_fieldvariants",
-      "community": 2,
+      "community": 0,
       "norm_label": "fieldvariants"
     },
     {
@@ -1810,7 +1810,7 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "ui_field_field",
-      "community": 2,
+      "community": 3,
       "norm_label": "field()"
     },
     {
@@ -1820,7 +1820,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "ui_field_fieldcontent",
-      "community": 2,
+      "community": 0,
       "norm_label": "fieldcontent()"
     },
     {
@@ -1830,7 +1830,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "ui_field_fieldlabel",
-      "community": 2,
+      "community": 3,
       "norm_label": "fieldlabel()"
     },
     {
@@ -1850,7 +1850,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "ui_field_fielddescription",
-      "community": 2,
+      "community": 0,
       "norm_label": "fielddescription()"
     },
     {
@@ -1870,7 +1870,7 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "ui_field_fielderror",
-      "community": 2,
+      "community": 3,
       "norm_label": "fielderror()"
     },
     {
@@ -1880,7 +1880,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_input",
-      "community": 2,
+      "community": 3,
       "norm_label": "input.tsx"
     },
     {
@@ -1890,7 +1890,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_input_input",
-      "community": 2,
+      "community": 3,
       "norm_label": "input()"
     },
     {
@@ -1900,7 +1900,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_label",
-      "community": 2,
+      "community": 0,
       "norm_label": "label.tsx"
     },
     {
@@ -1910,7 +1910,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_label_label",
-      "community": 2,
+      "community": 0,
       "norm_label": "label()"
     },
     {
@@ -2020,7 +2020,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_popover",
-      "community": 0,
+      "community": 2,
       "norm_label": "popover.tsx"
     },
     {
@@ -2060,7 +2060,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "ui_popover_popoveranchor",
-      "community": 0,
+      "community": 2,
       "norm_label": "popoveranchor()"
     },
     {
@@ -2070,7 +2070,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "ui_popover_popoverheader",
-      "community": 0,
+      "community": 2,
       "norm_label": "popoverheader()"
     },
     {
@@ -2080,7 +2080,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "ui_popover_popovertitle",
-      "community": 0,
+      "community": 2,
       "norm_label": "popovertitle()"
     },
     {
@@ -2090,7 +2090,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "ui_popover_popoverdescription",
-      "community": 0,
+      "community": 2,
       "norm_label": "popoverdescription()"
     },
     {
@@ -2280,7 +2280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_spinner",
-      "community": 2,
+      "community": 3,
       "norm_label": "spinner.tsx"
     },
     {
@@ -2290,7 +2290,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_spinner_spinner",
-      "community": 2,
+      "community": 3,
       "norm_label": "spinner()"
     },
     {
@@ -2430,7 +2430,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_update_company",
-      "community": 2,
+      "community": 3,
       "norm_label": "update-company.tsx"
     },
     {
@@ -2440,7 +2440,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "components_update_company_updatecompany",
-      "community": 2,
+      "community": 3,
       "norm_label": "updatecompany()"
     },
     {
@@ -2630,7 +2630,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "formsschema_add_company",
-      "community": 2,
+      "community": 3,
       "norm_label": "add-company.ts"
     },
     {
@@ -2640,7 +2640,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "formsschema_add_company_formschema",
-      "community": 2,
+      "community": 3,
       "norm_label": "formschema"
     },
     {
@@ -2650,27 +2650,27 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "formsschema_add_customer_flight_count",
-      "community": 3,
+      "community": 1,
       "norm_label": "add-customer-flight-count.tsx"
     },
     {
       "label": "formSchema",
       "file_type": "code",
       "source_file": "formsSchema/add-customer-flight-count.tsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "_origin": "ast",
       "id": "formsschema_add_customer_flight_count_formschema",
-      "community": 3,
+      "community": 1,
       "norm_label": "formschema"
     },
     {
       "label": "updateFormSchema",
       "file_type": "code",
       "source_file": "formsSchema/add-customer-flight-count.tsx",
-      "source_location": "L17",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "formsschema_add_customer_flight_count_updateformschema",
-      "community": 3,
+      "community": 1,
       "norm_label": "updateformschema"
     },
     {
@@ -2680,7 +2680,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "formsschema_report_flights",
-      "community": 26,
+      "community": 2,
       "norm_label": "report-flights.tsx"
     },
     {
@@ -2690,7 +2690,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "formsschema_report_flights_report_periods",
-      "community": 26,
+      "community": 2,
       "norm_label": "report_periods"
     },
     {
@@ -2700,7 +2700,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "formsschema_report_flights_reportperiod",
-      "community": 26,
+      "community": 2,
       "norm_label": "reportperiod"
     },
     {
@@ -2710,7 +2710,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "formsschema_report_flights_dayvalue",
-      "community": 26,
+      "community": 2,
       "norm_label": "dayvalue()"
     },
     {
@@ -2720,7 +2720,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "formsschema_report_flights_formschema",
-      "community": 26,
+      "community": 2,
       "norm_label": "formschema"
     },
     {
@@ -2730,7 +2730,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "formsschema_report_flights_actionschema",
-      "community": 26,
+      "community": 2,
       "norm_label": "actionschema"
     },
     {
@@ -2834,10 +2834,20 @@
       "norm_label": "isdaystring()"
     },
     {
-      "label": "currentMonthRange()",
+      "label": "todayDayString()",
       "file_type": "code",
       "source_file": "lib/date-range.ts",
       "source_location": "L19",
+      "_origin": "ast",
+      "id": "lib_date_range_todaydaystring",
+      "community": 1,
+      "norm_label": "todaydaystring()"
+    },
+    {
+      "label": "currentMonthRange()",
+      "file_type": "code",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "lib_date_range_currentmonthrange",
       "community": 1,
@@ -2847,7 +2857,7 @@
       "label": "resolveDayRange()",
       "file_type": "code",
       "source_file": "lib/date-range.ts",
-      "source_location": "L39",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "lib_date_range_resolvedayrange",
       "community": 1,
@@ -2950,7 +2960,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "package",
-      "community": 7,
+      "community": 6,
       "norm_label": "package.json"
     },
     {
@@ -2960,7 +2970,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "package_name",
-      "community": 7,
+      "community": 6,
       "norm_label": "name"
     },
     {
@@ -2970,7 +2980,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "package_version",
-      "community": 7,
+      "community": 6,
       "norm_label": "version"
     },
     {
@@ -2980,7 +2990,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "package_private",
-      "community": 7,
+      "community": 6,
       "norm_label": "private"
     },
     {
@@ -2990,7 +3000,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "package_scripts",
-      "community": 7,
+      "community": 6,
       "norm_label": "scripts"
     },
     {
@@ -3000,7 +3010,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "package_scripts_dev",
-      "community": 7,
+      "community": 6,
       "norm_label": "dev"
     },
     {
@@ -3010,7 +3020,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "package_scripts_build",
-      "community": 7,
+      "community": 6,
       "norm_label": "build"
     },
     {
@@ -3020,7 +3030,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "package_scripts_start",
-      "community": 7,
+      "community": 6,
       "norm_label": "start"
     },
     {
@@ -3030,7 +3040,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "package_scripts_lint",
-      "community": 7,
+      "community": 6,
       "norm_label": "lint"
     },
     {
@@ -3040,7 +3050,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "package_scripts_db_seed",
-      "community": 7,
+      "community": 6,
       "norm_label": "db:seed"
     },
     {
@@ -3190,7 +3200,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "package_dependencies_drizzle_seed",
-      "community": 1,
+      "community": 6,
       "norm_label": "drizzle-seed"
     },
     {
@@ -5677,9 +5687,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "lib_date_range",
-      "confidence_score": 1.0
+      "target": "lib_date_range"
     },
     {
       "relation": "imports",
@@ -5688,9 +5698,9 @@
       "source_file": "app/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_page",
-      "target": "lib_date_range_resolvedayrange",
-      "confidence_score": 1.0
+      "target": "lib_date_range_resolvedayrange"
     },
     {
       "relation": "calls",
@@ -6687,9 +6697,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "components_flight_count_filter_flightcountfilter",
-      "confidence_score": 1.0
+      "target": "components_flight_count_filter_flightcountfilter"
     },
     {
       "relation": "contains",
@@ -6697,9 +6707,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "components_flight_count_filter_tolocaldate",
-      "confidence_score": 1.0
+      "target": "components_flight_count_filter_tolocaldate"
     },
     {
       "relation": "imports_from",
@@ -6708,9 +6718,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_button",
-      "confidence_score": 1.0
+      "target": "ui_button"
     },
     {
       "relation": "imports",
@@ -6719,9 +6729,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_button_button",
-      "confidence_score": 1.0
+      "target": "ui_button_button"
     },
     {
       "relation": "imports_from",
@@ -6730,9 +6740,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_datepicker",
-      "confidence_score": 1.0
+      "target": "ui_datepicker"
     },
     {
       "relation": "imports",
@@ -6741,9 +6751,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_datepicker_datepicker",
-      "confidence_score": 1.0
+      "target": "ui_datepicker_datepicker"
     },
     {
       "relation": "imports_from",
@@ -6752,9 +6762,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_field",
-      "confidence_score": 1.0
+      "target": "ui_field"
     },
     {
       "relation": "imports",
@@ -6763,9 +6773,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_field_field",
-      "confidence_score": 1.0
+      "target": "ui_field_field"
     },
     {
       "relation": "imports",
@@ -6774,9 +6784,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_field_fielderror",
-      "confidence_score": 1.0
+      "target": "ui_field_fielderror"
     },
     {
       "relation": "imports",
@@ -6785,9 +6795,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_field_fieldgroup",
-      "confidence_score": 1.0
+      "target": "ui_field_fieldgroup"
     },
     {
       "relation": "imports",
@@ -6796,9 +6806,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_field_fieldlabel",
-      "confidence_score": 1.0
+      "target": "ui_field_fieldlabel"
     },
     {
       "relation": "imports_from",
@@ -6807,9 +6817,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_spinner",
-      "confidence_score": 1.0
+      "target": "ui_spinner"
     },
     {
       "relation": "imports",
@@ -6818,9 +6828,9 @@
       "source_file": "components/flight-count-filter.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_flight_count_filter",
-      "target": "ui_spinner_spinner",
-      "confidence_score": 1.0
+      "target": "ui_spinner_spinner"
     },
     {
       "relation": "imports_from",
@@ -6829,9 +6839,9 @@
       "source_file": "components/get-all-flight-counts.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_get_all_flight_counts",
-      "target": "components_flight_count_filter",
-      "confidence_score": 1.0
+      "target": "components_flight_count_filter"
     },
     {
       "relation": "imports",
@@ -6840,9 +6850,9 @@
       "source_file": "components/get-all-flight-counts.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_get_all_flight_counts",
-      "target": "components_flight_count_filter_flightcountfilter",
-      "confidence_score": 1.0
+      "target": "components_flight_count_filter_flightcountfilter"
     },
     {
       "relation": "contains",
@@ -7310,9 +7320,9 @@
       "source_file": "components/get-all-flight-counts.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_get_all_flight_counts",
-      "target": "lib_date_range",
-      "confidence_score": 1.0
+      "target": "lib_date_range"
     },
     {
       "relation": "imports",
@@ -7321,9 +7331,9 @@
       "source_file": "components/get-all-flight-counts.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_get_all_flight_counts",
-      "target": "lib_date_range_dayrange",
-      "confidence_score": 1.0
+      "target": "lib_date_range_dayrange"
     },
     {
       "relation": "imports_from",
@@ -12255,6 +12265,39 @@
       "target": "formsschema_add_customer_flight_count_updateformschema"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "formsSchema/add-customer-flight-count.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "formsschema_add_customer_flight_count",
+      "target": "lib_date_range",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "formsSchema/add-customer-flight-count.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "formsschema_add_customer_flight_count",
+      "target": "lib_date_range_isdaystring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "formsSchema/add-customer-flight-count.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "formsschema_add_customer_flight_count",
+      "target": "lib_date_range_todaydaystring",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "formsSchema/report-flights.tsx",
@@ -12370,9 +12413,9 @@
       "source_file": "lib/date-range.ts",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_date_range",
-      "target": "lib_date_range_currentmonthrange",
-      "confidence_score": 1.0
+      "target": "lib_date_range_currentmonthrange"
     },
     {
       "relation": "contains",
@@ -12380,9 +12423,9 @@
       "source_file": "lib/date-range.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_date_range",
-      "target": "lib_date_range_dayrange",
-      "confidence_score": 1.0
+      "target": "lib_date_range_dayrange"
     },
     {
       "relation": "contains",
@@ -12390,9 +12433,9 @@
       "source_file": "lib/date-range.ts",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_date_range",
-      "target": "lib_date_range_isdaystring",
-      "confidence_score": 1.0
+      "target": "lib_date_range_isdaystring"
     },
     {
       "relation": "contains",
@@ -12400,8 +12443,18 @@
       "source_file": "lib/date-range.ts",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_date_range",
-      "target": "lib_date_range_resolvedayrange",
+      "target": "lib_date_range_resolvedayrange"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "lib_date_range",
+      "target": "lib_date_range_todaydaystring",
       "confidence_score": 1.0
     },
     {
@@ -12411,8 +12464,19 @@
       "source_file": "lib/date-range.ts",
       "source_location": "L45",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_date_range_resolvedayrange",
-      "target": "lib_date_range_isdaystring",
+      "target": "lib_date_range_isdaystring"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/date-range.ts",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "lib_date_range_currentmonthrange",
+      "target": "lib_date_range_todaydaystring",
       "confidence_score": 1.0
     },
     {
@@ -12422,9 +12486,9 @@
       "source_file": "lib/date-range.ts",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_date_range_resolvedayrange",
-      "target": "lib_date_range_currentmonthrange",
-      "confidence_score": 1.0
+      "target": "lib_date_range_currentmonthrange"
     },
     {
       "relation": "contains",
