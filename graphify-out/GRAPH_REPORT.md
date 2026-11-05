@@ -1,16 +1,16 @@
 # Graph Report - Catering-operations-manager  (2026-11-05)
 
 ## Corpus Check
-- 89 files · ~21,495 words
+- 89 files · ~21,905 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 386 nodes · 816 edges · 26 communities (16 shown, 10 thin omitted)
+- 389 nodes · 825 edges · 26 communities (16 shown, 10 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fffb8e72`
+- Built from commit: `cb22bec6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -53,14 +53,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `RootLayout()` --calls--> `getSession()`  [EXTRACTED]
   app/layout.tsx → lib/roles.ts
-- `CalendarDayButton()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/calendar.tsx → lib/utils.ts
-- `DropdownMenuCheckboxItem()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/dropdown-menu.tsx → lib/utils.ts
-- `DropdownMenuRadioItem()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/dropdown-menu.tsx → lib/utils.ts
-- `DropdownMenuLabel()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/dropdown-menu.tsx → lib/utils.ts
+- `DialogOverlay()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/dialog.tsx → lib/utils.ts
+- `DialogFooter()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/dialog.tsx → lib/utils.ts
+- `FieldSet()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/field.tsx → lib/utils.ts
+- `FieldLegend()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/field.tsx → lib/utils.ts
 
 ## Import Cycles
 - None detected.
@@ -69,27 +69,27 @@
 
 ### Community 0 - "Audit Logs and UI Primitives"
 Cohesion: 0.07
-Nodes (41): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+33 more)
+Nodes (40): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+32 more)
 
 ### Community 1 - "Server Actions and Audit Log"
 Cohesion: 0.12
 Nodes (24): addCustomer(), deleteCustomer(), addCount(), deleteCount(), updateCount(), rejectDeleteRequest(), updateCustomer(), updateValue (+16 more)
 
 ### Community 2 - "Flight and Report Forms"
-Cohesion: 0.07
-Nodes (44): ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType, FieldErrors, PERIOD_OPTIONS, ReportField, ar_field_name, EditFieldName (+36 more)
+Cohesion: 0.06
+Nodes (35): groupByPeriod(), periodLabel(), reportAction(), ReportRow, ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType, FieldErrors (+27 more)
 
 ### Community 3 - "Company and Flight Edit Forms"
-Cohesion: 0.21
-Nodes (8): groupByPeriod(), periodLabel(), reportAction(), ReportRow, actionSchema, formSchema, REPORT_PERIODS, ReportPeriod
+Cohesion: 0.09
+Nodes (27): ar_field_name, EditFieldName, FIELD_NAMES, formSchema, formSchema, updateFormSchema, Dialog(), DialogContent() (+19 more)
 
 ### Community 4 - "Data Tables and Dialogs"
-Cohesion: 0.19
-Nodes (18): Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent(), AlertDialogDescription(), AlertDialogFooter(), AlertDialogHeader() (+10 more)
+Cohesion: 0.16
+Nodes (23): formatNumber(), ReportTable(), Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent(), AlertDialogDescription() (+15 more)
 
 ### Community 5 - "Layout, Navbar and Menus"
-Cohesion: 0.09
-Nodes (18): fontSans, metadata, RootLayout(), navList, DropdownMenu(), DropdownMenuCheckboxItem(), DropdownMenuContent(), DropdownMenuItem() (+10 more)
+Cohesion: 0.20
+Nodes (7): fontSans, metadata, RootLayout(), navList, Toaster(), ThemeProvider(), ModeToggle()
 
 ### Community 6 - "Runtime Dependencies"
 Cohesion: 0.08
@@ -123,17 +123,17 @@ Nodes (11): CompanyFormValues, CustomerFlightCountFormValues, formValueType, log
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `Audit Logs and UI Primitives` to `Server Actions and Audit Log`, `Flight and Report Forms`, `Data Tables and Dialogs`, `Layout, Navbar and Menus`?**
-  _High betweenness centrality (0.182) - this node is a cross-community bridge._
+- **Why does `cn()` connect `Audit Logs and UI Primitives` to `Server Actions and Audit Log`, `Flight and Report Forms`, `Company and Flight Edit Forms`, `Data Tables and Dialogs`?**
+  _High betweenness centrality (0.181) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `Runtime Dependencies` to `Server Actions and Audit Log`, `Dev Dependencies and Tooling`?**
-  _High betweenness centrality (0.168) - this node is a cross-community bridge._
+  _High betweenness centrality (0.167) - this node is a cross-community bridge._
 - **Why does `drizzle-seed` connect `Server Actions and Audit Log` to `Runtime Dependencies`?**
   _High betweenness centrality (0.158) - this node is a cross-community bridge._
 - **What connects `updateValue`, `ReportRow`, `fontSans` to the rest of the system?**
   _128 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Audit Logs and UI Primitives` be split into smaller, more focused modules?**
-  _Cohesion score 0.06848357791754019 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06936026936026936 - nodes in this community are weakly interconnected._
 - **Should `Server Actions and Audit Log` be split into smaller, more focused modules?**
   _Cohesion score 0.12173913043478261 - nodes in this community are weakly interconnected._
 - **Should `Flight and Report Forms` be split into smaller, more focused modules?**
-  _Cohesion score 0.06720321931589537 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06184012066365008 - nodes in this community are weakly interconnected._

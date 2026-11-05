@@ -1,12 +1,18 @@
-# Graph Report - .  (2026-11-05)
+# Graph Report - Catering-operations-manager  (2026-11-05)
 
 ## Corpus Check
-- Corpus is ~20,821 words - fits in a single context window. You may not need a graph.
+- 89 files · ~21,832 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 368 nodes · 794 edges · 26 communities (16 shown, 10 thin omitted)
+- 389 nodes · 821 edges · 26 communities (16 shown, 10 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
-- Token cost: 251,377 input · 0 output
+- Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `cb22bec6`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Audit Logs and UI Primitives|Audit Logs and UI Primitives]]
@@ -53,8 +59,8 @@
   components/ui/dialog.tsx → lib/utils.ts
 - `DialogFooter()` --calls--> `cn()`  [EXTRACTED]
   components/ui/dialog.tsx → lib/utils.ts
-- `DropdownMenuCheckboxItem()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/dropdown-menu.tsx → lib/utils.ts
+- `PopoverHeader()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/popover.tsx → lib/utils.ts
 
 ## Import Cycles
 - None detected.
@@ -62,32 +68,32 @@
 ## Communities (26 total, 10 thin omitted)
 
 ### Community 0 - "Audit Logs and UI Primitives"
-Cohesion: 0.07
-Nodes (44): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+36 more)
+Cohesion: 0.06
+Nodes (48): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+40 more)
 
 ### Community 1 - "Server Actions and Audit Log"
-Cohesion: 0.11
-Nodes (25): addCustomer(), deleteCustomer(), addCount(), deleteCount(), updateCount(), rejectDeleteRequest(), updateCustomer(), updateValue (+17 more)
+Cohesion: 0.12
+Nodes (24): addCustomer(), deleteCustomer(), addCount(), deleteCount(), updateCount(), rejectDeleteRequest(), updateCustomer(), updateValue (+16 more)
 
 ### Community 2 - "Flight and Report Forms"
-Cohesion: 0.12
-Nodes (20): actionSchema, formSchema, Calendar(), CalendarDayButton(), Checkbox(), DatePicker(), FieldError(), FieldGroup() (+12 more)
+Cohesion: 0.06
+Nodes (36): groupByPeriod(), periodLabel(), reportAction(), ReportRow, ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType, FieldErrors (+28 more)
 
 ### Community 3 - "Company and Flight Edit Forms"
 Cohesion: 0.11
-Nodes (16): ar_field_name, EditFieldName, FIELD_NAMES, formSchema, formSchema, updateFormSchema, Dialog(), DialogContent() (+8 more)
+Nodes (20): ar_field_name, EditFieldName, FIELD_NAMES, formSchema, formSchema, updateFormSchema, Dialog(), DialogContent() (+12 more)
 
 ### Community 4 - "Data Tables and Dialogs"
-Cohesion: 0.19
-Nodes (19): Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent(), AlertDialogDescription(), AlertDialogFooter(), AlertDialogHeader() (+11 more)
+Cohesion: 0.18
+Nodes (21): formatNumber(), ReportTable(), Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent(), AlertDialogDescription() (+13 more)
 
 ### Community 5 - "Layout, Navbar and Menus"
-Cohesion: 0.09
-Nodes (18): fontSans, metadata, RootLayout(), navList, DropdownMenu(), DropdownMenuCheckboxItem(), DropdownMenuContent(), DropdownMenuItem() (+10 more)
+Cohesion: 0.20
+Nodes (7): fontSans, metadata, RootLayout(), navList, Toaster(), ThemeProvider(), ModeToggle()
 
 ### Community 6 - "Runtime Dependencies"
-Cohesion: 0.07
-Nodes (27): dependencies, class-variance-authority, @clerk/nextjs, clsx, date-fns, dotenv, drizzle-orm, drizzle-query-logger (+19 more)
+Cohesion: 0.08
+Nodes (26): dependencies, class-variance-authority, @clerk/nextjs, clsx, date-fns, dotenv, drizzle-orm, drizzle-query-logger (+18 more)
 
 ### Community 7 - "Dev Dependencies and Tooling"
 Cohesion: 0.09
@@ -102,32 +108,32 @@ Cohesion: 0.10
 Nodes (19): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+11 more)
 
 ### Community 10 - "Next.js Docs and Agent Notes"
-Cohesion: 0.18
-Nodes (14): AGENTS.md (Next.js Docs Index), App Router docs (01-app), Cache Components and use cache directives, Search Next.js docs before any task (training knowledge is wrong for this version), Next.js docs index (.next-docs), Pages Router docs (02-pages), proxy file convention (Next.js 16), CLAUDE.md (project instructions) (+6 more)
+Cohesion: 0.11
+Nodes (18): App Router docs (01-app), Cache Components and use cache directives, Search Next.js docs before any task (training knowledge is wrong for this version), Next.js docs index (.next-docs), Pages Router docs (02-pages), proxy file convention (Next.js 16), "pgh" means push everything to GitHub, Project notes (+10 more)
 
 ### Community 11 - "Shared Form and Report Types"
 Cohesion: 0.17
 Nodes (11): CompanyFormValues, CustomerFlightCountFormValues, formValueType, logCompanyDetails, logFlightDetails, logTableMetaDataType, reportForm, reportResponseType (+3 more)
 
 ## Knowledge Gaps
-- **114 isolated node(s):** `updateValue`, `fontSans`, `metadata`, `$schema`, `style` (+109 more)
+- **127 isolated node(s):** `updateValue`, `ReportRow`, `fontSans`, `metadata`, `$schema` (+122 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `Audit Logs and UI Primitives` to `Server Actions and Audit Log`, `Flight and Report Forms`, `Company and Flight Edit Forms`, `Data Tables and Dialogs`, `Layout, Navbar and Menus`?**
-  _High betweenness centrality (0.192) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `Runtime Dependencies` to `Dev Dependencies and Tooling`?**
-  _High betweenness centrality (0.177) - this node is a cross-community bridge._
-- **Why does `drizzle-seed` connect `Runtime Dependencies` to `Server Actions and Audit Log`?**
-  _High betweenness centrality (0.166) - this node is a cross-community bridge._
-- **What connects `updateValue`, `fontSans`, `metadata` to the rest of the system?**
-  _115 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `cn()` connect `Audit Logs and UI Primitives` to `Server Actions and Audit Log`, `Flight and Report Forms`, `Company and Flight Edit Forms`, `Data Tables and Dialogs`?**
+  _High betweenness centrality (0.181) - this node is a cross-community bridge._
+- **Why does `dependencies` connect `Runtime Dependencies` to `Server Actions and Audit Log`, `Dev Dependencies and Tooling`?**
+  _High betweenness centrality (0.167) - this node is a cross-community bridge._
+- **Why does `drizzle-seed` connect `Server Actions and Audit Log` to `Runtime Dependencies`?**
+  _High betweenness centrality (0.158) - this node is a cross-community bridge._
+- **What connects `updateValue`, `ReportRow`, `fontSans` to the rest of the system?**
+  _128 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Audit Logs and UI Primitives` be split into smaller, more focused modules?**
-  _Cohesion score 0.07012987012987013 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06057692307692308 - nodes in this community are weakly interconnected._
 - **Should `Server Actions and Audit Log` be split into smaller, more focused modules?**
-  _Cohesion score 0.11394557823129252 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.12173913043478261 - nodes in this community are weakly interconnected._
 - **Should `Flight and Report Forms` be split into smaller, more focused modules?**
-  _Cohesion score 0.12121212121212122 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.061683599419448475 - nodes in this community are weakly interconnected._

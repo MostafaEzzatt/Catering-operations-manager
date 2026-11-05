@@ -6,11 +6,12 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { Download } from "lucide-react";
-import { useMemo } from "react";
+import { Download, Printer } from "lucide-react";
+import { useMemo, useState } from "react";
 import { toast } from "sonner";
-import Paragraph from "./typo-p";
 import { Button } from "./ui/button";
+import { Checkbox } from "./ui/checkbox";
+import { Label } from "./ui/label";
 import {
   Table,
   TableBody,
@@ -21,7 +22,61 @@ import {
   TableRow,
 } from "./ui/table";
 
-const ReportTable = ({ records }: { records: reportResponseType[] }) => {
+// What the printed header says about the report. Captured when the report is
+// submitted, so editing the form afterwards does not change a printed report.
+export type ReportPrintMeta = {
+  periodLabel: string;
+  companyLabel: string;
+  from: string;
+  to: string;
+  createdAt: string;
+};
+
+const formatNumber = (n: number) => n.toLocaleString("en-US");
+
+// Print rules for this report only. They live in a <style> rendered with the
+// results instead of a CSS file: Next.js keeps imported stylesheets after
+// navigating away, so a stylesheet would leak these rules into other pages.
+// This tag is removed when the report unmounts.
+const PRINT_CSS = `
+@media print {
+  @page { size: A4 portrait; margin: 12mm; }
+  html, body { background: #fff !important; }
+  .report-print {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .report-print, .report-print * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .report-print .print-label { background: #e5e7eb !important; }
+  .report-print [data-slot="table-container"] { overflow: visible !important; }
+  .report-print table { font-size: 10pt; border-collapse: collapse; }
+  .report-print thead { display: table-header-group; }
+  /* Print the totals row once at the end, not at the bottom of every page */
+  .report-print tfoot { display: table-row-group; }
+  .report-print tr { break-inside: avoid; page-break-inside: avoid; }
+  .report-print th, .report-print td {
+    border: 1px solid #9ca3af !important;
+    padding: 2px 6px !important;
+    height: auto !important;
+  }
+  .report-print tfoot td { font-weight: 700; }
+}
+`;
+
+const ReportTable = ({
+  records,
+  meta,
+}: {
+  records: reportResponseType[];
+  meta: ReportPrintMeta;
+}) => {
+  // Hides the rows on screen and in print, leaving the header and totals
+  const [hideTable, setHideTable] = useState(false);
+
   const Totals = useMemo(() => {
     if (records.length >= 1) {
       return records.reduce(
@@ -50,6 +105,8 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
     {
       accessorKey: "date",
       header: "التاريخ",
+      // Keep "DD / MM / YYYY" in one direction inside the RTL table
+      cell: (info) => <bdi dir="ltr">{info.row.original.date}</bdi>,
     },
     {
       accessorKey: "customer",
@@ -58,30 +115,39 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
     {
       accessorKey: "flightCount",
       header: "عدد الرحلات",
+      cell: (info) => formatNumber(info.row.original.flightCount),
     },
     {
       accessorKey: "c",
       header: "كرو",
+      cell: (info) => formatNumber(info.row.original.c),
     },
     {
       accessorKey: "h",
       header: "بزنس",
+      cell: (info) => formatNumber(info.row.original.h),
     },
     {
       accessorKey: "y",
       header: "سياحى",
+      cell: (info) => formatNumber(info.row.original.y),
     },
     {
       id: "Total Meals",
       header: "مجموع الوجبات",
-      cell: (info) => {
-        const calc =
-          info.row.original["c"] +
-          info.row.original["h"] +
-          info.row.original["y"];
-        return <Paragraph txt={calc.toString()} className="rtl" />;
-      },
+      cell: (info) =>
+        formatNumber(
+          info.row.original.c + info.row.original.h + info.row.original.y,
+        ),
     },
+  ];
+
+  const totalsStrip = [
+    { label: "عدد الرحلات", value: Totals.flightCount },
+    { label: "كرو", value: Totals.c },
+    { label: "بزنس", value: Totals.h },
+    { label: "سياحى", value: Totals.y },
+    { label: "مجموع الوجبات", value: Totals.totalMeals },
   ];
 
   const table = useReactTable({
@@ -160,7 +226,76 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
   }
 
   return (
-    <>
+    <div className="report-print">
+      <style>{PRINT_CSS}</style>
+
+      <div className="flex justify-end items-center gap-4 mb-2 print:hidden">
+        <div className="flex items-center gap-2">
+          <Checkbox
+            id="report-hide-table"
+            checked={hideTable}
+            onCheckedChange={(checked) => setHideTable(checked === true)}
+          />
+          <Label htmlFor="report-hide-table">اخفاء الجدول</Label>
+        </div>
+        <Button
+          variant="outline"
+          onClick={() => window.print()}
+          disabled={records.length === 0}
+        >
+          <Printer /> طباعة
+        </Button>
+      </div>
+
+      {/* Print-only header: what the report is, then the key totals first.
+          With the table hidden, the totals strip also shows on screen. */}
+      <header className={`${hideTable ? "block" : "hidden"} print:block mb-4`}>
+        <h1 className="hidden print:block text-xl font-bold text-center mb-3">
+          تقرير اعداد الرحلات
+        </h1>
+        <dl className="hidden print:grid grid-cols-2 gap-x-6 gap-y-1 text-sm mb-3">
+          {/* Without the rows, daily / monthly / yearly says nothing */}
+          {!hideTable && (
+            <div className="flex gap-2">
+              <dt className="font-bold">نوع التقرير:</dt>
+              <dd>{meta.periodLabel}</dd>
+            </div>
+          )}
+          <div className="flex gap-2">
+            <dt className="font-bold">الشركات:</dt>
+            <dd>{meta.companyLabel}</dd>
+          </div>
+          <div className="flex gap-2">
+            <dt className="font-bold">الفترة:</dt>
+            <dd>
+              من <bdi dir="ltr">{meta.from}</bdi> الى{" "}
+              <bdi dir="ltr">{meta.to}</bdi>
+            </dd>
+          </div>
+          <div className="flex gap-2">
+            {/* <dt className="font-bold">تاريخ الاستخراج:</dt>
+            <dd>
+              <bdi dir="ltr">{meta.createdAt}</bdi>
+            </dd> */}
+          </div>
+        </dl>
+        <div className="grid grid-cols-5 gap-2">
+          {totalsStrip.map((item) => (
+            <div
+              key={item.label}
+              className="border border-gray-400 rounded text-center break-inside-avoid"
+            >
+              <div className="print-label text-xs font-bold py-1">
+                {item.label}
+              </div>
+              <div className="text-lg font-bold py-1">
+                {formatNumber(item.value)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </header>
+
       {/* <div className="flex justify-end mb-2 print:hidden">
         <Button
           variant="outline"
@@ -171,7 +306,10 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
         </Button>
       </div> */}
 
-      <div className="overflow-hidden rounded-md border">
+      <div
+        className="overflow-hidden rounded-md border print:overflow-visible print:rounded-none print:border-0"
+        hidden={hideTable}
+      >
         <Table className="text-center">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -219,88 +357,19 @@ const ReportTable = ({ records }: { records: reportResponseType[] }) => {
               </TableRow>
             )}
           </TableBody>
-          <TableFooter className="print:hidden">
+          <TableFooter>
             <TableRow>
               <TableCell colSpan={3}>المجموع</TableCell>
-              <TableCell>
-                {Totals.flightCount.toLocaleString("en-US")}
-              </TableCell>
-              <TableCell>{Totals.c.toLocaleString("en-US")}</TableCell>
-              <TableCell>{Totals.h.toLocaleString("en-US")}</TableCell>
-              <TableCell>{Totals.y.toLocaleString("en-US")}</TableCell>
-              <TableCell>{Totals.totalMeals.toLocaleString("en-US")}</TableCell>
+              <TableCell>{formatNumber(Totals.flightCount)}</TableCell>
+              <TableCell>{formatNumber(Totals.c)}</TableCell>
+              <TableCell>{formatNumber(Totals.h)}</TableCell>
+              <TableCell>{formatNumber(Totals.y)}</TableCell>
+              <TableCell>{formatNumber(Totals.totalMeals)}</TableCell>
             </TableRow>
           </TableFooter>
         </Table>
       </div>
-
-      <div className="hidden print:block">
-        <div className="font-extrabold mt-8">
-          {records.length >= 1 ? (
-            <Paragraph
-              className="text-2xl"
-              txt={`يشمل التقرير الفترة من ${records[0].date} الى ${records[records.length - 1].date}`}
-            />
-          ) : (
-            <Paragraph className="text-2xl" txt={`لا يوجد تقارير للطباعة`} />
-          )}
-        </div>
-
-        <div className="flex flex-col gap-2.5 mt-4 items-start mr-40 pr-5 border-r py-4">
-          <div className="flex gap-4 items-center text-2xl relative thick-border-right">
-            <div className="font-extrabold bg-gray-400 w-28 text-center">
-              عدد الرحلات
-            </div>
-            <div>
-              <Paragraph txt={Totals.flightCount.toString()} />
-            </div>
-          </div>
-
-          <div className="pt-6 mt-6 border-t">
-            <div className="bg-white text-black text-center w-fit px-2 -mt-10 mx-auto mb-4">
-              عدد الوجبات
-            </div>
-            <div className="flex gap-4 items-center text-2xl relative thick-border-right">
-              <div className="font-extrabold bg-gray-400 w-28 text-center">
-                كرو
-              </div>
-              <div>
-                <Paragraph txt={Totals.c.toString()} />
-              </div>
-            </div>
-          </div>
-
-          <div className="flex gap-4 items-center text-2xl relative thick-border-right">
-            <div className="font-extrabold bg-gray-400 w-28 text-center">
-              حورس
-            </div>
-            <div>
-              <Paragraph txt={Totals.h.toString()} />
-            </div>
-          </div>
-
-          <div className="flex gap-4 items-center text-2xl relative thick-border-right">
-            <div className="font-extrabold bg-gray-400 w-28 text-center">
-              سياحى
-            </div>
-            <div>
-              <Paragraph txt={Totals.y.toString()} />
-            </div>
-          </div>
-
-          <div className="pt-6 mt-6 border-t">
-            <div className="bg-white text-black text-center w-fit px-2 -mt-10 mx-auto mb-4">
-              مجموع الوجبات
-            </div>
-            <div className="flex gap-4 items-center text-2xl relative thick-border-right">
-              <div className="w-[192.69px] text-center">
-                <Paragraph txt={Totals.totalMeals.toString()} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 

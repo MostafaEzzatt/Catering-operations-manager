@@ -8,7 +8,7 @@ const Reports = async () => {
   return (
     <main className="container mx-auto">
       <Heading1 txt="عمل تقارير" />
-      <section className="border border-dashed p-4 print:border-0">
+      <section className="border border-dashed p-4 print:border-0 print:p-0">
         <Reportform customers={customers} />
       </section>
     </main>

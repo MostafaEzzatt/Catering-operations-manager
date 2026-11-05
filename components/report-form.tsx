@@ -15,7 +15,7 @@ import { formSchema, ReportPeriod } from "@/formsSchema/report-flights";
 import { InferSelectModel } from "drizzle-orm";
 import { useActionState, useEffect, useState, useTransition } from "react";
 import { toast } from "sonner";
-import ReportTable from "./report-table";
+import ReportTable, { ReportPrintMeta } from "./report-table";
 import { Button } from "./ui/button";
 import {
   Select,
@@ -70,6 +70,16 @@ const PERIOD_OPTIONS: {
   },
 ];
 
+// "DD / MM / YYYY" in the user's local calendar (the picked dates are local)
+const formatDay = (d: Date) =>
+  new Intl.DateTimeFormat("en-GB", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  })
+    .format(d)
+    .replace(/\//g, " / ");
+
 // Deliberately NOT built on @tanstack/react-form: a TanStack form next to
 // Radix inputs (RadioGroup, Select, Popover) can trigger a synchronous render
 // loop on React 19 that freezes the tab (TanStack/form#2020). Plain state plus
@@ -89,6 +99,7 @@ const Reportform = ({
   const [companyType, setCompanyType] = useState<CompanyType>("0");
   const [companyId, setCompanyId] = useState(0);
   const [errors, setErrors] = useState<FieldErrors>({});
+  const [printMeta, setPrintMeta] = useState<ReportPrintMeta | null>(null);
 
   useEffect(() => {
     if (pending) {
@@ -127,6 +138,21 @@ const Reportform = ({
 
     setErrors({});
     const data = parsed.data;
+
+    const companyLabel =
+      data.companyType === "0"
+        ? (customers.find((c) => c.id === data.companyId)?.name ?? "")
+        : (COMPANY_TYPE_OPTIONS.find((o) => o.value === data.companyType)
+            ?.label ?? "");
+    setPrintMeta({
+      periodLabel:
+        PERIOD_OPTIONS.find((o) => o.value === data.period)?.label ?? "",
+      companyLabel,
+      from: formatDay(data.from),
+      to: formatDay(data.to),
+      createdAt: formatDay(new Date()),
+    });
+
     startTransition(() => {
       submit({
         ...data,
@@ -308,8 +334,8 @@ const Reportform = ({
           </div>
         </FieldGroup>
       </form>
-      {state && state.error === false ? (
-        <ReportTable records={state.response} />
+      {state && state.error === false && printMeta && !pending ? (
+        <ReportTable records={state.response} meta={printMeta} />
       ) : (
         <></>
       )}
