@@ -14,15 +14,16 @@ export const formSchema = z
     to: z.date(),
     period: z.enum(REPORT_PERIODS),
     companyType: z.enum(["0", "1", "2"]),
-    companyId: z.number(),
+    // Companies picked for a "specific companies" report (companyType "0")
+    companyIds: z.array(z.number().int().positive()),
   })
   .refine((data) => dayValue(data.from) <= dayValue(data.to), {
     message: "تاريخ البداية يجب ان يكون قبل تاريخ النهاية",
     path: ["to"],
   })
-  .refine((data) => data.companyType !== "0" || data.companyId >= 1, {
-    message: "برجاء اختيار شركة",
-    path: ["companyId"],
+  .refine((data) => data.companyType !== "0" || data.companyIds.length >= 1, {
+    message: "برجاء اختيار شركة واحدة على الاقل",
+    path: ["companyIds"],
   });
 
 // What the server action actually receives: the client serializes the dates
@@ -33,7 +34,8 @@ export const actionSchema = z
     to: z.string().refine((s) => !Number.isNaN(Date.parse(s))),
     period: z.enum(REPORT_PERIODS),
     companyType: z.enum(["0", "1", "2"]),
-    companyId: z.number().int(),
+    // Capped so a direct call cannot send an unbounded IN (...) list
+    companyIds: z.array(z.number().int().positive()).max(1000),
   })
   .refine((data) => Date.parse(data.from) <= Date.parse(data.to))
-  .refine((data) => data.companyType !== "0" || data.companyId >= 1);
+  .refine((data) => data.companyType !== "0" || data.companyIds.length >= 1);

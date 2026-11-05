@@ -13,21 +13,18 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cutomersTable } from "@/drizzle/db/schema";
 import { formSchema, ReportPeriod } from "@/formsSchema/report-flights";
 import { InferSelectModel } from "drizzle-orm";
+import { ChevronDown } from "lucide-react";
 import { useActionState, useEffect, useState, useTransition } from "react";
 import { toast } from "sonner";
 import ReportTable, { ReportPrintMeta } from "./report-table";
 import { Button } from "./ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
+import { Checkbox } from "./ui/checkbox";
+import { Label } from "./ui/label";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Spinner } from "./ui/spinner";
 
 type CompanyType = "0" | "1" | "2";
-type ReportField = "from" | "to" | "period" | "companyType" | "companyId";
+type ReportField = "from" | "to" | "period" | "companyType" | "companyIds";
 type FieldErrors = Partial<Record<ReportField, { message: string }[]>>;
 
 const ar_field_name: Record<ReportField, string> = {
@@ -35,7 +32,7 @@ const ar_field_name: Record<ReportField, string> = {
   to: "الى",
   period: "نوع التقرير",
   companyType: "تحديد الشركة",
-  companyId: "اسم الشركة",
+  companyIds: "الشركات",
 };
 
 const COMPANY_TYPE_OPTIONS: {
@@ -43,7 +40,11 @@ const COMPANY_TYPE_OPTIONS: {
   label: string;
   description: string;
 }[] = [
-  { value: "0", label: "حدد شركة", description: "حدد شركة للتقرير." },
+  {
+    value: "0",
+    label: "حدد شركات",
+    description: "اختر شركة او اكثر للتقرير.",
+  },
   {
     value: "1",
     label: "الشركات الاجنبية",
@@ -97,7 +98,7 @@ const Reportform = ({
   const [dateTo, setDateTo] = useState(() => new Date());
   const [period, setPeriod] = useState<ReportPeriod>("day");
   const [companyType, setCompanyType] = useState<CompanyType>("0");
-  const [companyId, setCompanyId] = useState(0);
+  const [companyIds, setCompanyIds] = useState<number[]>([]);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [printMeta, setPrintMeta] = useState<ReportPrintMeta | null>(null);
 
@@ -115,6 +116,26 @@ const Reportform = ({
     setErrors((prev) => (prev[name] ? { ...prev, [name]: undefined } : prev));
   }
 
+  function toggleCompany(id: number, checked: boolean) {
+    setCompanyIds((prev) =>
+      checked
+        ? prev.includes(id)
+          ? prev
+          : [...prev, id]
+        : prev.filter((x) => x !== id),
+    );
+    clearError("companyIds");
+  }
+
+  // Picked companies in the same order as the list, for labels
+  const selectedCompanies = customers.filter((c) => companyIds.includes(c.id));
+  const pickerText =
+    selectedCompanies.length === 0
+      ? "اختر الشركات"
+      : selectedCompanies.length <= 2
+        ? selectedCompanies.map((c) => c.name).join("، ")
+        : `${selectedCompanies.length} شركات محددة`;
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -123,7 +144,7 @@ const Reportform = ({
       to: dateTo,
       period,
       companyType,
-      companyId,
+      companyIds,
     });
 
     if (!parsed.success) {
@@ -141,7 +162,7 @@ const Reportform = ({
 
     const companyLabel =
       data.companyType === "0"
-        ? (customers.find((c) => c.id === data.companyId)?.name ?? "")
+        ? selectedCompanies.map((c) => c.name).join("، ")
         : (COMPANY_TYPE_OPTIONS.find((o) => o.value === data.companyType)
             ?.label ?? "");
     setPrintMeta({
@@ -158,9 +179,9 @@ const Reportform = ({
         ...data,
         from: data.from.toDateString(),
         to: data.to.toDateString(),
-        // Only a single-company report filters by company; drop a company
+        // Only a "specific companies" report filters by company; drop any
         // left selected before switching to foreign / all
-        companyId: data.companyType === "0" ? data.companyId : 0,
+        companyIds: data.companyType === "0" ? data.companyIds : [],
       });
     });
   }
@@ -223,7 +244,7 @@ const Reportform = ({
                   onValueChange={(value) => {
                     setCompanyType(value as CompanyType);
                     clearError("companyType");
-                    clearError("companyId");
+                    clearError("companyIds");
                   }}
                   aria-invalid={!!errors.companyType?.length}
                 >
@@ -288,41 +309,73 @@ const Reportform = ({
 
           {showCompanys && (
             <div>
-              <Field data-invalid={!!errors.companyId?.length}>
+              <Field data-invalid={!!errors.companyIds?.length}>
                 <FieldLabel className="capitalize">
-                  {ar_field_name.companyId}
+                  {ar_field_name.companyIds}
                 </FieldLabel>
 
-                {customers.length >= 1 ? (
-                  <Select
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full justify-between font-normal"
+                      disabled={customers.length === 0}
+                      aria-invalid={!!errors.companyIds?.length}
+                    >
+                      <span className="truncate">{pickerText}</span>
+                      <ChevronDown className="opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  {/* Same width as the trigger, which fills the section */}
+                  <PopoverContent
+                    align="start"
+                    className="w-(--radix-popover-trigger-width) p-0"
                     dir="rtl"
-                    value={`${companyId}`}
-                    onValueChange={(value) => {
-                      setCompanyId(Number(value));
-                      clearError("companyId");
-                    }}
                   >
-                    <SelectTrigger className="w-45">
-                      <SelectValue placeholder="اسم الشركة" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {customers.map((c) => (
-                        <SelectItem key={c.id} value={`${c.id}`}>
-                          {c.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                ) : (
-                  <Select dir="rtl" disabled>
-                    <SelectTrigger className="w-45">
-                      <SelectValue placeholder="اسم الشركة" />
-                    </SelectTrigger>
-                    <SelectContent></SelectContent>
-                  </Select>
-                )}
-                {!!errors.companyId?.length && (
-                  <FieldError errors={errors.companyId} />
+                    <div className="flex justify-between gap-2 p-2 border-b">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          setCompanyIds(customers.map((c) => c.id));
+                          clearError("companyIds");
+                        }}
+                      >
+                        تحديد الكل
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setCompanyIds([])}
+                      >
+                        مسح
+                      </Button>
+                    </div>
+                    <div className="max-h-64 overflow-y-auto p-2 space-y-2">
+                      {customers.map((c) => {
+                        const id = `report-company-${c.id}`;
+                        return (
+                          <div key={c.id} className="flex items-center gap-2">
+                            <Checkbox
+                              id={id}
+                              checked={companyIds.includes(c.id)}
+                              onCheckedChange={(checked) =>
+                                toggleCompany(c.id, checked === true)
+                              }
+                            />
+                            <Label htmlFor={id}>{c.name}</Label>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </PopoverContent>
+                </Popover>
+
+                {!!errors.companyIds?.length && (
+                  <FieldError errors={errors.companyIds} />
                 )}
               </Field>
             </div>

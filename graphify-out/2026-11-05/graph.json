@@ -917,7 +917,7 @@
       "label": "ReportPrintMeta",
       "file_type": "code",
       "source_file": "components/report-table.tsx",
-      "source_location": "L25",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "components_report_table_reportprintmeta",
       "community": 2,
@@ -927,7 +927,7 @@
       "label": "formatNumber()",
       "file_type": "code",
       "source_file": "components/report-table.tsx",
-      "source_location": "L33",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "components_report_table_formatnumber",
       "community": 4,
@@ -937,7 +937,7 @@
       "label": "ReportTable()",
       "file_type": "code",
       "source_file": "components/report-table.tsx",
-      "source_location": "L68",
+      "source_location": "L70",
       "_origin": "ast",
       "id": "components_report_table_reporttable",
       "community": 4,
@@ -1280,7 +1280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_calendar",
-      "community": 2,
+      "community": 4,
       "norm_label": "calendar.tsx"
     },
     {
@@ -1290,7 +1290,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "ui_calendar_calendar",
-      "community": 2,
+      "community": 4,
       "norm_label": "calendar()"
     },
     {
@@ -1300,7 +1300,7 @@
       "source_location": "L182",
       "_origin": "ast",
       "id": "ui_calendar_calendardaybutton",
-      "community": 2,
+      "community": 0,
       "norm_label": "calendardaybutton()"
     },
     {
@@ -1720,7 +1720,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_field",
-      "community": 0,
+      "community": 3,
       "norm_label": "field.tsx"
     },
     {
@@ -1730,7 +1730,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "ui_field_fieldset",
-      "community": 0,
+      "community": 3,
       "norm_label": "fieldset()"
     },
     {
@@ -1740,7 +1740,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "ui_field_fieldlegend",
-      "community": 0,
+      "community": 3,
       "norm_label": "fieldlegend()"
     },
     {
@@ -1760,7 +1760,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "ui_field_fieldvariants",
-      "community": 0,
+      "community": 3,
       "norm_label": "fieldvariants"
     },
     {
@@ -1780,7 +1780,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "ui_field_fieldcontent",
-      "community": 0,
+      "community": 3,
       "norm_label": "fieldcontent()"
     },
     {
@@ -1800,7 +1800,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "ui_field_fieldtitle",
-      "community": 0,
+      "community": 3,
       "norm_label": "fieldtitle()"
     },
     {
@@ -1810,7 +1810,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "ui_field_fielddescription",
-      "community": 0,
+      "community": 3,
       "norm_label": "fielddescription()"
     },
     {
@@ -1820,7 +1820,7 @@
       "source_location": "L156",
       "_origin": "ast",
       "id": "ui_field_fieldseparator",
-      "community": 0,
+      "community": 3,
       "norm_label": "fieldseparator()"
     },
     {
@@ -1860,7 +1860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_label",
-      "community": 0,
+      "community": 2,
       "norm_label": "label.tsx"
     },
     {
@@ -1870,7 +1870,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "ui_label_label",
-      "community": 0,
+      "community": 2,
       "norm_label": "label()"
     },
     {
@@ -2340,7 +2340,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "ui_table_tablecaption",
-      "community": 0,
+      "community": 4,
       "norm_label": "tablecaption()"
     },
     {
@@ -7495,9 +7495,9 @@
       "source_file": "components/report-form.tsx",
       "source_location": "L74",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_form",
-      "target": "components_report_form_formatday",
-      "confidence_score": 1.0
+      "target": "components_report_form_formatday"
     },
     {
       "relation": "contains",
@@ -7547,9 +7547,9 @@
       "source_file": "components/report-form.tsx",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_form",
-      "target": "components_report_table_reportprintmeta",
-      "confidence_score": 1.0
+      "target": "components_report_table_reportprintmeta"
     },
     {
       "relation": "imports_from",
@@ -7876,9 +7876,9 @@
       "source_file": "components/report-table.tsx",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_table",
-      "target": "components_report_table_formatnumber",
-      "confidence_score": 1.0
+      "target": "components_report_table_formatnumber"
     },
     {
       "relation": "contains",
@@ -7886,9 +7886,9 @@
       "source_file": "components/report-table.tsx",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_table",
-      "target": "components_report_table_reportprintmeta",
-      "confidence_score": 1.0
+      "target": "components_report_table_reportprintmeta"
     },
     {
       "relation": "contains",
@@ -7943,6 +7943,50 @@
       "confidence_score": 1.0,
       "source": "components_report_table",
       "target": "ui_button_button"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/report-table.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "components_report_table",
+      "target": "ui_checkbox",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/report-table.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "components_report_table",
+      "target": "ui_checkbox_checkbox",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/report-table.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "components_report_table",
+      "target": "ui_label",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/report-table.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "components_report_table",
+      "target": "ui_label_label",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -8039,9 +8083,9 @@
       "source_file": "components/report-table.tsx",
       "source_location": "L343",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_report_table_reporttable",
-      "target": "components_report_table_formatnumber",
-      "confidence_score": 1.0
+      "target": "components_report_table_formatnumber"
     },
     {
       "relation": "contains",

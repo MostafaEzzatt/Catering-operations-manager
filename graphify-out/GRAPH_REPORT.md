@@ -1,16 +1,16 @@
 # Graph Report - Catering-operations-manager  (2026-11-05)
 
 ## Corpus Check
-- 89 files · ~21,905 words
+- 89 files · ~22,073 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 389 nodes · 825 edges · 26 communities (16 shown, 10 thin omitted)
+- 389 nodes · 831 edges · 26 communities (16 shown, 10 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `cb22bec6`
+- Built from commit: `898fc97c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -76,7 +76,7 @@ Cohesion: 0.12
 Nodes (24): addCustomer(), deleteCustomer(), addCount(), deleteCount(), updateCount(), rejectDeleteRequest(), updateCustomer(), updateValue (+16 more)
 
 ### Community 2 - "Flight and Report Forms"
-Cohesion: 0.06
+Cohesion: 0.07
 Nodes (35): groupByPeriod(), periodLabel(), reportAction(), ReportRow, ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType, FieldErrors (+27 more)
 
 ### Community 3 - "Company and Flight Edit Forms"
@@ -124,7 +124,7 @@ Nodes (11): CompanyFormValues, CustomerFlightCountFormValues, formValueType, log
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `cn()` connect `Audit Logs and UI Primitives` to `Server Actions and Audit Log`, `Flight and Report Forms`, `Company and Flight Edit Forms`, `Data Tables and Dialogs`?**
-  _High betweenness centrality (0.181) - this node is a cross-community bridge._
+  _High betweenness centrality (0.176) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `Runtime Dependencies` to `Server Actions and Audit Log`, `Dev Dependencies and Tooling`?**
   _High betweenness centrality (0.167) - this node is a cross-community bridge._
 - **Why does `drizzle-seed` connect `Server Actions and Audit Log` to `Runtime Dependencies`?**
@@ -136,4 +136,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Server Actions and Audit Log` be split into smaller, more focused modules?**
   _Cohesion score 0.12173913043478261 - nodes in this community are weakly interconnected._
 - **Should `Flight and Report Forms` be split into smaller, more focused modules?**
-  _Cohesion score 0.06184012066365008 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06636500754147813 - nodes in this community are weakly interconnected._

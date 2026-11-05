@@ -96,7 +96,7 @@ export async function reportAction(prevState: any, value: reportForm) {
     if (parsed.data.companyType == "0") {
       customerType = and(
         dateRange,
-        eq(customerFlightCountTable.customerId, parsed.data.companyId),
+        inArray(customerFlightCountTable.customerId, parsed.data.companyIds),
       )!;
     } else if (parsed.data.companyType == "1") {
       const MS = await db

@@ -28,7 +28,7 @@ interface reportForm {
   to: string;
   period: "day" | "month" | "year";
   companyType: string;
-  companyId: number;
+  companyIds: number[];
 }
 
 interface reportResponseType {

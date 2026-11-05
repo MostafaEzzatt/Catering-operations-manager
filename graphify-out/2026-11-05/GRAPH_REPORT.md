@@ -1,11 +1,11 @@
 # Graph Report - Catering-operations-manager  (2026-11-05)
 
 ## Corpus Check
-- 89 files · ~21,832 words
+- 89 files · ~21,905 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 389 nodes · 821 edges · 26 communities (16 shown, 10 thin omitted)
+- 389 nodes · 825 edges · 26 communities (16 shown, 10 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
@@ -53,14 +53,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `RootLayout()` --calls--> `getSession()`  [EXTRACTED]
   app/layout.tsx → lib/roles.ts
-- `CalendarDayButton()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/calendar.tsx → lib/utils.ts
 - `DialogOverlay()` --calls--> `cn()`  [EXTRACTED]
   components/ui/dialog.tsx → lib/utils.ts
 - `DialogFooter()` --calls--> `cn()`  [EXTRACTED]
   components/ui/dialog.tsx → lib/utils.ts
-- `PopoverHeader()` --calls--> `cn()`  [EXTRACTED]
-  components/ui/popover.tsx → lib/utils.ts
+- `FieldSet()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/field.tsx → lib/utils.ts
+- `FieldLegend()` --calls--> `cn()`  [EXTRACTED]
+  components/ui/field.tsx → lib/utils.ts
 
 ## Import Cycles
 - None detected.
@@ -68,8 +68,8 @@
 ## Communities (26 total, 10 thin omitted)
 
 ### Community 0 - "Audit Logs and UI Primitives"
-Cohesion: 0.06
-Nodes (48): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+40 more)
+Cohesion: 0.07
+Nodes (40): actionLabels, actionStyles, LogEntry, cn(), formateARDate(), AccordionContent(), AccordionItem(), AccordionTrigger() (+32 more)
 
 ### Community 1 - "Server Actions and Audit Log"
 Cohesion: 0.12
@@ -77,15 +77,15 @@ Nodes (24): addCustomer(), deleteCustomer(), addCount(), deleteCount(), updateCo
 
 ### Community 2 - "Flight and Report Forms"
 Cohesion: 0.06
-Nodes (36): groupByPeriod(), periodLabel(), reportAction(), ReportRow, ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType, FieldErrors (+28 more)
+Nodes (35): groupByPeriod(), periodLabel(), reportAction(), ReportRow, ar_field_name, COMPANY_TYPE_OPTIONS, CompanyType, FieldErrors (+27 more)
 
 ### Community 3 - "Company and Flight Edit Forms"
-Cohesion: 0.11
-Nodes (20): ar_field_name, EditFieldName, FIELD_NAMES, formSchema, formSchema, updateFormSchema, Dialog(), DialogContent() (+12 more)
+Cohesion: 0.09
+Nodes (27): ar_field_name, EditFieldName, FIELD_NAMES, formSchema, formSchema, updateFormSchema, Dialog(), DialogContent() (+19 more)
 
 ### Community 4 - "Data Tables and Dialogs"
-Cohesion: 0.18
-Nodes (21): formatNumber(), ReportTable(), Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent(), AlertDialogDescription() (+13 more)
+Cohesion: 0.16
+Nodes (23): formatNumber(), ReportTable(), Paragraph(), AlertDialog(), AlertDialogAction(), AlertDialogCancel(), AlertDialogContent(), AlertDialogDescription() (+15 more)
 
 ### Community 5 - "Layout, Navbar and Menus"
 Cohesion: 0.20
@@ -132,8 +132,8 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `updateValue`, `ReportRow`, `fontSans` to the rest of the system?**
   _128 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Audit Logs and UI Primitives` be split into smaller, more focused modules?**
-  _Cohesion score 0.06057692307692308 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06936026936026936 - nodes in this community are weakly interconnected._
 - **Should `Server Actions and Audit Log` be split into smaller, more focused modules?**
   _Cohesion score 0.12173913043478261 - nodes in this community are weakly interconnected._
 - **Should `Flight and Report Forms` be split into smaller, more focused modules?**
-  _Cohesion score 0.061683599419448475 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06184012066365008 - nodes in this community are weakly interconnected._
